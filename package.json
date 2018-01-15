@@ -1,0 +1,23 @@
+{
+  "name": "j-bot",
+  "version": "0.1.0",
+  "description": "Discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinjeok/j-bot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "IJWGH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jinjeok/j-bot/issues"
+  },
+  "homepage": "https://github.com/jinjeok/j-bot#readme"
+}
