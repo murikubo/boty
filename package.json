@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/jinjeok/j-bot/issues"
   },
-  "homepage": "https://github.com/jinjeok/j-bot#readme"
+  "homepage": "https://github.com/jinjeok/j-bot#readme",
+  "dependencies": {
+    "discord.js": "^11.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.0"
+  }
 }
