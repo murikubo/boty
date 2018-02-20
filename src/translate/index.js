@@ -1,0 +1,1 @@
+//This is index of translate function
