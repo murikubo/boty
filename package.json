@@ -22,10 +22,14 @@
   },
   "homepage": "https://github.com/jinjeok/j-bot#readme",
   "dependencies": {
-    "discord.js": "^11.3.0"
+    "discord.js": "^11.3.2",
+    "ffmpeg": "0.0.4",
+    "ffmpeg-binaries": "^3.2.2",
+    "node-opus": "^0.2.7",
+    "opusscript": "0.0.6"
   },
   "devDependencies": {
-    "eslint": "^4.18.0",
-    "nodemon": "^1.15.1"
+    "eslint": "^4.18.2",
+    "nodemon": "^1.17.1"
   }
 }
