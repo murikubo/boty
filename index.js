@@ -8,8 +8,8 @@ const token = 'NDE1NjgxNTc3MDMzNDAwMzIw.DW5gCg.S0y5FFh_QY4g94UtZW-JG6i8UMc';
 //import translate
 
 
-let prefix='.';
-let inChannel='0'; //채널에 봇이 들어가있을 때를 구별하기 위한 전역변수. 만약 채널에 들어가있으면 1, 들어가있지 않으면 0.
+let prefix = '.';
+let inChannel = '0'; //채널에 봇이 들어가있을 때를 구별하기 위한 전역변수. 만약 채널에 들어가있으면 1, 들어가있지 않으면 0.
 let KRW_JPY = 0; //환율에 사용할 변수
 let pie = '3.14'; //원주율
 let JK = '0'; //여고생모드 스위치
@@ -18,19 +18,18 @@ client.on('ready', () => {
     console.info('I am ready!');
     client.user.setActivity('벚꽃 필 무렵');
 });
-//Test message
 
 // Play streams using ytdl-core
 const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 client.on('message', message => {
-    let word1 = ["아니요","아닐걸요?","꼭 그래야만 하나요?", "글쎄요", "그럴까요?", "진짜요?", "진심이세요?", "아마도요.", "그렇나봐요.", "저는 잘 모르죠.", "별로요.", "어떻게 그럴 수 있나요"];//"제가 이런 말 잘 안 하는데 이번만 말씀드릴게요."+'\n'+'\n'+"네 그래요!"
+    let word1 = ["아니요", "아닐걸요?", "꼭 그래야만 하나요?", "글쎄요", "그럴까요?", "진짜요?", "진심이세요?", "아마도요.", "그렇나봐요.", "저는 잘 모르죠.", "별로요.", "어떻게 그럴 수 있나요"];//"제가 이런 말 잘 안 하는데 이번만 말씀드릴게요."+'\n'+'\n'+"네 그래요!"
     let word2 = ["아니예요", "아닐걸요? 인거예요", "하와와 꼭 그래야만 하나요?", "하와와...글쎄요", "호에에 그럴까요?", "호에에~ 진짜요?", "호게겟 진심이세요??", "아마도 인 것 같아예요.", "그렇나봐요 인거예요", "하와와 저는 잘 모르죠.", "호에에 별로에요.", "하와와..어떻게 그럴 수 있나요??"]
     let result = [];
     let result2 = [];
     result[0] = word1[Math.floor(Math.random() * word1.length)];
     result2[0] = word2[Math.floor(Math.random() * word2.length)];
-    let song = ["버스커버스커 - 벚꽃엔딩", "로이킴 - 봄봄봄", "유니 - 벚꽃비","버스커버스커 - 꽃송이가","버스커버스커 - 봄바람","天海春香,島村卯月 - M@sterpiece","vy1v4 - fairytale,","島村卯月 - Romantic Now","윤종신 - 좋니","シンデレラガールズ劇場 - キラッ！満開スマイル(eurobeat remix)","初音ミク - 千本桜","千石撫子 - 恋愛サーキュレーション", "10cm - 봄이 좋냐", "김광진 - 동경소녀", "울랄라세션 - 달의 몰락", "桜の頃 EDM remix", "LG 빡치게 하는 노래"];
+    let song = ["버스커버스커 - 벚꽃엔딩", "로이킴 - 봄봄봄", "유니 - 벚꽃비", "버스커버스커 - 꽃송이가", "버스커버스커 - 봄바람", "天海春香,島村卯月 - M@sterpiece", "vy1v4 - fairytale,", "島村卯月 - Romantic Now", "윤종신 - 좋니", "シンデレラガールズ劇場 - キラッ！満開スマイル(eurobeat remix)", "初音ミク - 千本桜", "千石撫子 - 恋愛サーキュレーション", "10cm - 봄이 좋냐", "김광진 - 동경소녀", "울랄라세션 - 달의 몰락", "桜の頃 EDM remix", "LG 빡치게 하는 노래", "모리야마 나오타로 - 벛꽃"];
     let result1 = [];
     result1[0] = song[Math.floor(Math.random() * song.length)];
 
@@ -84,7 +83,7 @@ client.on('message', message => {
                     '.이과 -> *이과충 죽어*' + '\n' + '\n' +
                     '.성덕 -> *세상말종쓰레기자식*' + '\n' + '\n' +
                     '.여고생모드 -> 일부 대답을 여고생 말투로 하는 후미카씨의 여고생모드를 on합니다. ' + '\n' + '\n' +
-                    '.해제 -> 여고생모드를 해제합니다.'+ '\n' + '\n' +
+                    '.해제 -> 여고생모드를 해제합니다.' + '\n' + '\n' +
                     '.범죄계수 -> 해당 명령어를 입력한 유저의 범죄계수를 측정하여 알려줍니다. (여고생모드가 적용되지 않습니다.)'
                     , { code: 'true' });
             }
@@ -94,13 +93,13 @@ client.on('message', message => {
     if (message.content.search(prefix) != -1 && message.content.search(prefix) === 0) {
         if (message.content.search('추천곡') === message.content.search(prefix) + 1) {
             let flag = Math.floor((Math.random() * 4) + 1);
-            if(flag == '1') {
+            if (flag == '1') {
                 message.channel.send(result1[0]);
-            } else if(flag == '2'){
+            } else if (flag == '2') {
                 message.channel.send(result1[0]);
-            } else if(flag == '3'){
+            } else if (flag == '3') {
                 message.channel.send('sagisawa fumika - bright blue old clock remix');
-            } else if(flag == '4'){
+            } else if (flag == '4') {
                 message.channel.send(result1[0]);
             }
         }
@@ -163,9 +162,9 @@ client.on('message', message => {
     if (message.content.search(prefix) != -1 && message.content.search(prefix) === 0) {
         if (message.content.search('모드') === message.content.search(prefix) + 1) {
             if (JK == '1') {
-                message.channel.send('현재 여고생모드는 '+'> *__On__*'+' 인거예요');
+                message.channel.send('현재 여고생모드는 ' + '> *__On__*' + ' 인거예요');
             } else if (JK == '0') {
-                message.channel.send('현재 여고생모드는 '+'> *__Off__*'+' 입니다.');
+                message.channel.send('현재 여고생모드는 ' + '> *__Off__*' + ' 입니다.');
             }
         }
     }
@@ -175,8 +174,8 @@ client.on('message', message => {
             if (pie == '3.14') {
                 message.channel.send('자, 한 번만 말씀드릴게요.');
                 message.channel.send('pi = 3.1415926535 8979323846 2643383279 5028841971 6939937510 5820974944 5923078164 0628620899 8628034825 3421170679 8214808651 3282306647 0938446095 5058223172 5359408128 4811174502 8410270193 8521105559 6446229489 5493038196 4428810975 6659334461 2847564823 3786783165 2712019091 4564856692 3460348610 4543266482 1339360726 0249141273 7245870066 0631558817 4881520920 9628292540 9171536436 7892590360 0113305305 4882046652 1384146951 9415116094 3305727036 5759591953 0921861173 8193261179 3105118548 0744623799 6274956735 1885752724 8912279381 8301194912 9833673362 4406566430 8602139494 6395224737 1907021798 6094370277 0539217176 2931767523 8467481846 7669405132 0005681271 4526356082 7785771342 7577896091 7363717872 1468440901 2249534301 4654958537 1050792279 6892589235 4201995611 2129021960 8640344181 5981362977 4771309960 5187072113 4999999837 2978049951 0597317328 1609631859 5024459455 3469083026 4252230825 3344685035 2619311881 7101000313 7838752886 5875332083 8142061717 7669147303 5982534904 2875546873 1159562863 8823537875 9375195778 1857780532 1712268066 1300192787 6611195909 2164201989 ');
-                pie='6.28';
-            } else if(pie=='6.28');{
+                pie = '6.28';
+            } else if (pie == '6.28'); {
                 message.channel.send('저는 한 번만 말씀드린다고 했어요.');
                 message.channel.send('이제 재부팅 전에는 말씀 안 해드릴거에요.');
             }
@@ -187,8 +186,8 @@ client.on('message', message => {
         if (message.content.search('여고생모드') === message.content.search(prefix) + 1) {
             if (JK == '0') {
                 message.channel.send('여고생 모드를 켤게요.');
-                JK='1';
-            } else if(JK=='1');{
+                JK = '1';
+            } else if (JK == '1'); {
                 message.channel.send('현재 상태 : 여고생 모드 on 인거예요');
             }
         }
@@ -198,14 +197,14 @@ client.on('message', message => {
         if (message.content.search('해제') === message.content.search(prefix) + 1) {
             if (JK == '1') {
                 message.channel.send('여고생 모드를 해제할게요.');
-                JK='0';
-            } else if(JK=='0');{
+                JK = '0';
+            } else if (JK == '0'); {
                 message.channel.send('현재 상태 : 여고생 모드 off에요.');
             }
         }
     }
 
-    
+
 
     if (message.content.search(prefix) != -1 && message.content.search(prefix) === 0) {
         if (message.content.search('업다운') === message.content.search(prefix) + 1) {
@@ -223,7 +222,7 @@ client.on('message', message => {
             console.log(d_day);
             console.log(t_day);
 
-            message.channel.send('이벤트까지 남은 시간은 ' +d_day-t_day+ '입니다.'); //몰라 언젠간 완료하겠지
+            message.channel.send('이벤트까지 남은 시간은 ' + d_day - t_day + '입니다.'); //몰라 언젠간 완료하겠지
         }
     }
 
@@ -260,7 +259,7 @@ client.on('message', message => {
         }
     }
     if (message.content === '.계정정보') {
-        message.channel.send('계정 생성 시간 : '+message.author.createdTimestamp+'\n'+'가입시 입력 한 이름 : '+message.author.username+'\n'+'현재 계정 상태 : '+message.author.presence.status+'\n'+'계정 tag : '+message.author.tag ,{code: 'true'});
+        message.channel.send('계정 생성 시간 : ' + message.author.createdTimestamp + '\n' + '가입시 입력 한 이름 : ' + message.author.username + '\n' + '현재 계정 상태 : ' + message.author.presence.status + '\n' + '계정 tag : ' + message.author.tag, { code: 'true' });
     }
     if (message.content === '.이과') {
         if (JK == '1') {
@@ -280,34 +279,31 @@ client.on('message', message => {
         message.channel.send('.pl https://www.youtube.com/playlist?list=PLj-mFP8wSkPmZwhVRwru2Ej9wlv_30zx2');
     }
     if (message.content === '.니시무라함대' || message.content === '.니시무라 함대' || message.content === '.니시무라') {
-        message.channel.send('전함 : 후소, 야마시로'+'\n'+'중순양함 : 모가미'+'\n'+'구축함 : 시구레, 미치시오, 아사구모, 야마구모');
+        message.channel.send('전함 : 후소, 야마시로' + '\n' + '중순양함 : 모가미' + '\n' + '구축함 : 시구레, 미치시오, 아사구모, 야마구모');
     }
     if (message.content === '.우군함머') {
-        message.channel.send('니시무라 함대 : 후소改2, 야마시로改2, 모가미, 야마구모, 아사구모, 미치시오改2, 시구레改2'+'\n'+'\n'+
-        '정신함대 : 히에이改2, 키리시마改2, 유우다치改2, 하루사메, 유키카제, 아마츠카제'+'\n'+'\n'+
-        '영국함대 : 워스파이트, 아크로열, 적.함.발.견, 저비스'+'\n'+'\n'+
-        '제4함대 : 타카오, 아타고, 쵸카이改2, 마야改2'+'\n'+'\n'+
-        '제19구축대 : 아야나미改2, 시키나미, 우라나미, 이소나미', {code: 'true'});
+        message.channel.send('니시무라 함대 : 후소改2, 야마시로改2, 모가미, 야마구모, 아사구모, 미치시오改2, 시구레改2' + '\n' + '\n' +
+            '정신함대 : 히에이改2, 키리시마改2, 유우다치改2, 하루사메, 유키카제, 아마츠카제' + '\n' + '\n' +
+            '영국함대 : 워스파이트, 아크로열, 적.함.발.견, 저비스' + '\n' + '\n' +
+            '제4함대 : 타카오, 아타고, 쵸카이改2, 마야改2' + '\n' + '\n' +
+            '제19구축대 : 아야나미改2, 시키나미, 우라나미, 이소나미', { code: 'true' });
     }
     if (message.content === '.우군함대') {
-        message.channel.send('니시무라 함대 : 후소改2, 야마시로改2, 모가미, 야마구모, 아사구모, 미치시오改2, 시구레改2'+'\n'+'\n'+
-        '정신함대 : 히에이改2, 키리시마改2, 유우다치改2, 하루사메, 유키카제, 아마츠카제'+'\n'+'\n'+
-        '영국함대 : 워스파이트, 아크로열, 적.함.발.견, 저비스'+'\n'+'\n'+
-        '제4함대 : 타카오, 아타고, 쵸카이改2, 마야改2'+'\n'+'\n'+
-        '제19구축대 : 아야나미改2, 시키나미, 우라나미, 이소나미');
-    }
-    if (message.content === '.진짜?' || message.content === '.그럴까?' || message.content === '.그래?' || message.content ==='.그치?' || message.content === '.퇴근할까' || message.content === '.퇴근하고싶다' || message.content==='.살아있지?') {
-        message.channel.send(result[0]);
+        message.channel.send('니시무라 함대 : 후소改2, 야마시로改2, 모가미, 야마구모, 아사구모, 미치시오改2, 시구레改2' + '\n' + '\n' +
+            '정신함대 : 히에이改2, 키리시마改2, 유우다치改2, 하루사메, 유키카제, 아마츠카제' + '\n' + '\n' +
+            '영국함대 : 워스파이트, 아크로열, 적.함.발.견, 저비스' + '\n' + '\n' +
+            '제4함대 : 타카오, 아타고, 쵸카이改2, 마야改2' + '\n' + '\n' +
+            '제19구축대 : 아야나미改2, 시키나미, 우라나미, 이소나미');
     }
     if (!message.guild) return;
 
     if (message.content === '.이리와' || message.content === '.들어와') {
         if (message.member.voiceChannel) {
             message.member.voiceChannel.join()
-                .then(connection => { 
+                .then(connection => {
                     message.channel.send('들어왔어요!');
                     connection.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/c/c4/Mutsuki-Introduction.ogg/revision/latest?cb=20150216193917');
-                    message.reply(message.author.tag+' 님의 명령어로 들어왔어요.');
+                    message.reply(message.author.tag + ' 님의 명령어로 들어왔어요.');
                     inChannel = '1';
                 })
                 .catch(console.log);
@@ -320,7 +316,7 @@ client.on('message', message => {
             //message.member.voiceChannel.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/3/37/Shimushu-Minor_Damage_2.ogg/revision/latest?cb=20170502222723');
             message.member.voiceChannel.leave();
             message.channel.send('네 나갈게요...');
-            inChannel='0';
+            inChannel = '0';
         } else {
             message.channel.send('어디 있지도 않은데 무슨 소리세요');
         }
@@ -329,13 +325,13 @@ client.on('message', message => {
         if (message.member.voiceChannel) {
             message.member.voiceChannel.leave();
             message.channel.send('네 나갈게요...');
-            inChannel='0';
+            inChannel = '0';
             message.member.voiceChannel.join()
-                .then(connection => { 
+                .then(connection => {
                     message.channel.send('들어왔어요!');
                     connection.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/c/c4/Mutsuki-Introduction.ogg/revision/latest?cb=20150216193917');
                     message.reply(message.author.tag + ' 님의 명령어로 들어왔어요.');
-                    inChannel='1';    
+                    inChannel = '1';
                 })
         }
     }
@@ -346,7 +342,7 @@ client.on('message', message => {
                     .then(connection => {
                         connection.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/3/37/Shimushu-Minor_Damage_2.ogg/revision/latest?cb=20170502222723');
                     })
-            } else if (inChannel == '0'){
+            } else if (inChannel == '0') {
                 message.channel.send('음성채널 안에 있을 때만 들으실 수 있어요.');
             }
         }
@@ -369,8 +365,8 @@ client.on('guildMemberAdd', member => {
     if (!channel) return;
     // Send the message, mentioning the member
     channel.send(`환영합니다!, ${member}`);
-  });
-  
+});
+
 
 
 /* client.on('MessageEmbedImage',MessageEmbedImage => {
