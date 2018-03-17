@@ -530,17 +530,21 @@ client.on('message', message => {
     if (!message.guild) return;
 
     if (message.content === '.이리와' || message.content === '.들어와') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join()
-                .then(connection => {
-                    message.channel.send('들어왔어요!');
-                    connection.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/c/c4/Mutsuki-Introduction.ogg/revision/latest?cb=20150216193917');
-                    message.reply(message.author.tag + ' 님의 명령어로 들어왔어요.');
-                    inChannel = '1';
-                })
-                .catch(console.log);
-        } else {
-            message.channel.send('먼저 들어가시고 말씀하시죠.');
+        if (inChannel == '0') {
+            if (message.member.voiceChannel) {
+                message.member.voiceChannel.join()
+                    .then(connection => {
+                        message.channel.send('들어왔어요!');
+                        connection.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/c/c4/Mutsuki-Introduction.ogg/revision/latest?cb=20150216193917');
+                        message.reply(message.author.tag + ' 님의 명령어로 들어왔어요.');
+                        inChannel = '1';
+                    })
+                    .catch(console.log);
+            } else {
+                message.channel.send('먼저 들어가시고 말씀하시죠.');
+            }
+        } else if (inChannel == '1') {
+            message.channel.send('이미 들어와있는데요?');
         }
     }
     if (message.content === '.나가') {
