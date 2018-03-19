@@ -15,7 +15,7 @@ let KRW_JPY = 0; //환율에 사용할 변수
 let pie = '3.14'; //원주율
 let JK = '0'; //여고생모드 스위치
 let SR_COUNT = '0'; //10연챠시 SR확정 구현을 위한 카운트
-let CindeFest = '0'; //페스모드 활성화 스위치
+let cindeFest = '0'; //페스모드 활성화 스위치
 let skip = '0'; //통한의 스킵! 생략 모드의 스위치.
 let SR_RESULT = 0;
 let RARE_RESULT = 0;
@@ -181,7 +181,7 @@ client.on('message', message => {
         SR_COUNT = '0';
         let j = 0;
         if (skip == 0) { //비 생략모드
-            if (CindeFest == '1') {
+            if (cindeFest == '1') {
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
@@ -196,7 +196,7 @@ client.on('message', message => {
                         SR_COUNT++;
                     }
                 }
-            } else if (CindeFest == '0') {
+            } else if (cindeFest == '0') {
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
@@ -211,7 +211,7 @@ client.on('message', message => {
                         SR_COUNT++;
                     }
                 }
-            } else if (CindeFest == '2') {
+            } else if (cindeFest == '2') {
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
@@ -230,7 +230,7 @@ client.on('message', message => {
         } else if (skip == '1') { //생략 모드 실행 시
             SR_RESULT = 0;
             RARE_RESULT = 0;
-            if (CindeFest == '1') {
+            if (cindeFest == '1') {
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
@@ -246,7 +246,7 @@ client.on('message', message => {
                     }
                 } message.channel.send('획득한 RARE : ' + RARE_RESULT);
                 message.channel.send('획득한 SR : ' + SR_RESULT);
-            } else if (CindeFest == '0') {
+            } else if (cindeFest == '0') {
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
@@ -262,7 +262,7 @@ client.on('message', message => {
                     }
                 } message.channel.send('획득한 RARE : ' + RARE_RESULT);
                 message.channel.send('획득한 SR : ' + SR_RESULT);
-            } else if (CindeFest == '2') {
+            } else if (cindeFest == '2') {
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
@@ -331,14 +331,14 @@ client.on('message', message => {
     }
 
     /* if (message.content.startsWith(prefix + "모드")) {
-        let CindeFestMod = '';
+        let cindeFestMod = '';
         let skipMod = '';
-        if (CindeFest == '1') {
-            CindeFestMod = '신데페스 모드가 적용되어있어요.'
-        } else if (CindeFest == '0') {
-            CindeFestMod = '통상모드가 적용되어있어요.'
-        } else if (CindeFest == '2') {
-            CindeFestMod = '한정가챠 모드가 적용되어있어요.'
+        if (cindeFest == '1') {
+            cindeFestMod = '신데페스 모드가 적용되어있어요.'
+        } else if (cindeFest == '0') {
+            cindeFestMod = '통상모드가 적용되어있어요.'
+        } else if (cindeFest == '2') {
+            cindeFestMod = '한정가챠 모드가 적용되어있어요.'
         }
         if (skip == '1') {
             skipMod = 'SSR을 제외한 카드는 결과로만 알려줘요.'
@@ -347,25 +347,25 @@ client.on('message', message => {
         }
         if (JK == '1') {
             message.channel.send('현재 여고생모드는 ' + '> *__On__*' + ' 인거예요');
-            message.channel.send('현재 가챠에는 ' + CindeFestMod);
+            message.channel.send('현재 가챠에는 ' + cindeFestMod);
             message.channel.send('현재 가챠 시 ' + skipMod);
         } else if (JK == '0') {
             message.channel.send('현재 여고생모드는 ' + '> *__Off__*' + ' 입니다.');
-            message.channel.send('현재 가챠에는 ' + CindeFestMod);
+            message.channel.send('현재 가챠에는 ' + cindeFestMod);
             message.channel.send('현재 가챠 시 ' + skipMod);
         }
     } */
 
     if (message.content.startsWith(prefix + "모드")) {
-        let CindeFestMod = '';
+        let cindeFestMod = '';
         let skipMod = '';
         let JKMod = '';
-        if (CindeFest == '1') {
-            CindeFestMod = '신데페스 모드가 적용되어있어요.'
-        } else if (CindeFest == '0') {
-            CindeFestMod = '통상모드가 적용되어있어요.'
-        } else if (CindeFest == '2') {
-            CindeFestMod = '한정가챠 모드가 적용되어있어요.'
+        if (cindeFest == '1') {
+            cindeFestMod = '신데페스 모드가 적용되어있어요.'
+        } else if (cindeFest == '0') {
+            cindeFestMod = '통상모드가 적용되어있어요.'
+        } else if (cindeFest == '2') {
+            cindeFestMod = '한정가챠 모드가 적용되어있어요.'
         }
         if (skip == '1') {
             skipMod = 'SSR을 제외한 카드는 결과로만 알려줘요.'
@@ -392,7 +392,7 @@ client.on('message', message => {
                 },
                 {
                     name: "가챠 모드",
-                    value: "현재 가챠에는 " + CindeFestMod
+                    value: "현재 가챠에는 " + cindeFestMod
                 },
                 {
                     name: "생략/비생략",
@@ -440,14 +440,14 @@ client.on('message', message => {
 
 
     if (message.content.startsWith(prefix + "페스")) {
-        if (CindeFest == '0' || CindeFest == '2') {
+        if (cindeFest == '0' || cindeFest == '2') {
             message.channel.send({embed: {
                 color: 3447003,
                 description: "신데렐라 페스 모드를 적용할게요."
               }});
             //message.channel.send('신데렐라 페스 모드를 적용할게요.');
-            CindeFest = '1';
-        } else if (CindeFest == '1'); {
+            cindeFest = '1';
+        } else if (cindeFest == '1'); {
             //message.channel.send('현재 상태 : 신데렐라 페스 확률과 페스돌이 적용되었어요.');
             message.channel.send({embed: {
                 color: 3447003,
@@ -509,14 +509,14 @@ client.on('message', message => {
     }
 
     if (message.content.startsWith(prefix + "한정")) {
-        if (CindeFest == '0' || CindeFest == '1') {
+        if (cindeFest == '0' || cindeFest == '1') {
             //message.channel.send('한정가챠 모드를 적용할게요.');
             message.channel.send({embed: {
                 color: 3447003,
                 description: "한정가챠 모드를 적용할게요."
               }});
-            CindeFest = '2';
-        } else if (CindeFest == '2'); {
+            cindeFest = '2';
+        } else if (cindeFest == '2'); {
             //message.channel.send('현재 상태 : 한정가챠 모드가 적용되었어요.');
             message.channel.send({embed: {
                 color: 3447003,
@@ -526,14 +526,14 @@ client.on('message', message => {
     }
 
     if (message.content.startsWith(prefix + "통상")) {
-        if (CindeFest == '1' || CindeFest == '2') {
+        if (cindeFest == '1' || cindeFest == '2') {
             //message.channel.send('신데렐라 페스 모드/한정가챠 모드를 해제할게요.');
             message.channel.send({embed: {
                 color: 3447003,
                 description: "신데렐라 페스 모드/한정가챠 모드를 해제할게요."
               }});
-            CindeFest = '0';
-        } else if (CindeFest == '0'); {
+            cindeFest = '0';
+        } else if (cindeFest == '0'); {
             //message.channel.send('현재 상태 : 신데렐라 페스 확률과 페스돌/한정돌이 롤백되어있어요.');
             message.channel.send({embed: {
                 color: 3447003,
