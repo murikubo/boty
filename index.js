@@ -6,7 +6,7 @@ const token = 'NDE1NjgxNTc3MDMzNDAwMzIw.DW5gCg.S0y5FFh_QY4g94UtZW-JG6i8UMc';
 const talkedRecently = new Set();
 //import kancolle_fm
 //import todo
-//import translate
+const translate = require('./src/translate')(client);
 
 
 const prefix = '.';
@@ -21,8 +21,8 @@ let SR_RESULT = 0;
 let RARE_RESULT = 0;
 
 client.on('ready', () => {
-    console.info('Fumikasan Ver.2.0.1(Radio Happy)');
-    client.user.setActivity('Radio Happy');
+    console.info('Fumikasan Ver.2.0.11(Radio Hapapagopy)');
+    client.user.setActivity('Papago Translate Testing');
 });
 
 // Play streams using ytdl-core
