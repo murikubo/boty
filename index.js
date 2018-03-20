@@ -1,8 +1,10 @@
 const discord = require('discord.js');
 const client = new discord.Client();
+const fs = require("fs");
 const yt = require('ytdl-core');
+const config = require("./config.json");
+const data = require("./data.json");
 //const token = 'NDE1MzcwMDYzODk4NDc2NTU1.DW1jjw.JMmcjr9Kv97DuBVFUf7WRYCTbQs'; bottest계정
-const token = 'NDE1NjgxNTc3MDMzNDAwMzIw.DW5gCg.S0y5FFh_QY4g94UtZW-JG6i8UMc';
 const talkedRecently = new Set();
 //import kancolle_fm
 //import todo
@@ -22,7 +24,7 @@ let RARE_RESULT = 0;
 
 client.on('ready', () => {
     console.info('Fumikasan Ver.2.0.11(Radio Hapapagopy)');
-    client.user.setActivity('Papago Translate Testing');
+    client.user.setActivity('Radio Hapapagopy');
 });
 
 // Play streams using ytdl-core
@@ -94,6 +96,9 @@ client.on('message', message => {
     result_SSR_gentei[9] = SSR_gentei[Math.floor(Math.random()*SSR_gentei.length)];
     result_SR[0] = SR[Math.floor(Math.random()*SR.length)];
     result_RARE[0] = RARE[Math.floor(Math.random()*RARE.length)];
+    let jsonSSR = data.ssr;
+    let result_jsonSSR = [];
+    result_jsonSSR[0] = jsonSSR[Math.floor(Math.random()*jsonSSR.length)];
 
     if (message.content.startsWith(prefix + "도움말")) {
         if (JK == '1') {
@@ -175,6 +180,84 @@ client.on('message', message => {
         } else if (flag == '4') {
             message.channel.send(result1[0]);
         }
+    }
+
+    if (message.content.startsWith(config.prefix + "필드")) {
+        for (let i = 0; i < 3; i++) {
+            let dataGacha = Math.floor((Math.random() * 3) + 1);
+            let upTitle = data.jsonTest[3-dataGacha].title;
+            let upName = data.jsonTest[3 - dataGacha].name;
+            let sign = data.jsonTest[3 - dataGacha].sign;
+            let objectCount = Object.keys(data.ssr).length;
+            console.log(objectCount);
+        const embed = new discord.RichEmbed()
+            .setTitle("SSR획득!")
+            .setAuthor(client.user.username, client.user.avatarURL)
+            /*
+             * 색상코드는, "#00AE86", [0, 174, 134] 등 형식으로 사용 가능.
+             */
+            .setColor(0x00AE86)
+            .setDescription("테스트 가챠값입니다.")
+            .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+            //.setImage("") //하단 이미지
+            .setThumbnail(sign) //썸네일 이미지
+            .setTimestamp()
+            //.setURL("") //타이틀에 URL
+            
+            .addField(upTitle,
+                upName)
+            /*
+             * 인라인 필드 이미지는 크기 별로 안 큼...
+             */
+            //.addField("", "", true) //인라인필드
+            /*
+             * 빈 칸 만들어주는 필드
+             */
+            //.addBlankField(true)
+            //.addField("필드3", "필드 25개까지.", true);
+
+        message.channel.send({ embed });
+    }
+    }
+
+    if (message.content.startsWith(config.prefix + "데이터")) {
+        for (let i = 0; i < 3; i++) {
+            let dataGacha = Math.floor((Math.random() * 3) + 1);
+            let idol_type='';
+            /* idol_type = data.jsonTest[3 - dataGacha].type;
+             if (idol_type == 'cute') {
+                message.channel.send(data.jsonTest[3 - dataGacha].title + data.jsonTest[3 - dataGacha].name);
+            } else if (idol_type == 'cool') {
+                message.channel.send(data.jsonTest[3 - dataGacha].title + data.jsonTest[3 - dataGacha].name);
+            } else if (idol_type == 'passion') {
+                message.channel.send(data.jsonTest[3 - dataGacha].title + data.jsonTest[3 - dataGacha].name);
+            } */
+
+            message.channel.send({
+                embed: {
+                    color: 3447003,
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    title: "가챠 결과",
+                    description: "RARE : 999개, SR : 999개"+"테스트용 가챠입니다.",
+                    fields: [{
+                        name: data.jsonTest[3-dataGacha].title,
+                        value: data.jsonTest[3 - dataGacha].name
+                    }
+                    ],
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: "명령어 입력 시간 "
+                    }
+                }
+            });
+        }
+        //message.channel.send(data.ssr[0].type);
+        //message.channel.send(data.jsonTest[0].name);
+        //message.channel.send(data.jsonTest[0].type);
     }
 
     if (message.content.startsWith(prefix + "가챠")) {
@@ -314,7 +397,7 @@ client.on('message', message => {
         }
     }
     
-    if (message.content.startsWith(prefix + "야")) {
+    if (message.content.startsWith(prefix + "야"+" ")) {
         if (JK == '1') {
             message.channel.send(result2[0]);
         } else if (JK == '0') {
@@ -713,4 +796,4 @@ client.on('guildMemberAdd', member => {
 
 //client.uptime()
 
-client.login(token);
+client.login(config.token);
