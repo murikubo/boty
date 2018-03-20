@@ -656,26 +656,5 @@
 		"桜の頃 EDM remix",
 		"LG 빡치게 하는 노래",
 		"모리야마 나오타로 - 벛꽃"
-	],
-	"jsonTest" : [
-		{
-			"title" : "[SSR 스테이지 오브 매직]",
-			"name" : "시마무라 우즈키",
-			"type" : "cute",
-			"gacha_type" : "tsujyou",
-			"sign" : "http://livedoor.blogimg.jp/morikuboizumi/imgs/9/d/9d687670.png"
-		},
-		{
-			"title" : "[SSR 오버 마이셀프]",
-			"name" : "시부야 린",
-			"type" : "cool",
-			"gacha_type" : "cindeFest"
-		},
-		{
-			"title" : "[SSR 할로윈 몬스터]",
-			"name" : "이치하라 니나",
-			"type" : "passion",
-			"gacha_type" : "gentei"
-		}
 	]
 }

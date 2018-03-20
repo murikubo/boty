@@ -8,7 +8,7 @@ const data = require("./data.json");
 const talkedRecently = new Set();
 //import kancolle_fm
 //import todo
-//import translate
+const translate = require('./src/translate')(client);
 
 
 const prefix = '.';
@@ -23,8 +23,8 @@ let SR_RESULT = 0;
 let RARE_RESULT = 0;
 
 client.on('ready', () => {
-    console.info('Fumikasan Ver.2.1.0(Radio Happy)');
-    client.user.setActivity('Radio Happy');
+    console.info('Fumikasan Ver.2.0.11(Radio Hapapagopy)');
+    client.user.setActivity('Radio Hapapagopy');
 });
 
 // Play streams using ytdl-core
