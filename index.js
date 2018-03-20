@@ -397,7 +397,7 @@ client.on('message', message => {
         }
     }
     
-    if (message.content.startsWith(prefix + "야")) {
+    if (message.content.startsWith(prefix + "야"+" ")) {
         if (JK == '1') {
             message.channel.send(result2[0]);
         } else if (JK == '0') {
