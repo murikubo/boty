@@ -3,6 +3,33 @@ const prefix = config.prefix;
 
 const axios = require('axios');
 
+function nation(langCode) {
+    const nationData = {
+        "한국어": "ko",
+        "일본어": "ja",
+        "중국어 간체": "zh-CN",
+        "중국어 번체": "zh-TW",
+        "힌디어": "hi",
+        "영어": "en",
+        "스페인어": "es",
+        "프랑스어": "fr",
+        "독일어": "de",
+        "포루트갈어": "pt",
+        "베트남어": "vi",
+        "인도네시아어": "id",
+        "태국어": "th",
+        "러시아어": "ru",
+        "알수없음": "unk",
+    };
+    for( i in nationData ) {
+        if(langCode === nationData[i]) {
+            return i;
+        }
+        continue;
+    }
+    return false;
+}
+
 function transRequest(content = String, source = String, target = String, smtBool = Boolean) {
     return new Promise((resolve, reject) => {
         let url = '';
@@ -113,9 +140,9 @@ module.exports = (client) => {
             }).then((code) => {
                 transRequest(targetText, code, 'ko', false)
                 .then((transText) => {
-                    message.channel.send(code + ' 을(를) 한국어로 바꾸면: ' + transText);
+                    message.channel.send(nation(code) + '를 한국어로 바꾸면: ' + transText);
                 }, () => {
-                    message.channel.send(code + ' 은(는) 한국어로 번역할 수 없습니다.');
+                    message.channel.send(nation(code) + '는 한국어로 번역할 수 없습니다.');
                 });
             })
         }
