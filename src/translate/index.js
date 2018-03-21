@@ -140,9 +140,15 @@ module.exports = (client) => {
             }).then((code) => {
                 transRequest(targetText, code, 'ko', false)
                 .then((transText) => {
+<<<<<<< HEAD
                     message.channel.send(nation(code) + '를 한국어로 바꾸면: ' + transText);
                 }, () => {
                     message.channel.send(nation(code) + '는 한국어로 번역할 수 없습니다.');
+=======
+                    message.channel.send(nation(code) + ' 을(를) 한국어로 바꾸면: ' + transText);
+                }, () => {
+                    message.channel.send(nation(code) + ' 은(는) 한국어로 번역할 수 없습니다.');
+>>>>>>> 7121891c07877cd205828a36e5b9e1097a4dcf87
                 });
             })
         }
