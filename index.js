@@ -23,7 +23,7 @@ let SR_RESULT = 0;
 let RARE_RESULT = 0;
 
 client.on('ready', () => {
-    console.info('Fumikasan Ver.2.2.0(Radio Happy)');
+    console.info('Fumikasan Ver.2.3.0(Radio Happy)');
     client.user.setActivity('Radio Happy');
 });
 
