@@ -130,7 +130,7 @@ module.exports = (client) => {
                     'X-Naver-Client-Secret': config.transSecret
                 }
               }).then((res)=> {
-                    let content = '니가 궁금했던 이름 : \n';
+                    let content = '영어로 변환한 이름 목록 : \n';
                     for(let i = 0; i < res.data.aResult[0].aItems.length; i++) {
                         /*if(res.data.aResult[0].aItems[i].score <= 50) {
                             continue;
