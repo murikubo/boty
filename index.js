@@ -23,8 +23,8 @@ let SR_RESULT = 0;
 let RARE_RESULT = 0;
 
 client.on('ready', () => {
-    console.info('Fumikasan Ver.2.0.11(Radio Hapapagopy)');
-    client.user.setActivity('Radio Hapapagopy');
+    console.info('Fumikasan Ver.2.2.0(Radio Happy)');
+    client.user.setActivity('Radio Happy');
 });
 
 // Play streams using ytdl-core
@@ -33,7 +33,7 @@ const streamOptions = { seek: 0, volume: 1 };
 client.on('message', message => {
     //if (!message.content.startsWith(prefix)) return; //프리픽스로 시작되지 않는 명령어들은 비활성화.
 
-    const swearWords = ["됬", "됌", "엇을", "엇음", "겻", "깻", "햇음", "햇삼", "햇다", "햇을", "잇음", "밋음", "왓음", "겟음", "겟다", "엇다", "잇나", "잇게", "잇엇", "랫나", "랫엇"];
+    const swearWords = ["됬", "됌", "엇을", "엇음", "겻", "깻", "햇음", "햇삼", "햇다", "햇을", "잇음", "밋음", "왓음", "겟음", "겟다", "엇다", "잇나", "잇게", "잇엇", "랫나", "랫엇","됏음","됏다","됏어"];
     if (swearWords.some(word => message.content.includes(word))) {
         let Sibyl_System = Math.floor((Math.random() * 999) + 100);
         if (Sibyl_System >= '300') {
@@ -182,42 +182,55 @@ client.on('message', message => {
         }
     }
 
-    if (message.content.startsWith(config.prefix + "필드")) {
-        for (let i = 0; i < 3; i++) {
-            let dataGacha = Math.floor((Math.random() * 3) + 1);
-            let upTitle = data.jsonTest[3-dataGacha].title;
-            let upName = data.jsonTest[3 - dataGacha].name;
-            let sign = data.jsonTest[3 - dataGacha].sign;
-            let objectCount = Object.keys(data.ssr).length;
-            console.log(objectCount);
-        const embed = new discord.RichEmbed()
-            .setTitle("SSR획득!")
-            .setAuthor(client.user.username, client.user.avatarURL)
-            /*
-             * 색상코드는, "#00AE86", [0, 174, 134] 등 형식으로 사용 가능.
-             */
-            .setColor(0x00AE86)
-            .setDescription("테스트 가챠값입니다.")
-            .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
-            //.setImage("") //하단 이미지
-            .setThumbnail(sign) //썸네일 이미지
-            .setTimestamp()
-            //.setURL("") //타이틀에 URL
-            
-            .addField(upTitle,
-                upName)
-            /*
-             * 인라인 필드 이미지는 크기 별로 안 큼...
-             */
-            //.addField("", "", true) //인라인필드
-            /*
-             * 빈 칸 만들어주는 필드
-             */
-            //.addBlankField(true)
-            //.addField("필드3", "필드 25개까지.", true);
+    if (message.content.startsWith(config.prefix + "테스트가챠")) {
+        SR_COUNT = '0';
+        let objectCount = Object.keys(data.ssr).length;
+        for (let i = 0; i < 10; i++) {
+            let gacha = Math.floor((Math.random() * 100) + 1);
+            if (SR_COUNT == '9') {
+                //message.channel.send(result_SR[0]);
+            } else if (gacha <= '6') {
+                let gachaResult= data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)]; 
+                let genTeiSwitch = gachaResult.gacha_type; 
+                let upTitle = gachaResult.title; 
+                let upName = gachaResult.name; 
+                let sign = gachaResult.sign; 
+                let typeColorSwitch = gachaResult.type;
+                let typeColor='';
+                if(typeColorSwitch == 'cute'){
+                    typeColor = '#FFB2F5';
+                } else if(typeColorSwitch == 'cool'){
+                    typeColor = '#1266FF';
+                } else if(typeColorSwitch == 'passion'){
+                    typeColor = '#FFBB00';
+                }
+                const embed = new discord.RichEmbed()
+                    .setTitle("SSR획득!")
+                    .setAuthor(client.user.username, client.user.avatarURL)
+                    .setColor(typeColor)
+                    .setDescription("테스트 가챠값입니다.")
+                    .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+                    //.setImage("") //하단 이미지
+                    .setThumbnail(sign) //썸네일 이미지
+                    .setTimestamp()
+                    //.setURL("") //타이틀에 URL
+                    .addField(upTitle,
+                        upName)
+                //.addField("", "", true) //인라인필드
+                /*
+                 * 빈 칸 만들어주는 필드
+                 */
+                //.addBlankField(true)
+                //.addField("필드3", "필드 25개까지.", true);
 
-        message.channel.send({ embed });
-    }
+                message.channel.send({ embed });
+            } else if ('7' <= gacha && gacha <= '16') {
+                //message.channel.send(result_SR[0]);
+            } else if (gacha >= '17') {
+                //message.channel.send(result_RARE[0]);
+                SR_COUNT++;
+            }
+        }
     }
 
     if (message.content.startsWith(config.prefix + "데이터")) {
@@ -718,7 +731,8 @@ client.on('message', message => {
                 message.member.voiceChannel.join()
                     .then(connection => {
                         message.channel.send('들어왔어요!');
-                        connection.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/c/c4/Mutsuki-Introduction.ogg/revision/latest?cb=20150216193917');
+                        //connection.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/c/c4/Mutsuki-Introduction.ogg/revision/latest?cb=20150216193917');
+                        connection.playArbitraryInput('https://truecolor.kirara.ca/va2/134f5710462116ab.mp3')
                         message.reply(message.author.tag + ' 님의 명령어로 들어왔어요.');
                         inChannel = '1';
                     })
@@ -760,6 +774,19 @@ client.on('message', message => {
                 message.member.voiceChannel.join()
                     .then(connection => {
                         connection.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/3/37/Shimushu-Minor_Damage_2.ogg/revision/latest?cb=20170502222723');
+                    })
+            } else if (inChannel == '0') {
+                message.channel.send('음성채널 안에 있을 때만 들으실 수 있어요.');
+            }
+        }
+    }
+
+    if (message.content.startsWith(config.prefix + "무츠키")) {
+        if (message.member.voiceChannel) {
+            if (inChannel == '1') {
+                message.member.voiceChannel.join()
+                    .then(connection => {
+                        connection.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/c/c4/Mutsuki-Introduction.ogg/revision/latest?cb=20150216193917');
                     })
             } else if (inChannel == '0') {
                 message.channel.send('음성채널 안에 있을 때만 들으실 수 있어요.');

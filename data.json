@@ -8,7 +8,7 @@
 		},
 		{
 			"title" : "[SSR 게으른 왕국]",
-			"name" : " 후타바 안즈",
+			"name" : "후타바 안즈",
 			"type" : "cute",
 			"gacha_type" : "tsujyou",
 			"sign" : ""
@@ -48,10 +48,20 @@
 			"gacha_type" : "tsujyou",
 			"sign" : ""
 		},
-		
-		"[SSR 펌프킨 파티] 토토키 아이리",
-		"[SSR 화이트 위치] 미무라 카나코",
-		
+		{
+			"title" : "[SSR 펌프킨 파티]",
+			"name" : "토토키 아이리",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 화이트 위치]",
+			"name" : "미무라 카나코",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : ""
+		},
 		{
 			"title" : "[SSR 노블 비너스]",
 			"name" : "닛타 미나미",
@@ -139,144 +149,588 @@
 		},
 		"[SSR 밤바람의 유혹] 타카가키 카에데",
 		"[SSR 유스풀 로맨스] 코히나타 미호",
-		"[SSR 빛나는 한때] 호죠 카렌",
-		"[SSR 매쉬업★볼테이지] 호시 쇼코",
-		"[SSR 꽃잎 흩날리는 절경] 코바야카와 사에",
+		{
+			"title" : "[SSR 빛나는 한때]",
+			"name" : "호죠 카렌",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 매쉬업★볼테이지]",
+			"name" : "호시 쇼코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 꽃잎 흩날리는 절경]",
+			"name" : "코바야카와 사에",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 로즈 플뢰르] 사쿠라이 모모카",
 		"[SSR 권화상등] 무카이 타쿠미",
-		"[SSR <<우상>>의 플래그먼트] 니노미야 아스카",
-		"[SSR 꿈꾸는 프린세스] 키타 히나코",
-		"[SSR 따뜻한 하트] 이가라시 쿄코",
+		{
+			"title" : "[SSR <<우상>>의 플래그먼트]",
+			"name" : "니노미야 아스카",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 꿈꾸는 프린세스]",
+			"name" : "키타 히나코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 따뜻한 하트]",
+			"name" : "이가라시 쿄코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 처음 짓는 표정] 타치바나 아리스",
 		"[SSR 이모셔널 비트] 키무라 나츠키",
-		"[SSR 전율의 밤] 시라사카 코우메",
-		"[SSR 애비뉴 모드] 미야모토 프레데리카",
-		"[SSR 해신의 인도자] 요리타 요시노",
+		{
+			"title" : "[SSR 전율의 밤]",
+			"name" : "시라사카 코우메",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 애비뉴 모드]",
+			"name" : "미야모토 프레데리카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 해신의 인도자]",
+			"name" : "요리타 요시노",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 드리밍 브라이드] 마에카와 미쿠",
 		"[SSR 기다려지는 운명의 사람] 칸자키 란코",
-		"[SSR 발랄 하베스트] 오이카와 시즈쿠",
-		"[SSR 야경의 새벽바람] 시오미 슈코",
-		"[SSR 마이 페어리테일] 오가타 치에리",
+		{
+			"title" : "[SSR 발랄 하베스트]",
+			"name" : "오이카와 시즈쿠",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 야경의 새벽바람]",
+			"name" : "시오미 슈코",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 마이 페어리테일]",
+			"name" : "오가타 치에리",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 피스풀 데이즈] 시마무라 우즈키",
 		"[SSR 오버 마이셀프] 시부야 린",
 		"[SSR 원더 엔터테이너] 혼다 미오",
 		"[SSR 게으름뱅이 페어리] 후타바 안즈",
 		"[SSR 섬머타임☆하이] 오오츠키 유이",
-		"[SSR 루쥬 꾸뛰르] 미후네 미유",
-		"[SSR 마음 한 다발] 아이바 유미",
-		"[SSR 스타팅 데이즈] 오토쿠라 유우키",
+		{
+			"title" : "[SSR 루쥬 꾸뛰르]",
+			"name" : "미후네 미유",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 마음 한 다발]",
+			"name" : "아이바 유미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 스타팅 데이즈]",
+			"name" : "오토쿠라 유우키",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 여름빛 남풍] 닛타 미나미",
 		"[SSR 헤롱헤롱 섬머] 모로보시 키라리",
-		"[SSR 메이크★임팩트] 하야사카 미레이",
-		"[SSR 맑게 갠 세계] 카미죠 하루나",
-		"[SSR 컵 오브 러브] 토토키 아이리",
+		{
+			"title" : "[SSR 메이크★임팩트]",
+			"name" : "하야사카 미레이",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 맑게 갠 세계]",
+			"name" : "카미죠 하루나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 컵 오브 러브]",
+			"name" : "토토키 아이리",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 인비테이션 다이브] 이치노세 시키",
 		"[SSR 조용한 향연] 사기사와 후미카",
-		"[SSR 청춘 에너지] 호리 유코",
-		"[SSR P.C.S] 코히나타 미호",
-		"[SSR 별에 감싸인 이야기] 아나스타샤",
+		{
+			"title" : "[SSR 청춘 에너지]",
+			"name" : "호리 유코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR P.C.S]",
+			"name" : "코히나타 미호",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 별에 감싸인 이야기]",
+			"name" : "아나스타샤",
+			"type" : "cool",
+			"gacha_type": "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 자칭 스위트 히로인] 코시미즈 사치코",
 		"[SSR 붉은빛 색채] 타카가키 카에데",
 		"[SSR 글로리어스★글로우] 죠가사키 미카",
 		"[SSR 트릿 오어 트릿] 사쿠마 마유",
 		"[SSR 파티★햣하] 호시 쇼코",
-		"[SSR 여닌자의 첫걸음] 하마구치 아야메",
-		"[SSR 단 하나의 그릇] 후지와라 하지메",
-		"[SSR 돌체 클래시카] 미무라 카나코",
+		{
+			"title" : "[SSR 여닌자의 첫걸음]",
+			"name" : "하마구치 아야메",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 단 하나의 그릇]",
+			"name" : "후지와라 하지메",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 돌체 클래시카]",
+			"name" : "미무라 카나코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 송 포 라이프] 호죠 카렌",
 		"[SSR 따스한 거처] 타카모리 아이코",
-		"[SSR 디어 마이 레이디] 사쿠라이 모모카",
-		"[SSR 하트 투 하트] 사토 신",
-		"[SSR 숲의 이야기] 모리쿠보 노노",
+		{
+			"title" : "[SSR 디어 마이 레이디]",
+			"name" : "사쿠라이 모모카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 하트 투 하트]",
+			"name" : "사토 신",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 숲의 이야기]",
+			"name" : "모리쿠보 노노",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 류미엘 에트왈] 미야모토 프레데리카",
 		"[SSR 드레스업 나이트] 카미야 나오",
-		"[SSR 해바라기 서니데이] 류자키 카오루",
-		"[SSR 에어리얼 멜로디어] 미즈모토 유카리",
-		"[SSR 넥스트☆페이지] 아라키 히나",
+		{
+			"title" : "[SSR 해바라기 서니데이]",
+			"name" : "류자키 카오루",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 에어리얼 멜로디어]",
+			"name" : "미즈모토 유카리",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 넥스트☆페이지]",
+			"name" : "아라키 히나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 우사밍 더 시크릿] 아베 나나",
 		"[SSR 비몽사몽 꽃 모양] 시오미 슈코",
 		"[SSR 솔 파라이소] 오오츠키 유이",
 		"[SSR 꽃피는 연회] 코바야카와 사에",
 		"[SSR 축복의 기도] 요리타 요시노",
-		"[SSR 메이크 미 키스 유] 아카기 미리아",
-		"[SSR 인사이트 익스텐드] 야가미 마키노",
-		"[SSR 러브!스트레이트] 나카노 유카",
+		{
+			"title" : "[SSR 메이크 미 키스 유]",
+			"name" : "아카기 미리아",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 인사이트 익스텐드]",
+			"name" : "야가미 마키노",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 러브!스트레이트]",
+			"name" : "나카노 유카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 팰리스 오브 판타지아] 나노미야 아스카",
 		"[SSR 겹쳐진 꽃잎] 아이바 유미",
-		"[SSR Ring♪Ring♪필링] 시이나 노리코",
-		"[SSR 하이텐션 스매쉬] 키타미 유즈",
-		"[SSR 눈을 뜬 채로 꾸는 꿈] 타다 리이나",
+		{
+			"title" : "[SSR Ring♪Ring♪필링]",
+			"name" : "시이나 노리코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 하이텐션 스매쉬]",
+			"name" : "키타미 유즈",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 눈을 뜬 채로 꾸는 꿈]",
+			"name" : "타다 리이나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 드라마틱 나이트] 이가라시 쿄코",
 		"[SSR 마음, 취하게 해] 미후네 미유",
-		"[SSR 섹시 BANG☆BANG] 카타기리 사나에",
-		"[SSR SOUND A ROUND] 마츠나가 료",
-		"[SSR 만나게 된 동경] 세키 히로미",
+		{
+			"title" : "[SSR 섹시 BANG☆BANG]",
+			"name" : "카타기리 사나에",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR SOUND A ROUND]",
+			"name" : "마츠나가 료",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 만나게 된 동경]",
+			"name" : "세키 히로미",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 엔드 오브 더 블루] 하야미 카나데",
 		"[SSR 컴 위드 미!] 오토쿠라 유우키",
 		"[SSR 서클☆오브☆프렌즈] 죠가사키 리카",
-		"[SSR 비밀의 소야곡] 사죠 유키미",
-		"[SSR 포지티브 패션] 히노 아카네",
-		"[SSR 러브모리☆파리] 후지모토 리나",
+		{
+			"title" : "[SSR 비밀의 소야곡]",
+			"name" : "사죠 유키미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 포지티브 패션]",
+			"name" : "히노 아카네",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 러브모리☆파리]",
+			"name" : "후지모토 리나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 요모스가라 파티] 사라사카 코우메",
 		"[SSR 렛츠 고☆퍼레이드] 히메카와 유키",
-		"[SSR 요정의 아이] 유사 코즈에",
-		"[SSR 스텝 투 미라이] 사사키 치에",
-		"[SSR 붉은 주먹] 무라카미 토모에",
+		{
+			"title" : "[SSR 요정의 아이]",
+			"name": "유사 코즈에",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 스텝 투 미라이]",
+			"name" : "사사키 치에",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 붉은 주먹]",
+			"name" : "무라카미 토모에",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 인열을 밎는 이] 도묘지 카린",
 		"[SSR 이터널 블룸] 시부야 린",
-		"[SSR FELL SO FREE] 키무라 나츠키",
-		"[SSR 주물주물 원더포] 무나카타 아츠미",
-		"[SSR 커맨드 오브 스테이지] 야마토 아키",
+		{
+			"title" : "[SSR FELL SO FREE]",
+			"name" : "키무라 나츠키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 주물주물 원더포]",
+			"name" : "무나카타 아츠미",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 커맨드 오브 스테이지]",
+			"name" : "야마토 아키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 아방튀르 샤토] 마에카와 미쿠",
 		"[SSR 자칭 파티 피플] 코시미즈 사치코",
 		"[SSR 러브 음메 스위트] 오이카와 시즈쿠",
-		"[SSR 진검일섬] 와키야마 타마미",
-		"[SSR 비비드★에고이스트] 마토바 리사",
-		"[SSR 꺾이지 않는 꽃] 시라기쿠 호타루",
+		{
+			"title" : "[SSR 진검일섬]",
+			"name" : "와키야마 타마미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 비비드★에고이스트]",
+			"name" : "마토바 리사",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 꺾이지 않는 꽃]",
+			"name" : "시라기쿠 호타루",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 태양보다 뜨겁게!] 나카노 유카",
 		"[SSR 블루 호라이즌] 시오미 슈코",
-		"[SSR 오늘의 주역] 남바 에미",
-		"[SSR 앰비벌런트 액트] 카와시마 미즈키",
-		"[SSR 메모리얼 데이즈] 이마이 카나",
+		{
+			"title" : "[SSR 오늘의 주역]",
+			"name" : "남바 에미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 앰비벌런트 액트]",
+			"name" : "카와시마 미즈키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 메모리얼 데이즈]",
+			"name" : "이마이 카나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 프라이빗 메이드] 토토키 아이리",
 		"[SSR 기프트 포 앤서] 모리쿠보 노노",
 		"[SSR 브릴리언트 하아트] 사토 신",
-		"[SSR 있는 그대로의 거리로] 타카가키 카에데",
-		"[SSR 퓨어 유포리아] 사이온지 코토카",
-		"[SSR 하트비트 삼바!] 나탈리아",
+		{
+			"title" : "[SSR 있는 그대로의 거리로]",
+			"name" : "타카가키 카에데",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 퓨어 유포리아]",
+			"name" : "사이온지 코토카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 하트비트 삼바!]",
+			"name" : "나탈리아",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 스마일 앤드 트릿] 시마무라 우즈키",
 		"[SSR 할로윈 몬스터] 이치하라 니나",
-		"[SSR 아리스의 티 파티] 타치바나 아리스",
-		"[SSR 플레이 더 게임] 미요시 사나",
-		"[SSR 동경하던 공주님] 코가 코하루",
+		{
+			"title" : "[SSR 아리스의 티 파티]",
+			"name" : "타치바나 아리스",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 플레이 더 게임]",
+			"name" : "미요시 사나",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 동경하던 공주님]",
+			"name" : "코가 코하루",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 극광의 선율] 아나스타샤",
 		"[SSR 미스틱 던] 하야미 카나데",
 		"[SSR 트릭☆조커] 호리 유코",
-		"[SSR 꿈을 좇는 사람의 빛] 쿠도 시노부",
-		"[SSR 롤리팝 허니] 오오츠키 유이",
-		"[SSR 이국에 부는 바람] 라일라",
+		{
+			"title" : "[SSR 꿈을 좇는 사람의 빛]",
+			"name" : "쿠도 시노부",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 롤리팝 허니]",
+			"name" : "오오츠키 유이",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 이국에 부는 바람]",
+			"name" : "라일라",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 메리 메리 화이트] 오가타 치에리",
 		"[SSR 칼레이도 스노우] 혼다 미오",
-		"[SSR 오더 포 톱] 키류 츠카사",
-		"[SSR 축복의 눈빛] 클라리스",
-		"[SSR 복숭앗빛 분노] 무카이 타쿠미",
+		{
+			"title" : "[SSR 오더 포 톱]",
+			"name" : "키류 츠카사",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 축복의 눈빛]",
+			"name" : "클라리스",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 복숭앗빛 분노]",
+			"name" : "무카이 타쿠미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 올 포 펀] 후타바 안즈",
 		"[SSR 하삐하삐☆원더랜드] 모로보시 키라리",
 		"[SSR 신춘의 채색] 미무라 카나코",
 		"[SSR 복을 부르는 무희] 타카후지 카코",
-		"[SSR 퀸 오브 퀸] 자이젠 토키코",
-		"[SSR 드리밍☆우사밍] 아베 나나",
-		"[SSR 설레이는 어드벤처] 우지이에 무츠미",
+		{
+			"title" : "[SSR 퀸 오브 퀸]",
+			"name" : "자이젠 토키코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 드리밍☆우사밍]",
+			"name" : "아베 나나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 설레이는 어드벤처]",
+			"name" : "우지이에 무츠미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 비터 스위트 타임] 코히나타 미호",
 		"[SSR 두근콩닥! 유즈 레시피] 키타미 유즈",
-		"[SSR 뉴 웨이브 네이비] 오오이시 이즈미",
-		"[SSR 센터 오브 스트리트] 죠가사키 미카",
-		"[SSR 견실한 소망] 쿠리하라 네네",
+		{
+			"title" : "[SSR 뉴 웨이브 네이비]",
+			"name" : "오오이시 이즈미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 센터 오브 스트리트]",
+			"name" : "죠가사키 미카",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 견실한 소망]",
+			"name" : "쿠리하라 네네",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
 		"[SSR 아이러니컬 에트랑제] 이치노세 시키",
 		"[SSR 깜찍한 소악마] 사사키 치에",
 		"[SSR 팝핀 하이☆] 아카기 미리아",
-		"[SSR 뉴 웨이브 피치] 무라마츠 사쿠라",
-		"[SSR 번 앤 던!] 코세키 레이나"
+		{
+			"title" : "[SSR 뉴 웨이브 피치]",
+			"name" : "무라마츠 사쿠라",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		},
+		{
+			"title" : "[SSR 번 앤드 쾅!!]",
+			"name" : "코세키 레이나",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : ""
+		}
 	],
 	"ssr_tsujyou": [
 		{	"title" : "[SSR 스테이지 오브 매직]",
