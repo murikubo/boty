@@ -51,6 +51,10 @@
 - 모든 카드 데이터 json 분류 완료
 - 가챠시 아이돌 싸인 표출 사전작업 완료(후반 데이터들은 검은색 싸인이라 추후 링크 교체 예정)
 
+2.4.0
+- 가챠시스템 리메이크
+- 테스트모드 추가
+
 ## 업데이트 예정 목록
 
 - **가챠 시뮬레이터**
@@ -73,5 +77,6 @@
 
 ## 제작자
 - Murikubo [github link](https://github.com/murikubo)
+- Jinjeok [github link](https://github.com/Jinjeok)
 
-Special Thanks to Jinjeok
+Special Thanks to Fumika Sagisawa
