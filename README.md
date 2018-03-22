@@ -55,13 +55,15 @@
 - 가챠시스템 리메이크
 - 테스트모드 추가
 
+2.5.0
+- 검은색이던 사인 데이터 교체
+- [SSR 번 앤 던!] 코세키 레이나 -> [SSR 번 앤드 쾅!!] 코세키 레이나 로 수정
+
 ## 업데이트 예정 목록
 
 - **가챠 시뮬레이터**
-> __상세 카드 분류별 데이터가 구분됩니다. (2.x 버전에서 업데이트 예정)__
->> ~~현재의 대강 형태만 짜여진 테이블을 2.0버전에서는 싹 갈아엎어 더 체계적인 형식으로 재구축할 예정입니다.~~
-
->> 귀찮아져가지고 추후 2.x버전에서 변경될 예정입니다.
+> __밀리시타 가챠 시뮬레이션이 추가됩니다.(데이터 완성되는대로 2.x버전에 적용 예정)__
+>> 애초에 처음부터 적용 대상이 아니었고 즐겨하지도 않아 새 단장한 데레스테 가챠 시스템은 미적용입니다.
 
 > __가챠 후 획득 아이돌의 싸인이나 아이콘이 표출됩니다. (3.0버전에서 업데이트 예정)__
 
@@ -79,4 +81,4 @@
 - Murikubo [github link](https://github.com/murikubo)
 - Jinjeok [github link](https://github.com/Jinjeok)
 
-Special Thanks to Fumika Sagisawa
+Special Thanks to Fumika Sagisawa, [ksgarceus](https://github.com/ksgarceus)
