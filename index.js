@@ -9,6 +9,7 @@ const talkedRecently = new Set();
 //import kancolle_fm
 //import todo
 const translate = require('./src/translate')(client);
+const laboratory = require('./src/laboratory')(client);
 
 
 const prefix = '.';
