@@ -186,6 +186,27 @@ client.on('message', message => {
                 //.addField("필드3", "필드 25개까지.", true);
 
                 message.channel.send({ embed });
+            
+            const embed = new discord.RichEmbed()
+                    .setTitle("명령어 안내 페이지")
+                    .setAuthor(client.user.username, client.user.avatarURL)
+                    .setColor(3447003)
+                    .setDescription("**__명령어 안내 페이지에서 자세히 확인하실 수 있습니다.__**")
+                    .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+                    //.setImage("") //하단 이미지
+                    .setThumbnail("https://www.project-imas.com/w/images/a/a7/Fumika_signature_SS.png") //썸네일 이미지
+                    .setTimestamp()
+                    .setURL("https://murikubo.github.io/shimushu/fumikasan.html") //타이틀에 URL
+                .addField("https://murikubo.github.io/shimushu/fumikasan.html",
+                    "가독성이 향상된 명령어 안내 페이지입니다.")
+                //.addField("", "", true) //인라인필드
+                /*
+                 * 빈 칸 만들어주는 필드
+                 */
+                //.addBlankField(true)
+                //.addField("필드3", "필드 25개까지.", true);
+
+                message.channel.send({ embed });
             /* message.channel.send('.추천곡' + '\n' + '\n' +
                 '.도움말 -> 추천곡 기능의 도움말을 제공합니다.' + '\n' + '\n' +
                 '.야 -> +할말로 일정 대답을 얻을 수 있습니다.' + '\n' + '\n' +
