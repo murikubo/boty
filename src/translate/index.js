@@ -65,20 +65,20 @@ function transRequest(content = String, source = String, target = String, smtBoo
 
 module.exports = (client) => {
     client.on('message', message => {  
-        if (message.content.startsWith(prefix + 'ke ')) {
+        if (message.content.startsWith(prefix + 'ke ') || message.content.startsWith( prefix + '한영 ')) {
             transRequest(message.content.slice(4), 'ko', 'en', false)
                 .then((transText) => {
                     message.channel.send(transText);
                 });
         }
-        if (message.content.startsWith(prefix + 'ek ')) {
+        if (message.content.startsWith(prefix + 'ek ') || message.content.startsWith( prefix + '영한 ')) {
             transRequest(message.content.slice(4), 'en', 'ko', false)
                 .then((transText) => {
                     message.channel.send(transText);
                 });
         }
 
-        if (message.content.startsWith(prefix + 'kj ')) {
+        if (message.content.startsWith(prefix + 'kj ') || message.content.startsWith( prefix + '한일')) {
             transRequest(message.content.slice(4), 'ko', 'en', false)
                 .then((transText) => {
                     transRequest(transText, 'en', 'ja', false)
@@ -87,7 +87,7 @@ module.exports = (client) => {
                         });
                 });
         }
-        if (message.content.startsWith(prefix + 'jk ')) {
+        if (message.content.startsWith(prefix + 'jk ') || message.content.startsWith( prefix + '일한 ')) {
             transRequest(message.content.slice(4), 'ja', 'en', false)
                 .then((transText) => {
                     transRequest(transText, 'en', 'ko', false)
@@ -97,33 +97,33 @@ module.exports = (client) => {
                 });
         }
 
-        if (message.content.startsWith(prefix + 'ske ')) {
+        if (message.content.startsWith(prefix + 'ske ') || message.content.startsWith( prefix + '스한영 ')) {
             transRequest(message.content.slice(5), 'ko', 'en', true)
                 .then((transText) => {
                     message.channel.send(transText);
                 });
         }
-        if (message.content.startsWith(prefix + 'sek ')) {
+        if (message.content.startsWith(prefix + 'sek ' || message.content.startsWith( prefix + '스영한 '))) {
             transRequest(message.content.slice(5), 'en', 'ko', true)
                 .then((transText) => {
                     message.channel.send(transText);
                 });
         }
 
-        if (message.content.startsWith(prefix + 'skj ')) {
+        if (message.content.startsWith(prefix + 'skj ') || message.content.startsWith( prefix + '스한일 ')) {
             transRequest(message.content.slice(5), 'ko', 'ja', true)
                 .then((transText) => {
                     message.channel.send(transText);
                 });
         }
-        if (message.content.startsWith(prefix + 'sjk ')) {
+        if (message.content.startsWith( prefix + 'sjk ') || message.content.startsWith( prefix + '스일한 ')) {
             transRequest(message.content.slice(5), 'ja', 'ko', true)
                 .then((transText) => {
                     message.channel.send(transText);
                 });
         }
 
-        if (message.content.startsWith(prefix + 'k ')) {
+        if (message.content.startsWith(prefix + 'k ') || message.content.startsWith( prefix + '한 ')) {
             const targetText = message.content.slice(3);
             axios({  
                 method: 'post',
@@ -157,6 +157,9 @@ module.exports = (client) => {
                     'X-Naver-Client-Secret': config.transSecret
                 }
             }).then((res)=> {
+                if(res.data.aResult.length == 0) {
+                    throw new Error('Invalid Name.');
+                }
                 let content = '영어로 변환한 이름 목록 : \n';
                 for(let i = 0; i < res.data.aResult[0].aItems.length; i++) {
                     /*if(res.data.aResult[0].aItems[i].score <= 50) {
@@ -165,7 +168,12 @@ module.exports = (client) => {
                     content += res.data.aResult[0].aItems[i].name + ', score: ' + res.data.aResult[0].aItems[i].score + '\n';
                 }
                 message.channel.send(content);
+            }).catch((err) => {
+                message.channel.send('Error occured: `' + err + '`');
             });
         }
-    });
+        if (message.content.startsWith(prefix + '구글')) {
+            message.channel.send('https://translate.google.com');
+        }
+    });    
 };
