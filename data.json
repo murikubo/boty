@@ -1005,7 +1005,7 @@
 			"name" : "쿠도 시노부",
 			"type" : "cute",
 			"gacha_type" : "tsujyou",
-			"sign" : "https://www.project-imas.com/w/images/5/50/Shinobu_sign.png"
+			"sign" : "https://truecolor.kirara.ca/sign/100461.png"
 		},
 		{
 			"title" : "[SSR 롤리팝 허니]",
@@ -1016,10 +1016,10 @@
 		},
 		{
 			"title" : "[SSR 이국에 부는 바람]",
-			"name" : "라일라",
+			"name" : "라이라",
 			"type" : "cool",
 			"gacha_type" : "tsujyou",
-			"sign" : "https://www.project-imas.com/w/images/d/d9/Layla_sig.png"
+			"sign" : "https://truecolor.kirara.ca/sign/200467.png"
 		},
 		{
 			"title" : "[SSR 메리 메리 화이트]",
@@ -1041,14 +1041,14 @@
 			"name" : "키류 츠카사",
 			"type" : "cool",
 			"gacha_type" : "tsujyou",
-			"sign" : "https://www.project-imas.com/w/images/3/33/Tsukasa_sig.png"
+			"sign" : "https://truecolor.kirara.ca/sign/200473.png"
 		},
 		{
 			"title" : "[SSR 축복의 눈빛]",
 			"name" : "클라리스",
 			"type" : "cute",
 			"gacha_type" : "tsujyou",
-			"sign" : "https://www.project-imas.com/w/images/c/c8/Clarice_sign.png"
+			"sign" : "https://truecolor.kirara.ca/sign/100475.png"
 		},
 		{
 			"title" : "[SSR 복숭앗빛 분노]",
@@ -1083,14 +1083,14 @@
 			"name" : "타카후지 카코",
 			"type" : "cool",
 			"gacha_type" : "gentei",
-			"sign" : "https://www.project-imas.com/w/images/1/12/Kako_sig.png"
+			"sign" : "https://truecolor.kirara.ca/sign/200481.png"
 		},
 		{
 			"title" : "[SSR 퀸 오브 퀸]",
 			"name" : "자이젠 토키코",
 			"type" : "passion",
 			"gacha_type" : "tsujyou",
-			"sign" : "https://www.project-imas.com/w/images/d/dd/Tokiko_sig.png"
+			"sign" : "https://truecolor.kirara.ca/sign/300473.png"
 		},
 		{
 			"title" : "[SSR 드리밍☆우사밍]",
@@ -1104,7 +1104,7 @@
 			"name" : "우지이에 무츠미",
 			"type" : "cool",
 			"gacha_type" : "tsujyou",
-			"sign" : "https://www.project-imas.com/w/images/2/2c/Mutsumi_sig.png"
+			"sign" : "https://truecolor.kirara.ca/sign/200489.png"
 		},
 		{
 			"title" : "[SSR 비터 스위트 타임]",
@@ -1125,7 +1125,7 @@
 			"name" : "오오이시 이즈미",
 			"type" : "cool",
 			"gacha_type" : "tsujyou",
-			"sign" : "https://www.project-imas.com/w/images/3/3a/Izumi_sig.png"
+			"sign" : "https://truecolor.kirara.ca/sign/200495.png"
 		},
 		{
 			"title" : "[SSR 센터 오브 스트리트]",
@@ -1139,7 +1139,7 @@
 			"name" : "쿠리하라 네네",
 			"type" : "cute",
 			"gacha_type" : "tsujyou",
-			"sign" : "https://www.project-imas.com/w/images/5/5b/Nene_sign.png"
+			"sign" : "https://truecolor.kirara.ca/sign/100495.png"
 		},
 		{
 			"title" : "[SSR 아이러니컬 에트랑제]",
@@ -1167,14 +1167,14 @@
 			"name" : "무라마츠 사쿠라",
 			"type" : "cute",
 			"gacha_type" : "tsujyou",
-			"sign" : "https://www.project-imas.com/w/images/4/4c/Sakura_sign.png"
+			"sign" : "https://truecolor.kirara.ca/sign/100505.png"
 		},
 		{
 			"title" : "[SSR 번 앤드 쾅!!]",
 			"name" : "코세키 레이나",
 			"type" : "passion",
 			"gacha_type" : "tsujyou",
-			"sign" : "https://www.project-imas.com/w/images/d/df/Reina_sig.png"
+			"sign" : "https://truecolor.kirara.ca/sign/300497.png"
 		}
 	],
 	"ssr_tsujyou": [
