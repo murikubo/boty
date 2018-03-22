@@ -5,23 +5,23 @@ const axios = require('axios');
 
 function nation(langCode) {
     const nationData = {
-        "한국어": "ko",
-        "일본어": "ja",
-        "중국어 간체": "zh-CN",
-        "중국어 번체": "zh-TW",
-        "힌디어": "hi",
-        "영어": "en",
-        "스페인어": "es",
-        "프랑스어": "fr",
-        "독일어": "de",
-        "포루트갈어": "pt",
-        "베트남어": "vi",
-        "인도네시아어": "id",
-        "태국어": "th",
-        "러시아어": "ru",
-        "알수없음": "unk",
+        '한국어': 'ko',
+        '일본어': 'ja',
+        '중국어 간체': 'zh-CN',
+        '중국어 번체': 'zh-TW',
+        '힌디어': 'hi',
+        '영어': 'en',
+        '스페인어': 'es',
+        '프랑스어': 'fr',
+        '독일어': 'de',
+        '포루트갈어': 'pt',
+        '베트남어': 'vi',
+        '인도네시아어': 'id',
+        '태국어': 'th',
+        '러시아어': 'ru',
+        '알수없음': 'unk',
     };
-    for( i in nationData ) {
+    for( let i in nationData ) {
         if(langCode === nationData[i]) {
             return i;
         }
@@ -31,7 +31,7 @@ function nation(langCode) {
 }
 
 function transRequest(content = String, source = String, target = String, smtBool = Boolean) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         let url = '';
         if(smtBool == true) {
             url = 'https://openapi.naver.com/v1/language/translate';
@@ -60,67 +60,67 @@ function transRequest(content = String, source = String, target = String, smtBoo
         });
     }).catch((reject) => {
         return reject();
-    })
+    });
 }
 
 module.exports = (client) => {
     client.on('message', message => {  
-        if (message.content.startsWith(prefix + "ke ")) {
+        if (message.content.startsWith(prefix + 'ke ')) {
             transRequest(message.content.slice(4), 'ko', 'en', false)
-            .then((transText) => {
-                message.channel.send(transText);
-            });
+                .then((transText) => {
+                    message.channel.send(transText);
+                });
         }
-        if (message.content.startsWith(prefix + "ek ")) {
+        if (message.content.startsWith(prefix + 'ek ')) {
             transRequest(message.content.slice(4), 'en', 'ko', false)
-            .then((transText) => {
-                message.channel.send(transText);
-            });
+                .then((transText) => {
+                    message.channel.send(transText);
+                });
         }
 
-        if (message.content.startsWith(prefix + "kj ")) {
+        if (message.content.startsWith(prefix + 'kj ')) {
             transRequest(message.content.slice(4), 'ko', 'en', false)
-            .then((transText) => {
-                transRequest(transText, 'en', 'ja', false)
                 .then((transText) => {
-                    message.channel.send(transText);
-                })
-            });
+                    transRequest(transText, 'en', 'ja', false)
+                        .then((transText) => {
+                            message.channel.send(transText);
+                        });
+                });
         }
-        if (message.content.startsWith(prefix + "jk ")) {
+        if (message.content.startsWith(prefix + 'jk ')) {
             transRequest(message.content.slice(4), 'ja', 'en', false)
-            .then((transText) => {
-                transRequest(transText, 'en', 'ko', false)
+                .then((transText) => {
+                    transRequest(transText, 'en', 'ko', false)
+                        .then((transText) => {
+                            message.channel.send(transText);
+                        });
+                });
+        }
+
+        if (message.content.startsWith(prefix + 'ske ')) {
+            transRequest(message.content.slice(5), 'ko', 'en', true)
                 .then((transText) => {
                     message.channel.send(transText);
-                })
-            });
+                });
         }
-
-        if (message.content.startsWith(prefix + "ske ")) {
-            transRequest(message.content.slice(5), 'ko', 'en', true)
-            .then((transText) => {
-                message.channel.send(transText);
-            });
-        }
-        if (message.content.startsWith(prefix + "sek ")) {
+        if (message.content.startsWith(prefix + 'sek ')) {
             transRequest(message.content.slice(5), 'en', 'ko', true)
-            .then((transText) => {
-                message.channel.send(transText);
-            });
+                .then((transText) => {
+                    message.channel.send(transText);
+                });
         }
 
-        if (message.content.startsWith(prefix + "skj ")) {
+        if (message.content.startsWith(prefix + 'skj ')) {
             transRequest(message.content.slice(5), 'ko', 'ja', true)
-            .then((transText) => {
-                message.channel.send(transText);
-            });
+                .then((transText) => {
+                    message.channel.send(transText);
+                });
         }
-        if (message.content.startsWith(prefix + "sjk ")) {
+        if (message.content.startsWith(prefix + 'sjk ')) {
             transRequest(message.content.slice(5), 'ja', 'ko', true)
-            .then((transText) => {
-                message.channel.send(transText);
-            });
+                .then((transText) => {
+                    message.channel.send(transText);
+                });
         }
 
         if (message.content.startsWith(prefix + 'k ')) {
@@ -139,15 +139,15 @@ module.exports = (client) => {
                 return res.data.langCode;
             }).then((code) => {
                 transRequest(targetText, code, 'ko', false)
-                .then((transText) => {
-                    message.channel.send(nation(code) + '를 한국어로 바꾸면: ' + transText);
-                }, () => {
-                    message.channel.send(nation(code) + '는 한국어로 번역할 수 없습니다.');
-                });
-            })
+                    .then((transText) => {
+                        message.channel.send(nation(code) + '를 한국어로 바꾸면: ' + transText);
+                    }, () => {
+                        message.channel.send(nation(code) + '는 한국어로 번역할 수 없습니다.');
+                    });
+            });
         }
 
-        if (message.content.startsWith(prefix + "roma ")) {
+        if (message.content.startsWith(prefix + 'roma ')) {
             const transText = message.content.slice(5);
             axios({
                 method: 'get',
@@ -156,16 +156,16 @@ module.exports = (client) => {
                     'X-Naver-Client-Id': config.transId,
                     'X-Naver-Client-Secret': config.transSecret
                 }
-              }).then((res)=> {
-                    let content = '영어로 변환한 이름 목록 : \n';
-                    for(let i = 0; i < res.data.aResult[0].aItems.length; i++) {
-                        /*if(res.data.aResult[0].aItems[i].score <= 50) {
-                            continue;
-                        }*/
-                        content += res.data.aResult[0].aItems[i].name + ', score: ' + res.data.aResult[0].aItems[i].score + '\n';
-                    }
-                    message.channel.send(content);
-              });
+            }).then((res)=> {
+                let content = '영어로 변환한 이름 목록 : \n';
+                for(let i = 0; i < res.data.aResult[0].aItems.length; i++) {
+                    /*if(res.data.aResult[0].aItems[i].score <= 50) {
+                        continue;
+                    }*/
+                    content += res.data.aResult[0].aItems[i].name + ', score: ' + res.data.aResult[0].aItems[i].score + '\n';
+                }
+                message.channel.send(content);
+            });
         }
     });
 };
