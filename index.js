@@ -21,6 +21,7 @@ let cindeFest = '0'; //페스모드 활성화 스위치
 let skip = '0'; //통한의 스킵! 생략 모드의 스위치.
 let SR_RESULT = 0;
 let RARE_RESULT = 0;
+let testModSwitch = '0';
 
 client.on('ready', () => {
     console.info('Fumikasan Ver.2.3.0(Radio Happy)');
@@ -182,21 +183,25 @@ client.on('message', message => {
         }
     }
 
-    if (message.content.startsWith(config.prefix + '테스트가챠')) {
+    if (message.content.startsWith(config.prefix + "테스트가챠")) {
+        message.channel.send('테스트 가챠입니다. 모든 아이돌이 출현하고 SSR확률이 6%로 고정됩니다.', { code: 'true' });
+        SR_RESULT = 0;
+        RARE_RESULT = 0;
         SR_COUNT = '0';
         let objectCount = Object.keys(data.ssr).length;
         for (let i = 0; i < 10; i++) {
             let gacha = Math.floor((Math.random() * 100) + 1);
             if (SR_COUNT == '9') {
-                //message.channel.send(result_SR[0]);
+                SR_RESULT++;
             } else if (gacha <= '6') {
-                let gachaResult= data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
-                let genTeiSwitch = gachaResult.gacha_type;
+                let gachaResult= data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)]; 
+                let genTeiSwitch = gachaResult.gacha_type; 
                 let upTitle = gachaResult.title; 
                 let upName = gachaResult.name; 
                 let sign = gachaResult.sign; 
                 let typeColorSwitch = gachaResult.type;
                 let typeColor='';
+                let gachaType = '';
                 if(typeColorSwitch == 'cute'){
                     typeColor = '#FFB2F5';
                 } else if(typeColorSwitch == 'cool'){
@@ -204,33 +209,41 @@ client.on('message', message => {
                 } else if(typeColorSwitch == 'passion'){
                     typeColor = '#FFBB00';
                 }
+                if(genTeiSwitch == 'tsujyou'){
+                    gachaType = '통상 아이돌';
+                } else if(genTeiSwitch == 'gentei'){
+                    gachaType = '한정 아이돌';
+                } else if(genTeiSwitch == 'cindeFest'){
+                    gachaType = '페스 아이돌';
+                }
                 const embed = new discord.RichEmbed()
-                    .setTitle('SSR획득!')
+                    .setTitle("SSR획득!")
                     .setAuthor(client.user.username, client.user.avatarURL)
                     .setColor(typeColor)
-                    .setDescription('테스트 가챠값입니다.')
-                    .setFooter('명령어 입력 시간', client.user.avatarURL) //하단 아바타 이미지
-                    //.setImage('') //하단 이미지
+                    .setDescription(gachaType)
+                    .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+                    //.setImage("") //하단 이미지
                     .setThumbnail(sign) //썸네일 이미지
                     .setTimestamp()
-                    //.setURL('') //타이틀에 URL
+                    //.setURL("") //타이틀에 URL
                     .addField(upTitle,
-                        upName);
-                //.addField('', '', true) //인라인필드
+                        upName)
+                //.addField("", "", true) //인라인필드
                 /*
                  * 빈 칸 만들어주는 필드
                  */
                 //.addBlankField(true)
-                //.addField('필드3', '필드 25개까지.', true);
+                //.addField("필드3", "필드 25개까지.", true);
 
                 message.channel.send({ embed });
             } else if ('7' <= gacha && gacha <= '16') {
-                //message.channel.send(result_SR[0]);
+                SR_RESULT++;
             } else if (gacha >= '17') {
-                //message.channel.send(result_RARE[0]);
+                RARE_RESULT++;
                 SR_COUNT++;
             }
-        }
+        }message.channel.send('획득한 RARE : ' + RARE_RESULT);
+        message.channel.send('획득한 SR : ' + SR_RESULT);
     }
 
     if (message.content.startsWith(config.prefix + '데이터')) {
@@ -274,6 +287,413 @@ client.on('message', message => {
     }
 
     if (message.content.startsWith(prefix + '가챠')) {
+        let objectCount = Object.keys(data.ssr).length;
+        SR_COUNT = '0';
+        let j = 0;
+        if (skip == 0) { //비 생략모드
+            if (cindeFest == '1') {
+                for (let i = 0; i < 10; i++) {
+                    let gacha = Math.floor((Math.random() * 100) + 1);
+                    if (SR_COUNT == '9') {
+                        message.channel.send(result_SR[0]);
+                    } else if (gacha <= '6') {
+                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                    let genTeiSwitch = gachaResult.gacha_type;
+                    let upTitle = gachaResult.title;
+                    let upName = gachaResult.name;
+                    let sign = gachaResult.sign;
+                    let typeColorSwitch = gachaResult.type;
+                    let typeColor = '';
+                    let gachaType = '';
+                    if (typeColorSwitch == 'cute') {
+                        typeColor = '#FFB2F5';
+                    } else if (typeColorSwitch == 'cool') {
+                        typeColor = '#1266FF';
+                    } else if (typeColorSwitch == 'passion') {
+                        typeColor = '#FFBB00';
+                    }
+                    if (genTeiSwitch == 'tsujyou') {
+                        gachaType = '통상 아이돌';
+                    } else if (genTeiSwitch == 'gentei') {
+                        gachaType = '한정 아이돌';
+                    } else if (genTeiSwitch == 'cindeFest') {
+                        gachaType = '페스 아이돌';
+                    }
+                    const embed = new discord.RichEmbed()
+                        .setTitle("SSR획득!")
+                        .setAuthor(client.user.username, client.user.avatarURL)
+                        .setColor(typeColor)
+                        .setDescription(gachaType)
+                        .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+                        //.setImage("") //하단 이미지
+                        .setThumbnail(sign) //썸네일 이미지
+                        .setTimestamp()
+                        //.setURL("") //타이틀에 URL
+                        .addField(upTitle,
+                            upName)
+                    //.addField("", "", true) //인라인필드
+                    /*
+                     * 빈 칸 만들어주는 필드
+                     */
+                    //.addBlankField(true)
+                    //.addField("필드3", "필드 25개까지.", true);
+
+                    message.channel.send({ embed });
+                    } else if ('7' <= gacha && gacha <= '16') {
+                        message.channel.send(result_SR[0]);
+                    } else if (gacha >= '17') {
+                        message.channel.send(result_RARE[0]);
+                        SR_COUNT++;
+                    }
+                }
+            } else if (cindeFest == '0') {
+                for (let i = 0; i < 10; i++) {
+                    let gacha = Math.floor((Math.random() * 100) + 1);
+                    if (SR_COUNT == '9') {
+                        message.channel.send(result_SR[0]);
+                    } else if (gacha <= '3') {
+                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                    let genTeiSwitch = gachaResult.gacha_type;
+                    let upTitle = gachaResult.title;
+                    let upName = gachaResult.name;
+                    let sign = gachaResult.sign;
+                    let typeColorSwitch = gachaResult.type;
+                    let typeColor = '';
+                    let gachaType = '';
+                    if (typeColorSwitch == 'cute') {
+                        typeColor = '#FFB2F5';
+                    } else if (typeColorSwitch == 'cool') {
+                        typeColor = '#1266FF';
+                    } else if (typeColorSwitch == 'passion') {
+                        typeColor = '#FFBB00';
+                    }
+                    if (genTeiSwitch == 'tsujyou') {
+                        gachaType = '통상 아이돌';
+                    } else if (genTeiSwitch == 'gentei') {
+                        gachaType = '한정 아이돌';
+                    } else if (genTeiSwitch == 'cindeFest') {
+                        gachaType = '페스 아이돌';
+                    }
+                    const embed = new discord.RichEmbed()
+                        .setTitle("SSR획득!")
+                        .setAuthor(client.user.username, client.user.avatarURL)
+                        .setColor(typeColor)
+                        .setDescription(gachaType)
+                        .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+                        //.setImage("") //하단 이미지
+                        .setThumbnail(sign) //썸네일 이미지
+                        .setTimestamp()
+                        //.setURL("") //타이틀에 URL
+                        .addField(upTitle,
+                            upName)
+                    //.addField("", "", true) //인라인필드
+                    /*
+                     * 빈 칸 만들어주는 필드
+                     */
+                    //.addBlankField(true)
+                    //.addField("필드3", "필드 25개까지.", true);
+
+                    message.channel.send({ embed });
+                    } else if ('4' <= gacha && gacha <= '13') {
+                        message.channel.send(result_SR[0]);
+                    } else if (gacha >= '14') {
+                        message.channel.send(result_RARE[0]);
+                        SR_COUNT++;
+                    }
+                }
+            } else if (cindeFest == '2') {
+                for (let i = 0; i < 10; i++) {
+                    let gacha = Math.floor((Math.random() * 100) + 1);
+                    if (SR_COUNT == '9') {
+                        message.channel.send(result_SR[0]);
+                    } else if (gacha <= '3') {
+                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                    let genTeiSwitch = gachaResult.gacha_type;
+                    let upTitle = gachaResult.title;
+                    let upName = gachaResult.name;
+                    let sign = gachaResult.sign;
+                    let typeColorSwitch = gachaResult.type;
+                    let typeColor = '';
+                    let gachaType = '';
+                    if (typeColorSwitch == 'cute') {
+                        typeColor = '#FFB2F5';
+                    } else if (typeColorSwitch == 'cool') {
+                        typeColor = '#1266FF';
+                    } else if (typeColorSwitch == 'passion') {
+                        typeColor = '#FFBB00';
+                    }
+                    if (genTeiSwitch == 'tsujyou') {
+                        gachaType = '통상 아이돌';
+                    } else if (genTeiSwitch == 'gentei') {
+                        gachaType = '한정 아이돌';
+                    } else if (genTeiSwitch == 'cindeFest') {
+                        gachaType = '페스 아이돌';
+                    }
+                    const embed = new discord.RichEmbed()
+                        .setTitle("SSR획득!")
+                        .setAuthor(client.user.username, client.user.avatarURL)
+                        .setColor(typeColor)
+                        .setDescription(gachaType)
+                        .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+                        //.setImage("") //하단 이미지
+                        .setThumbnail(sign) //썸네일 이미지
+                        .setTimestamp()
+                        //.setURL("") //타이틀에 URL
+                        .addField(upTitle,
+                            upName)
+                    //.addField("", "", true) //인라인필드
+                    /*
+                     * 빈 칸 만들어주는 필드
+                     */
+                    //.addBlankField(true)
+                    //.addField("필드3", "필드 25개까지.", true);
+
+                    message.channel.send({ embed });
+                    } else if ('4' <= gacha && gacha <= '13') {
+                        message.channel.send(result_SR[0]);
+                    } else if (gacha >= '14') {
+                        message.channel.send(result_RARE[0]);
+                        SR_COUNT++;
+                    }
+                }
+            }
+        } else if (skip == '1') { //생략 모드 실행 시
+            SR_RESULT = 0;
+            RARE_RESULT = 0;
+            if (cindeFest == '1') {
+                for (let i = 0; i < 10; i++) {
+                    let gacha = Math.floor((Math.random() * 100) + 1);
+                    if (SR_COUNT == '9') {
+                        SR_RESULT++;
+                    } else if (gacha <= '6') {
+                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                    let genTeiSwitch = gachaResult.gacha_type;
+                    let upTitle = gachaResult.title;
+                    let upName = gachaResult.name;
+                    let sign = gachaResult.sign;
+                    let typeColorSwitch = gachaResult.type;
+                    let typeColor = '';
+                    let gachaType = '';
+                    if (typeColorSwitch == 'cute') {
+                        typeColor = '#FFB2F5';
+                    } else if (typeColorSwitch == 'cool') {
+                        typeColor = '#1266FF';
+                    } else if (typeColorSwitch == 'passion') {
+                        typeColor = '#FFBB00';
+                    }
+                    if (genTeiSwitch == 'tsujyou') {
+                        gachaType = '통상 아이돌';
+                    } else if (genTeiSwitch == 'gentei') {
+                        gachaType = '한정 아이돌';
+                    } else if (genTeiSwitch == 'cindeFest') {
+                        gachaType = '페스 아이돌';
+                    }
+                    const embed = new discord.RichEmbed()
+                        .setTitle("SSR획득!")
+                        .setAuthor(client.user.username, client.user.avatarURL)
+                        .setColor(typeColor)
+                        .setDescription(gachaType)
+                        .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+                        //.setImage("") //하단 이미지
+                        .setThumbnail(sign) //썸네일 이미지
+                        .setTimestamp()
+                        //.setURL("") //타이틀에 URL
+                        .addField(upTitle,
+                            upName)
+                    //.addField("", "", true) //인라인필드
+                    /*
+                     * 빈 칸 만들어주는 필드
+                     */
+                    //.addBlankField(true)
+                    //.addField("필드3", "필드 25개까지.", true);
+
+                    message.channel.send({ embed });
+                    } else if ('7' <= gacha && gacha <= '16') {
+                        SR_RESULT++;
+                    } else if (gacha >= '17') {
+                        RARE_RESULT++;
+                        SR_COUNT++;
+                    }
+                } message.channel.send('획득한 RARE : ' + RARE_RESULT);
+                message.channel.send('획득한 SR : ' + SR_RESULT);
+            } else if (cindeFest == '0') {
+                for (let i = 0; i < 10; i++) {
+                    let gacha = Math.floor((Math.random() * 100) + 1);
+                    if (SR_COUNT == '9') {
+                        SR_RESULT++;
+                    } else if (gacha <= '3') {
+                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                    let genTeiSwitch = gachaResult.gacha_type;
+                    let upTitle = gachaResult.title;
+                    let upName = gachaResult.name;
+                    let sign = gachaResult.sign;
+                    let typeColorSwitch = gachaResult.type;
+                    let typeColor = '';
+                    let gachaType = '';
+                    if (typeColorSwitch == 'cute') {
+                        typeColor = '#FFB2F5';
+                    } else if (typeColorSwitch == 'cool') {
+                        typeColor = '#1266FF';
+                    } else if (typeColorSwitch == 'passion') {
+                        typeColor = '#FFBB00';
+                    }
+                    if (genTeiSwitch == 'tsujyou') {
+                        gachaType = '통상 아이돌';
+                    } else if (genTeiSwitch == 'gentei') {
+                        gachaType = '한정 아이돌';
+                    } else if (genTeiSwitch == 'cindeFest') {
+                        gachaType = '페스 아이돌';
+                    }
+                    const embed = new discord.RichEmbed()
+                        .setTitle("SSR획득!")
+                        .setAuthor(client.user.username, client.user.avatarURL)
+                        .setColor(typeColor)
+                        .setDescription(gachaType)
+                        .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+                        //.setImage("") //하단 이미지
+                        .setThumbnail(sign) //썸네일 이미지
+                        .setTimestamp()
+                        //.setURL("") //타이틀에 URL
+                        .addField(upTitle,
+                            upName)
+                    //.addField("", "", true) //인라인필드
+                    /*
+                     * 빈 칸 만들어주는 필드
+                     */
+                    //.addBlankField(true)
+                    //.addField("필드3", "필드 25개까지.", true);
+
+                    message.channel.send({ embed });
+                    } else if ('4' <= gacha && gacha <= '13') {
+                        SR_RESULT++;
+                    } else if (gacha >= '14') {
+                        RARE_RESULT++;
+                        SR_COUNT++;
+                    }
+                } message.channel.send('획득한 RARE : ' + RARE_RESULT);
+                message.channel.send('획득한 SR : ' + SR_RESULT);
+            } else if (cindeFest == '2') {
+                for (let i = 0; i < 10; i++) {
+                    let gacha = Math.floor((Math.random() * 100) + 1);
+                    if (SR_COUNT == '9') {
+                        SR_RESULT++;
+                    } else if (gacha <= '3') {
+                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                    let genTeiSwitch = gachaResult.gacha_type;
+                    let upTitle = gachaResult.title;
+                    let upName = gachaResult.name;
+                    let sign = gachaResult.sign;
+                    let typeColorSwitch = gachaResult.type;
+                    let typeColor = '';
+                    let gachaType = '';
+                    if (typeColorSwitch == 'cute') {
+                        typeColor = '#FFB2F5';
+                    } else if (typeColorSwitch == 'cool') {
+                        typeColor = '#1266FF';
+                    } else if (typeColorSwitch == 'passion') {
+                        typeColor = '#FFBB00';
+                    }
+                    if (genTeiSwitch == 'tsujyou') {
+                        gachaType = '통상 아이돌';
+                    } else if (genTeiSwitch == 'gentei') {
+                        gachaType = '한정 아이돌';
+                    } else if (genTeiSwitch == 'cindeFest') {
+                        gachaType = '페스 아이돌';
+                    }
+                    const embed = new discord.RichEmbed()
+                        .setTitle("SSR획득!")
+                        .setAuthor(client.user.username, client.user.avatarURL)
+                        .setColor(typeColor)
+                        .setDescription(gachaType)
+                        .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+                        //.setImage("") //하단 이미지
+                        .setThumbnail(sign) //썸네일 이미지
+                        .setTimestamp()
+                        //.setURL("") //타이틀에 URL
+                        .addField(upTitle,
+                            upName)
+                    //.addField("", "", true) //인라인필드
+                    /*
+                     * 빈 칸 만들어주는 필드
+                     */
+                    //.addBlankField(true)
+                    //.addField("필드3", "필드 25개까지.", true);
+
+                    message.channel.send({ embed });
+                    } else if ('4' <= gacha && gacha <= '13') {
+                        SR_RESULT++;
+                    } else if (gacha >= '14') {
+                        RARE_RESULT++;
+                        SR_COUNT++;
+                    }
+                } message.channel.send('획득한 RARE : ' + RARE_RESULT);
+                message.channel.send('획득한 SR : ' + SR_RESULT);
+            }
+        } else if (skip == '2') {
+            message.channel.send('테스트 가챠입니다. 모든 아이돌이 출현하고 SSR확률이 6%로 고정됩니다.', { code: 'true' });
+            SR_RESULT = 0;
+            RARE_RESULT = 0;
+            SR_COUNT = '0';
+            let objectCount = Object.keys(data.ssr).length;
+            for (let i = 0; i < 10; i++) {
+                let gacha = Math.floor((Math.random() * 100) + 1);
+                if (SR_COUNT == '9') {
+                    SR_RESULT++;
+                } else if (gacha <= '6') {
+                    let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                    let genTeiSwitch = gachaResult.gacha_type;
+                    let upTitle = gachaResult.title;
+                    let upName = gachaResult.name;
+                    let sign = gachaResult.sign;
+                    let typeColorSwitch = gachaResult.type;
+                    let typeColor = '';
+                    let gachaType = '';
+                    if (typeColorSwitch == 'cute') {
+                        typeColor = '#FFB2F5';
+                    } else if (typeColorSwitch == 'cool') {
+                        typeColor = '#1266FF';
+                    } else if (typeColorSwitch == 'passion') {
+                        typeColor = '#FFBB00';
+                    }
+                    if (genTeiSwitch == 'tsujyou') {
+                        gachaType = '통상 아이돌';
+                    } else if (genTeiSwitch == 'gentei') {
+                        gachaType = '한정 아이돌';
+                    } else if (genTeiSwitch == 'cindeFest') {
+                        gachaType = '페스 아이돌';
+                    }
+                    const embed = new discord.RichEmbed()
+                        .setTitle("SSR획득!")
+                        .setAuthor(client.user.username, client.user.avatarURL)
+                        .setColor(typeColor)
+                        .setDescription(gachaType)
+                        .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+                        //.setImage("") //하단 이미지
+                        .setThumbnail(sign) //썸네일 이미지
+                        .setTimestamp()
+                        //.setURL("") //타이틀에 URL
+                        .addField(upTitle,
+                            upName)
+                    //.addField("", "", true) //인라인필드
+                    /*
+                     * 빈 칸 만들어주는 필드
+                     */
+                    //.addBlankField(true)
+                    //.addField("필드3", "필드 25개까지.", true);
+
+                    message.channel.send({ embed });
+                } else if ('7' <= gacha && gacha <= '16') {
+                    SR_RESULT++;
+                } else if (gacha >= '17') {
+                    RARE_RESULT++;
+                    SR_COUNT++;
+                }
+            } message.channel.send('획득한 RARE : ' + RARE_RESULT);
+            message.channel.send('획득한 SR : ' + SR_RESULT);
+        }
+    }
+
+    /* if (message.content.startsWith(prefix + '가챠')) {
         SR_COUNT = '0';
         let j = 0;
         if (skip == 0) { //비 생략모드
@@ -376,7 +796,7 @@ client.on('message', message => {
                 message.channel.send('획득한 SR : ' + SR_RESULT);
             }
         }
-    }
+    } */
 
     if (message.content.startsWith(prefix + '범죄계수')) {
         let Sibyl_System = Math.floor((Math.random() * 999));
@@ -467,6 +887,8 @@ client.on('message', message => {
             skipMod = 'SSR을 제외한 카드는 결과로만 알려줘요.';
         } else if (skip == '0') {
             skipMod = '모든 카드들을 읊어드려요.';
+        } else if (skip == '2'){
+            skipMod = '테스트 가챠 결과를 읊어드려요';
         }
         if (JK == '1') {
             JKMod = '적용되어 있는 거예요';
@@ -532,8 +954,40 @@ client.on('message', message => {
             }});
         }
     }
+    
+    if (message.content.startsWith(config.prefix + '테스트모드')) {
+        if (skip == '0' || skip == '1') {
+            //message.channel.send('테스트 모드를 켤게요.');
+            message.channel.send({embed: {
+                color: 3447003,
+                description: '테스트 모드를 켤게요.'
+            }});
+            skip = '2';
+        } else if (skip == '2'); {
+            //message.channel.send('현재 상태 : 여고생 모드 on 인거예요');
+            message.channel.send({embed: {
+                color: 3447003,
+                description: '현재 상태 : 테스트 모드가 적용되었어요.'
+            }});
+        }
+    }
 
-
+    if (message.content.startsWith(config.prefix + '테스트해제')) {
+        if (skip == '2') {
+            //message.channel.send('테스트 모드를 켤게요.');
+            message.channel.send({embed: {
+                color: 3447003,
+                description: '테스트 모드를 해제할게요.'
+            }});
+            skip = '1';
+        } else if (skip == '1'); {
+            //message.channel.send('현재 상태 : 여고생 모드 on 인거예요');
+            message.channel.send({embed: {
+                color: 3447003,
+                description: '현재 상태 : 테스트 모드가 해제되었어요.'
+            }});
+        }
+    }
 
     if (message.content.startsWith(prefix + '페스')) {
         if (cindeFest == '0' || cindeFest == '2') {
