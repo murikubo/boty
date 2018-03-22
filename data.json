@@ -1178,10 +1178,2472 @@
 		}
 	],
 	"ssr_tsujyou": [
-		
+		{	"title" : "[SSR 스테이지 오브 매직]",
+			"name" : "시마무라 우즈키",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/99/Uzuki-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 게으른 왕국]",
+			"name" : "후타바 안즈",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/be/Anzu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 스테이지 오브 매직]",
+			"name" : "시부야 린",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/52/Rin-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 장미의 암희]",
+			"name" : "칸자키 란코",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f3/Ranko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 스테이지 오브 매직]",
+			"name" : "혼다 미오",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/1e/Mio-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 그레이트 프레젠트]",
+			"name" : "모로보시 키라리",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Kirari_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 캣 파티]",
+			"name" : "마에카와 미쿠",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/3d/Miku_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 노블 비너스]",
+			"name" : "닛타 미나미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/2/28/Minami_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 브라이트 메모리즈]",
+			"name" : "사기사와 후미카",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/a/a7/Fumika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 키라데코☆퍼레이드]",
+			"name" : "죠가사키 리카",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/70/Rika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 자칭 완벽]",
+			"name" : "코시미즈 사치코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/47/Sachiko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 친구가 잔뜩]",
+			"name" : "이치하라 니나",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/6b/Nina_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 엔들리스 나이트]",
+			"name" : "하야미 카나데",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/1d/Kanade_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 플스윙☆엘]",
+			"name" : "히메카와 유키",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/0/02/Yuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 필 마이 하트]",
+			"name" : "사쿠마 마유",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d6/Mayu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 미스틱 엘릭서]",
+			"name" : "이치노세 시키",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/0/01/Shiki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 오버 더 레인보우]",
+			"name" : "카미야 나오",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d6/Nao_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 손으로 만드는 행복]",
+			"name" : "타카모리 아이코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/4c/Aiko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 빛나는 한때]",
+			"name" : "호죠 카렌",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Karen_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 매쉬업★볼테이지]",
+			"name" : "호시 쇼코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/a/af/Syoko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 꽃잎 흩날리는 절경]",
+			"name" : "코바야카와 사에",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/77/Sae_signature_SS.png"
+		},
+		{
+			"title" : "[SSR <<우상>>의 플래그먼트]",
+			"name" : "니노미야 아스카",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d5/Asuka-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 꿈꾸는 프린세스]",
+			"name" : "키타 히나코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/c3/Hinako_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 따뜻한 하트]",
+			"name" : "이가라시 쿄코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/c8/Kyoko-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 전율의 밤]",
+			"name" : "시라사카 코우메",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/82/Koume-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 애비뉴 모드]",
+			"name" : "미야모토 프레데리카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f1/Frederica_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 해신의 인도자]",
+			"name" : "요리타 요시노",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/5c/Yoshino_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 발랄 하베스트]",
+			"name" : "오이카와 시즈쿠",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/bb/Shizuku_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 야경의 새벽바람]",
+			"name" : "시오미 슈코",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/6b/Syuko-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 마이 페어리테일]",
+			"name" : "오가타 치에리",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/1c/Chieri_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 루쥬 꾸뛰르]",
+			"name" : "미후네 미유",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/74/Miyu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 마음 한 다발]",
+			"name" : "아이바 유미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/95/Yumi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 스타팅 데이즈]",
+			"name" : "오토쿠라 유우키",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e8/Yuuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 메이크★임팩트]",
+			"name" : "하야사카 미레이",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/88/Mirei_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 맑게 갠 세계]",
+			"name" : "카미죠 하루나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f4/Haruna_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 컵 오브 러브]",
+			"name" : "토토키 아이리",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/51/Airi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 청춘 에너지]",
+			"name" : "호리 유코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/c7/Yuko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR P.C.S]",
+			"name" : "코히나타 미호",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/40/Miho_sig_ss.png"
+		},
+		{
+			"title" : "[SSR 별에 감싸인 이야기]",
+			"name" : "아나스타샤",
+			"type" : "cool",
+			"gacha_type": "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d2/Anastasia_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 여닌자의 첫걸음]",
+			"name" : "하마구치 아야메",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b4/Ayame_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 단 하나의 그릇]",
+			"name" : "후지와라 하지메",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/48/Hajime_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 돌체 클래시카]",
+			"name" : "미무라 카나코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e9/Kanako_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 디어 마이 레이디]",
+			"name" : "사쿠라이 모모카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/13/Momoka_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 하트 투 하트]",
+			"name" : "사토 신",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/9b/Shin_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 숲의 이야기]",
+			"name" : "모리쿠보 노노",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/be/Nono_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 해바라기 서니데이]",
+			"name" : "류자키 카오루",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f5/Kaoru_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 에어리얼 멜로디어]",
+			"name" : "미즈모토 유카리",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/69/Yukari_signature.png"
+		},
+		{
+			"title" : "[SSR 넥스트☆페이지]",
+			"name" : "아라키 히나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/4d/Hina_signature.png"
+		},
+		{
+			"title" : "[SSR 메이크 미 키스 유]",
+			"name" : "아카기 미리아",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/87/Miria_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 인사이트 익스텐드]",
+			"name" : "야가미 마키노",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f5/Makino_signature.png"
+		},
+		{
+			"title" : "[SSR 러브!스트레이트]",
+			"name" : "나카노 유카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d0/Yuka_signature.png"
+		},
+		{
+			"title" : "[SSR Ring♪Ring♪필링]",
+			"name" : "시이나 노리코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/2/28/Noriko_Shiina_sig.png"
+		},
+		{
+			"title" : "[SSR 하이텐션 스매쉬]",
+			"name" : "키타미 유즈",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/67/Yuzu_sig.png"
+		},
+		{
+			"title" : "[SSR 눈을 뜬 채로 꾸는 꿈]",
+			"name" : "타다 리이나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e4/Riina_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 섹시 BANG☆BANG]",
+			"name" : "카타기리 사나에",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/31/Sanae_sig.png"
+		},
+		{
+			"title" : "[SSR SOUND A ROUND]",
+			"name" : "마츠나가 료",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Ryo_CG_sig.png"
+		},
+		{
+			"title" : "[SSR 만나게 된 동경]",
+			"name" : "세키 히로미",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/5a/Hiromi_sign.png"
+		},
+		{
+			"title" : "[SSR 비밀의 소야곡]",
+			"name" : "사죠 유키미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/93/Yukimi_sig.png"
+		},
+		{
+			"title" : "[SSR 포지티브 패션]",
+			"name" : "히노 아카네",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/61/Akane_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 러브모리☆파리]",
+			"name" : "후지모토 리나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/fa/Rina_sig.png"
+		},
+		{
+			"title" : "[SSR 요정의 아이]",
+			"name": "유사 코즈에",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/13/Kozue_sign.png"
+		},
+		{
+			"title" : "[SSR 스텝 투 미라이]",
+			"name" : "사사키 치에",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/2/21/Chie_sig.png"
+		},
+		{
+			"title" : "[SSR 붉은 주먹]",
+			"name" : "무라카미 토모에",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e3/Tomoe_sig.png"
+		},
+		{
+			"title" : "[SSR FELL SO FREE]",
+			"name" : "키무라 나츠키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/17/Natsuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 주물주물 원더포]",
+			"name" : "무나카타 아츠미",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/8c/Atsumi_sign.png"
+		},
+		{
+			"title" : "[SSR 커맨드 오브 스테이지]",
+			"name" : "야마토 아키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/5d/Aki_sig.png"
+		},
+		{
+			"title" : "[SSR 진검일섬]",
+			"name" : "와키야마 타마미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/72/Tamami_sig.png"
+		},
+		{
+			"title" : "[SSR 비비드★에고이스트]",
+			"name" : "마토바 리사",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/da/Risa_sig.png"
+		},
+		{
+			"title" : "[SSR 꺾이지 않는 꽃]",
+			"name" : "시라기쿠 호타루",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/9a/Hotaru_sign.png"
+		},
+		{
+			"title" : "[SSR 오늘의 주역]",
+			"name" : "남바 에미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/70/Emi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 앰비벌런트 액트]",
+			"name" : "카와시마 미즈키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/50/Mizuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 메모리얼 데이즈]",
+			"name" : "이마이 카나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/7e/Kana_sign.png"
+		},
+		{
+			"title" : "[SSR 있는 그대로의 거리로]",
+			"name" : "타카가키 카에데",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/7c/Kaede_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 퓨어 유포리아]",
+			"name" : "사이온지 코토카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/ce/Kotoka_sign.png"
+		},
+		{
+			"title" : "[SSR 하트비트 삼바!]",
+			"name" : "나탈리아",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/a/aa/Natalia_sig.png"
+		},
+		{
+			"title" : "[SSR 아리스의 티 파티]",
+			"name" : "타치바나 아리스",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/bc/Arisu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 플레이 더 게임]",
+			"name" : "미요시 사나",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/62/Sana_sig.png"
+		},
+		{
+			"title" : "[SSR 동경하던 공주님]",
+			"name" : "코가 코하루",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/35/Koharu_sign.png"
+		},
+		{
+			"title" : "[SSR 꿈을 좇는 사람의 빛]",
+			"name" : "쿠도 시노부",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100461.png"
+		},
+		{
+			"title" : "[SSR 롤리팝 허니]",
+			"name" : "오오츠키 유이",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/80/Yui_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 이국에 부는 바람]",
+			"name" : "라이라",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200467.png"
+		},
+		{
+			"title" : "[SSR 오더 포 톱]",
+			"name" : "키류 츠카사",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200473.png"
+		},
+		{
+			"title" : "[SSR 축복의 눈빛]",
+			"name" : "클라리스",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100475.png"
+		},
+		{
+			"title" : "[SSR 복숭앗빛 분노]",
+			"name" : "무카이 타쿠미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/19/Takumi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 퀸 오브 퀸]",
+			"name" : "자이젠 토키코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/300473.png"
+		},
+		{
+			"title" : "[SSR 드리밍☆우사밍]",
+			"name" : "아베 나나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/33/Nana_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 설레이는 어드벤처]",
+			"name" : "우지이에 무츠미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200489.png"
+		},
+		{
+			"title" : "[SSR 뉴 웨이브 네이비]",
+			"name" : "오오이시 이즈미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200495.png"
+		},
+		{
+			"title" : "[SSR 센터 오브 스트리트]",
+			"name" : "죠가사키 미카",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/9d/Mika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 견실한 소망]",
+			"name" : "쿠리하라 네네",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100495.png"
+		},
+		{
+			"title" : "[SSR 뉴 웨이브 피치]",
+			"name" : "무라마츠 사쿠라",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100505.png"
+		},
+		{
+			"title" : "[SSR 번 앤드 쾅!!]",
+			"name" : "코세키 레이나",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/300497.png"
+		}
 	],
 	"ssr_gentei": [
-		
+		{	"title" : "[SSR 스테이지 오브 매직]",
+			"name" : "시마무라 우즈키",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/99/Uzuki-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 게으른 왕국]",
+			"name" : "후타바 안즈",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/be/Anzu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 스테이지 오브 매직]",
+			"name" : "시부야 린",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/52/Rin-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 장미의 암희]",
+			"name" : "칸자키 란코",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f3/Ranko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 스테이지 오브 매직]",
+			"name" : "혼다 미오",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/1e/Mio-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 그레이트 프레젠트]",
+			"name" : "모로보시 키라리",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Kirari_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 캣 파티]",
+			"name" : "마에카와 미쿠",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/3d/Miku_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 펌프킨 파티]",
+			"name" : "토토키 아이리",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/5/51/Airi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 화이트 위치]",
+			"name" : "미무라 카나코",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/e/e9/Kanako_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 노블 비너스]",
+			"name" : "닛타 미나미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/2/28/Minami_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 꿈빛 클로버]",
+			"name" : "오가타 치에리",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/1/1c/Chieri_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 히트&비트]",
+			"name" : "타다 리이나",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/e/e4/Riina_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 브라이트 메모리즈]",
+			"name" : "사기사와 후미카",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/a/a7/Fumika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 키라데코☆퍼레이드]",
+			"name" : "죠가사키 리카",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/70/Rika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 크리스탈 스노우]",
+			"name" : "아나스타샤",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/d/d2/Anastasia_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 버닝 프레젠트]",
+			"name" : "히노 아카네",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/6/61/Akane_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 자칭 완벽]",
+			"name" : "코시미즈 사치코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/47/Sachiko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 친구가 잔뜩]",
+			"name" : "이치하라 니나",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/6b/Nina_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 탱글탱글 우사밍]",
+			"name" : "아베 나나",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/3/33/Nana_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 하트★오버플로우]",
+			"name" : "죠가사키 미카",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/9/9d/Mika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 엔들리스 나이트]",
+			"name" : "하야미 카나데",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/1d/Kanade_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 플스윙☆엘]",
+			"name" : "히메카와 유키",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/0/02/Yuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 필 마이 하트]",
+			"name" : "사쿠마 마유",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d6/Mayu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 해피 휩]",
+			"name" : "아카기 미리아",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/8/87/Miria_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 럭셔리 메모리]",
+			"name" : "카와시마 미즈키",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/5/50/Mizuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 미스틱 엘릭서]",
+			"name" : "이치노세 시키",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/0/01/Shiki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 오버 더 레인보우]",
+			"name" : "카미야 나오",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d6/Nao_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 손으로 만드는 행복]",
+			"name" : "타카모리 아이코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/4c/Aiko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 밤바람의 유혹]",
+			"name" : "타카가키 카에데",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/7/7c/Kaede_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 유스풀 로맨스]",
+			"name" : "코히나타 미호",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/4/40/Miho_sig_ss.png"
+		},
+		{
+			"title" : "[SSR 빛나는 한때]",
+			"name" : "호죠 카렌",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Karen_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 매쉬업★볼테이지]",
+			"name" : "호시 쇼코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/a/af/Syoko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 꽃잎 흩날리는 절경]",
+			"name" : "코바야카와 사에",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/77/Sae_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 로즈 플뢰르]",
+			"name" : "사쿠라이 모모카",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/1/13/Momoka_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 권화상등]",
+			"name" : "무카이 타쿠미",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/1/19/Takumi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR <<우상>>의 플래그먼트]",
+			"name" : "니노미야 아스카",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d5/Asuka-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 꿈꾸는 프린세스]",
+			"name" : "키타 히나코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/c3/Hinako_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 따뜻한 하트]",
+			"name" : "이가라시 쿄코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/c8/Kyoko-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 처음 짓는 표정]",
+			"name" : "타치바나 아리스",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/b/bc/Arisu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 이모셔널 비트]",
+			"name" : "키무라 나츠키",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/1/17/Natsuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 전율의 밤]",
+			"name" : "시라사카 코우메",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/82/Koume-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 애비뉴 모드]",
+			"name" : "미야모토 프레데리카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f1/Frederica_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 해신의 인도자]",
+			"name" : "요리타 요시노",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/5c/Yoshino_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 드리밍 브라이드]",
+			"name" : "마에카와 미쿠",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/3/3d/Miku_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 기다려지는 운명의 사람]",
+			"name" : "칸자키 란코",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/f/f3/Ranko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 발랄 하베스트]",
+			"name" : "오이카와 시즈쿠",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/bb/Shizuku_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 야경의 새벽바람]",
+			"name" : "시오미 슈코",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/6b/Syuko-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 마이 페어리테일]",
+			"name" : "오가타 치에리",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/1c/Chieri_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 게으름뱅이 페어리]",
+			"name" : "후타바 안즈",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/b/be/Anzu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 섬머타임☆하이]",
+			"name" : "오오츠키 유이",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/8/80/Yui_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 루쥬 꾸뛰르]",
+			"name" : "미후네 미유",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/74/Miyu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 마음 한 다발]",
+			"name" : "아이바 유미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/95/Yumi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 스타팅 데이즈]",
+			"name" : "오토쿠라 유우키",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e8/Yuuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 여름빛 남풍]",
+			"name" : "닛타 미나미",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/2/28/Minami_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 헤롱헤롱 섬머]",
+			"name" : "모로보시 키라리",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Kirari_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 메이크★임팩트]",
+			"name" : "하야사카 미레이",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/88/Mirei_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 맑게 갠 세계]",
+			"name" : "카미죠 하루나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f4/Haruna_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 컵 오브 러브]",
+			"name" : "토토키 아이리",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/51/Airi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 인비테이션 다이브]",
+			"name" : "이치노세 시키",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/0/01/Shiki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 조용한 향연]",
+			"name" : "사기사와 후미카",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/a/a7/Fumika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 청춘 에너지]",
+			"name" : "호리 유코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/c7/Yuko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR P.C.S]",
+			"name" : "코히나타 미호",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/40/Miho_sig_ss.png"
+		},
+		{
+			"title" : "[SSR 별에 감싸인 이야기]",
+			"name" : "아나스타샤",
+			"type" : "cool",
+			"gacha_type": "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d2/Anastasia_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 트릿 오어 트릿]",
+			"name" : "사쿠마 마유",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/d/d6/Mayu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 파티★햣하]",
+			"name" : "호시 쇼코",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/a/af/Syoko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 여닌자의 첫걸음]",
+			"name" : "하마구치 아야메",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b4/Ayame_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 단 하나의 그릇]",
+			"name" : "후지와라 하지메",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/48/Hajime_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 돌체 클래시카]",
+			"name" : "미무라 카나코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e9/Kanako_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 송 포 라이프]",
+			"name" : "호죠 카렌",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Karen_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 따스한 거처]",
+			"name" : "타카모리 아이코",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/4/4c/Aiko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 디어 마이 레이디]",
+			"name" : "사쿠라이 모모카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/13/Momoka_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 하트 투 하트]",
+			"name" : "사토 신",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/9b/Shin_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 숲의 이야기]",
+			"name" : "모리쿠보 노노",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/be/Nono_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 류미엘 에트왈]",
+			"name" : "미야모토 프레데리카",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/f/f1/Frederica_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 드레스업 나이트]",
+			"name" : "카미야 나오",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/d/d6/Nao_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 해바라기 서니데이]",
+			"name" : "류자키 카오루",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f5/Kaoru_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 에어리얼 멜로디어]",
+			"name" : "미즈모토 유카리",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/69/Yukari_signature.png"
+		},
+		{
+			"title" : "[SSR 넥스트☆페이지]",
+			"name" : "아라키 히나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/4d/Hina_signature.png"
+		},
+		{
+			"title" : "[SSR 꽃피는 연회]",
+			"name" : "코바야카와 사에",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/7/77/Sae_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 축복의 기도]",
+			"name" : "요리타 요시노",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/5/5c/Yoshino_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 메이크 미 키스 유]",
+			"name" : "아카기 미리아",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/87/Miria_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 인사이트 익스텐드]",
+			"name" : "야가미 마키노",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f5/Makino_signature.png"
+		},
+		{
+			"title" : "[SSR 러브!스트레이트]",
+			"name" : "나카노 유카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d0/Yuka_signature.png"
+		},
+		{
+			"title" : "[SSR 팰리스 오브 판타지아]",
+			"name" : "나노미야 아스카",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/d/d5/Asuka-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 겹쳐진 꽃잎]",
+			"name" : "아이바 유미",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/9/95/Yumi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR Ring♪Ring♪필링]",
+			"name" : "시이나 노리코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/2/28/Noriko_Shiina_sig.png"
+		},
+		{
+			"title" : "[SSR 하이텐션 스매쉬]",
+			"name" : "키타미 유즈",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/67/Yuzu_sig.png"
+		},
+		{
+			"title" : "[SSR 눈을 뜬 채로 꾸는 꿈]",
+			"name" : "타다 리이나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e4/Riina_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 드라마틱 나이트]",
+			"name" : "이가라시 쿄코",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/c/c8/Kyoko-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 마음, 취하게 해]",
+			"name" : "미후네 미유",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/7/74/Miyu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 섹시 BANG☆BANG]",
+			"name" : "카타기리 사나에",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/31/Sanae_sig.png"
+		},
+		{
+			"title" : "[SSR SOUND A ROUND]",
+			"name" : "마츠나가 료",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Ryo_CG_sig.png"
+		},
+		{
+			"title" : "[SSR 만나게 된 동경]",
+			"name" : "세키 히로미",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/5a/Hiromi_sign.png"
+		},
+		{
+			"title" : "[SSR 컴 위드 미!]",
+			"name" : "오토쿠라 유우키",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/e/e8/Yuuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 서클☆오브☆프렌즈]",
+			"name" : "죠가사키 리카",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/7/70/Rika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 비밀의 소야곡]",
+			"name" : "사죠 유키미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/93/Yukimi_sig.png"
+		},
+		{
+			"title" : "[SSR 포지티브 패션]",
+			"name" : "히노 아카네",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/61/Akane_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 러브모리☆파리]",
+			"name" : "후지모토 리나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/fa/Rina_sig.png"
+		},
+		{
+			"title" : "[SSR 요모스가라 파티]",
+			"name" : "사라사카 코우메",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/8/82/Koume-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 렛츠 고☆퍼레이드]",
+			"name" : "히메카와 유키",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/0/02/Yuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 요정의 아이]",
+			"name": "유사 코즈에",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/13/Kozue_sign.png"
+		},
+		{
+			"title" : "[SSR 스텝 투 미라이]",
+			"name" : "사사키 치에",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/2/21/Chie_sig.png"
+		},
+		{
+			"title" : "[SSR 붉은 주먹]",
+			"name" : "무라카미 토모에",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e3/Tomoe_sig.png"
+		},
+		{
+			"title" : "[SSR 인열을 밎는 이]",
+			"name" : "도묘지 카린",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/5/59/Karin_sig.png"
+		},
+		{
+			"title" : "[SSR 이터널 블룸]",
+			"name" : "시부야 린",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/5/52/Rin-sig-ss.png"
+		},
+		{
+			"title" : "[SSR FELL SO FREE]",
+			"name" : "키무라 나츠키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/17/Natsuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 주물주물 원더포]",
+			"name" : "무나카타 아츠미",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/8c/Atsumi_sign.png"
+		},
+		{
+			"title" : "[SSR 커맨드 오브 스테이지]",
+			"name" : "야마토 아키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/5d/Aki_sig.png"
+		},
+		{
+			"title" : "[SSR 자칭 파티 피플]",
+			"name" : "코시미즈 사치코",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/4/47/Sachiko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 러브 음메 스위트]",
+			"name" : "오이카와 시즈쿠",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/b/bb/Shizuku_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 진검일섬]",
+			"name" : "와키야마 타마미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/72/Tamami_sig.png"
+		},
+		{
+			"title" : "[SSR 비비드★에고이스트]",
+			"name" : "마토바 리사",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/da/Risa_sig.png"
+		},
+		{
+			"title" : "[SSR 꺾이지 않는 꽃]",
+			"name" : "시라기쿠 호타루",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/9a/Hotaru_sign.png"
+		},
+		{
+			"title" : "[SSR 태양보다 뜨겁게!]",
+			"name" : "나카노 유카",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/d/d0/Yuka_signature.png"
+		},
+		{
+			"title" : "[SSR 블루 호라이즌]",
+			"name" : "시오미 슈코",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/6/6b/Syuko-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 오늘의 주역]",
+			"name" : "남바 에미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/70/Emi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 앰비벌런트 액트]",
+			"name" : "카와시마 미즈키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/50/Mizuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 메모리얼 데이즈]",
+			"name" : "이마이 카나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/7e/Kana_sign.png"
+		},
+		{
+			"title" : "[SSR 기프트 포 앤서]",
+			"name" : "모리쿠보 노노",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/b/be/Nono_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 브릴리언트 하아트]",
+			"name" : "사토 신",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/9/9b/Shin_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 있는 그대로의 거리로]",
+			"name" : "타카가키 카에데",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/7c/Kaede_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 퓨어 유포리아]",
+			"name" : "사이온지 코토카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/ce/Kotoka_sign.png"
+		},
+		{
+			"title" : "[SSR 하트비트 삼바!]",
+			"name" : "나탈리아",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/a/aa/Natalia_sig.png"
+		},
+		{
+			"title" : "[SSR 스마일 앤드 트릿]",
+			"name" : "시마무라 우즈키",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/9/99/Uzuki-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 할로윈 몬스터]",
+			"name" : "이치하라 니나",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/6/6b/Nina_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 아리스의 티 파티]",
+			"name" : "타치바나 아리스",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/bc/Arisu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 플레이 더 게임]",
+			"name" : "미요시 사나",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/62/Sana_sig.png"
+		},
+		{
+			"title" : "[SSR 동경하던 공주님]",
+			"name" : "코가 코하루",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/35/Koharu_sign.png"
+		},
+		{
+			"title" : "[SSR 미스틱 던]",
+			"name" : "하야미 카나데",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/1/1d/Kanade_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 트릭☆조커]",
+			"name" : "호리 유코",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/c/c7/Yuko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 꿈을 좇는 사람의 빛]",
+			"name" : "쿠도 시노부",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100461.png"
+		},
+		{
+			"title" : "[SSR 롤리팝 허니]",
+			"name" : "오오츠키 유이",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/80/Yui_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 이국에 부는 바람]",
+			"name" : "라이라",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200467.png"
+		},
+		{
+			"title" : "[SSR 메리 메리 화이트]",
+			"name" : "오가타 치에리",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/1/1c/Chieri_signature_SS.png"
+
+		},
+		{
+			"title" : "[SSR 칼레이도 스노우]",
+			"name" : "혼다 미오",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/1/1e/Mio-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 오더 포 톱]",
+			"name" : "키류 츠카사",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200473.png"
+		},
+		{
+			"title" : "[SSR 축복의 눈빛]",
+			"name" : "클라리스",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100475.png"
+		},
+		{
+			"title" : "[SSR 복숭앗빛 분노]",
+			"name" : "무카이 타쿠미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/19/Takumi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 신춘의 채색]",
+			"name" : "미무라 카나코",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/e/e9/Kanako_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 복을 부르는 무희]",
+			"name" : "타카후지 카코",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://truecolor.kirara.ca/sign/200481.png"
+		},
+		{
+			"title" : "[SSR 퀸 오브 퀸]",
+			"name" : "자이젠 토키코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/300473.png"
+		},
+		{
+			"title" : "[SSR 드리밍☆우사밍]",
+			"name" : "아베 나나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/33/Nana_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 설레이는 어드벤처]",
+			"name" : "우지이에 무츠미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200489.png"
+		},
+		{
+			"title" : "[SSR 비터 스위트 타임]",
+			"name" : "코히나타 미호",
+			"type" : "cute",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/4/40/Miho_sig_ss.png"
+		},
+		{
+			"title" : "[SSR 두근콩닥! 유즈 레시피]",
+			"name" : "키타미 유즈",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/6/67/Yuzu_sig.png"
+		},
+		{
+			"title" : "[SSR 뉴 웨이브 네이비]",
+			"name" : "오오이시 이즈미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200495.png"
+		},
+		{
+			"title" : "[SSR 센터 오브 스트리트]",
+			"name" : "죠가사키 미카",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/9d/Mika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 견실한 소망]",
+			"name" : "쿠리하라 네네",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100495.png"
+		},
+		{
+			"title" : "[SSR 깜찍한 소악마]",
+			"name" : "사사키 치에",
+			"type" : "cool",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/2/21/Chie_sig.png"
+		},
+		{
+			"title" : "[SSR 팝핀 하이☆]",
+			"name" : "아카기 미리아",
+			"type" : "passion",
+			"gacha_type" : "gentei",
+			"sign" : "https://www.project-imas.com/w/images/8/87/Miria_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 뉴 웨이브 피치]",
+			"name" : "무라마츠 사쿠라",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100505.png"
+		},
+		{
+			"title" : "[SSR 번 앤드 쾅!!]",
+			"name" : "코세키 레이나",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/300497.png"
+		}
+	],
+	"ssr_cindeFest": [
+		{	"title" : "[SSR 스테이지 오브 매직]",
+			"name" : "시마무라 우즈키",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/99/Uzuki-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 게으른 왕국]",
+			"name" : "후타바 안즈",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/be/Anzu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 스테이지 오브 매직]",
+			"name" : "시부야 린",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/52/Rin-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 장미의 암희]",
+			"name" : "칸자키 란코",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f3/Ranko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 스테이지 오브 매직]",
+			"name" : "혼다 미오",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/1e/Mio-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 그레이트 프레젠트]",
+			"name" : "모로보시 키라리",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Kirari_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 캣 파티]",
+			"name" : "마에카와 미쿠",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/3d/Miku_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 노블 비너스]",
+			"name" : "닛타 미나미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/2/28/Minami_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 브라이트 메모리즈]",
+			"name" : "사기사와 후미카",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/a/a7/Fumika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 키라데코☆퍼레이드]",
+			"name" : "죠가사키 리카",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/70/Rika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 자칭 완벽]",
+			"name" : "코시미즈 사치코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/47/Sachiko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 친구가 잔뜩]",
+			"name" : "이치하라 니나",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/6b/Nina_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 엔들리스 나이트]",
+			"name" : "하야미 카나데",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/1d/Kanade_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 플스윙☆엘]",
+			"name" : "히메카와 유키",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/0/02/Yuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 필 마이 하트]",
+			"name" : "사쿠마 마유",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d6/Mayu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 미스틱 엘릭서]",
+			"name" : "이치노세 시키",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/0/01/Shiki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 오버 더 레인보우]",
+			"name" : "카미야 나오",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d6/Nao_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 손으로 만드는 행복]",
+			"name" : "타카모리 아이코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/4c/Aiko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 빛나는 한때]",
+			"name" : "호죠 카렌",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Karen_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 매쉬업★볼테이지]",
+			"name" : "호시 쇼코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/a/af/Syoko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 꽃잎 흩날리는 절경]",
+			"name" : "코바야카와 사에",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/77/Sae_signature_SS.png"
+		},
+		{
+			"title" : "[SSR <<우상>>의 플래그먼트]",
+			"name" : "니노미야 아스카",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d5/Asuka-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 꿈꾸는 프린세스]",
+			"name" : "키타 히나코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/c3/Hinako_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 따뜻한 하트]",
+			"name" : "이가라시 쿄코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/c8/Kyoko-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 전율의 밤]",
+			"name" : "시라사카 코우메",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/82/Koume-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 애비뉴 모드]",
+			"name" : "미야모토 프레데리카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f1/Frederica_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 해신의 인도자]",
+			"name" : "요리타 요시노",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/5c/Yoshino_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 발랄 하베스트]",
+			"name" : "오이카와 시즈쿠",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/bb/Shizuku_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 야경의 새벽바람]",
+			"name" : "시오미 슈코",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/6b/Syuko-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 마이 페어리테일]",
+			"name" : "오가타 치에리",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/1c/Chieri_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 피스풀 데이즈]",
+			"name" : "시마무라 우즈키",
+			"type" : "cute",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/9/99/Uzuki-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 오버 마이셀프]",
+			"name" : "시부야 린",
+			"type" : "cool",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/5/52/Rin-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 원더 엔터테이너]",
+			"name" : "혼다 미오",
+			"type" : "passion",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/1/1e/Mio-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 루쥬 꾸뛰르]",
+			"name" : "미후네 미유",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/74/Miyu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 마음 한 다발]",
+			"name" : "아이바 유미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/95/Yumi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 스타팅 데이즈]",
+			"name" : "오토쿠라 유우키",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e8/Yuuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 메이크★임팩트]",
+			"name" : "하야사카 미레이",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/88/Mirei_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 맑게 갠 세계]",
+			"name" : "카미죠 하루나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f4/Haruna_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 컵 오브 러브]",
+			"name" : "토토키 아이리",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/51/Airi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 청춘 에너지]",
+			"name" : "호리 유코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/c7/Yuko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR P.C.S]",
+			"name" : "코히나타 미호",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/40/Miho_sig_ss.png"
+		},
+		{
+			"title" : "[SSR 별에 감싸인 이야기]",
+			"name" : "아나스타샤",
+			"type" : "cool",
+			"gacha_type": "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d2/Anastasia_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 자칭 스위트 히로인]",
+			"name" : "코시미즈 사치코",
+			"type" : "cute",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/4/47/Sachiko_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 붉은빛 색채]",
+			"name" : "타카가키 카에데",
+			"type" : "cool",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/7/7c/Kaede_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 글로리어스★글로우]",
+			"name" : "죠가사키 미카",
+			"type" : "passion",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/9/9d/Mika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 여닌자의 첫걸음]",
+			"name" : "하마구치 아야메",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b4/Ayame_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 단 하나의 그릇]",
+			"name" : "후지와라 하지메",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/48/Hajime_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 돌체 클래시카]",
+			"name" : "미무라 카나코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e9/Kanako_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 디어 마이 레이디]",
+			"name" : "사쿠라이 모모카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/13/Momoka_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 하트 투 하트]",
+			"name" : "사토 신",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/9b/Shin_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 숲의 이야기]",
+			"name" : "모리쿠보 노노",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/be/Nono_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 해바라기 서니데이]",
+			"name" : "류자키 카오루",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f5/Kaoru_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 에어리얼 멜로디어]",
+			"name" : "미즈모토 유카리",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/69/Yukari_signature.png"
+		},
+		{
+			"title" : "[SSR 넥스트☆페이지]",
+			"name" : "아라키 히나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/4/4d/Hina_signature.png"
+		},
+		{
+			"title" : "[SSR 우사밍 더 시크릿]",
+			"name" : "아베 나나",
+			"type" : "cute",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/3/33/Nana_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 비몽사몽 꽃 모양]",
+			"name" : "시오미 슈코",
+			"type" : "cool",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/6/6b/Syuko-sig-ss.png"
+		},
+		{
+			"title" : "[SSR 솔 파라이소]",
+			"name" : "오오츠키 유이",
+			"type" : "passion",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/8/80/Yui_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 메이크 미 키스 유]",
+			"name" : "아카기 미리아",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/87/Miria_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 인사이트 익스텐드]",
+			"name" : "야가미 마키노",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/f5/Makino_signature.png"
+		},
+		{
+			"title" : "[SSR 러브!스트레이트]",
+			"name" : "나카노 유카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/d0/Yuka_signature.png"
+		},
+		{
+			"title" : "[SSR Ring♪Ring♪필링]",
+			"name" : "시이나 노리코",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/2/28/Noriko_Shiina_sig.png"
+		},
+		{
+			"title" : "[SSR 하이텐션 스매쉬]",
+			"name" : "키타미 유즈",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/67/Yuzu_sig.png"
+		},
+		{
+			"title" : "[SSR 눈을 뜬 채로 꾸는 꿈]",
+			"name" : "타다 리이나",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e4/Riina_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 섹시 BANG☆BANG]",
+			"name" : "카타기리 사나에",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/31/Sanae_sig.png"
+		},
+		{
+			"title" : "[SSR SOUND A ROUND]",
+			"name" : "마츠나가 료",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Ryo_CG_sig.png"
+		},
+		{
+			"title" : "[SSR 만나게 된 동경]",
+			"name" : "세키 히로미",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/5a/Hiromi_sign.png"
+		},
+		{
+			"title" : "[SSR 엔드 오브 더 블루]",
+			"name" : "하야미 카나데",
+			"type" : "cool",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/1/1d/Kanade_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 비밀의 소야곡]",
+			"name" : "사죠 유키미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/93/Yukimi_sig.png"
+		},
+		{
+			"title" : "[SSR 포지티브 패션]",
+			"name" : "히노 아카네",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/61/Akane_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 러브모리☆파리]",
+			"name" : "후지모토 리나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/f/fa/Rina_sig.png"
+		},
+		{
+			"title" : "[SSR 요정의 아이]",
+			"name": "유사 코즈에",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/13/Kozue_sign.png"
+		},
+		{
+			"title" : "[SSR 스텝 투 미라이]",
+			"name" : "사사키 치에",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/2/21/Chie_sig.png"
+		},
+		{
+			"title" : "[SSR 붉은 주먹]",
+			"name" : "무라카미 토모에",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/e/e3/Tomoe_sig.png"
+		},
+		{
+			"title" : "[SSR FELL SO FREE]",
+			"name" : "키무라 나츠키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/17/Natsuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 주물주물 원더포]",
+			"name" : "무나카타 아츠미",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/8c/Atsumi_sign.png"
+		},
+		{
+			"title" : "[SSR 커맨드 오브 스테이지]",
+			"name" : "야마토 아키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/5d/Aki_sig.png"
+		},
+		{
+			"title" : "[SSR 아방튀르 샤토]",
+			"name" : "마에카와 미쿠",
+			"type" : "cute",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/3/3d/Miku_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 진검일섬]",
+			"name" : "와키야마 타마미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/72/Tamami_sig.png"
+		},
+		{
+			"title" : "[SSR 비비드★에고이스트]",
+			"name" : "마토바 리사",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/d/da/Risa_sig.png"
+		},
+		{
+			"title" : "[SSR 꺾이지 않는 꽃]",
+			"name" : "시라기쿠 호타루",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/9a/Hotaru_sign.png"
+		},
+		{
+			"title" : "[SSR 오늘의 주역]",
+			"name" : "남바 에미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/70/Emi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 앰비벌런트 액트]",
+			"name" : "카와시마 미즈키",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/5/50/Mizuki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 메모리얼 데이즈]",
+			"name" : "이마이 카나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/7e/Kana_sign.png"
+		},
+		{
+			"title" : "[SSR 프라이빗 메이드]",
+			"name" : "토토키 아이리",
+			"type" : "passion",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/5/51/Airi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 있는 그대로의 거리로]",
+			"name" : "타카가키 카에데",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/7/7c/Kaede_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 퓨어 유포리아]",
+			"name" : "사이온지 코토카",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/c/ce/Kotoka_sign.png"
+		},
+		{
+			"title" : "[SSR 하트비트 삼바!]",
+			"name" : "나탈리아",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/a/aa/Natalia_sig.png"
+		},
+		{
+			"title" : "[SSR 아리스의 티 파티]",
+			"name" : "타치바나 아리스",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/b/bc/Arisu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 플레이 더 게임]",
+			"name" : "미요시 사나",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/6/62/Sana_sig.png"
+		},
+		{
+			"title" : "[SSR 동경하던 공주님]",
+			"name" : "코가 코하루",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/35/Koharu_sign.png"
+		},
+		{
+			"title" : "[SSR 극광의 선율]",
+			"name" : "아나스타샤",
+			"type" : "cool",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/d/d2/Anastasia_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 꿈을 좇는 사람의 빛]",
+			"name" : "쿠도 시노부",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100461.png"
+		},
+		{
+			"title" : "[SSR 롤리팝 허니]",
+			"name" : "오오츠키 유이",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/8/80/Yui_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 이국에 부는 바람]",
+			"name" : "라이라",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200467.png"
+		},
+		{
+			"title" : "[SSR 오더 포 톱]",
+			"name" : "키류 츠카사",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200473.png"
+		},
+		{
+			"title" : "[SSR 축복의 눈빛]",
+			"name" : "클라리스",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100475.png"
+		},
+		{
+			"title" : "[SSR 복숭앗빛 분노]",
+			"name" : "무카이 타쿠미",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/1/19/Takumi_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 올 포 펀]",
+			"name" : "후타바 안즈",
+			"type" : "cute",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/b/be/Anzu_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 하삐하삐☆원더랜드]",
+			"name" : "모로보시 키라리",
+			"type" : "passion",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/b/b6/Kirari_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 퀸 오브 퀸]",
+			"name" : "자이젠 토키코",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/300473.png"
+		},
+		{
+			"title" : "[SSR 드리밍☆우사밍]",
+			"name" : "아베 나나",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/3/33/Nana_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 설레이는 어드벤처]",
+			"name" : "우지이에 무츠미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200489.png"
+		},
+		{
+			"title" : "[SSR 뉴 웨이브 네이비]",
+			"name" : "오오이시 이즈미",
+			"type" : "cool",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/200495.png"
+		},
+		{
+			"title" : "[SSR 센터 오브 스트리트]",
+			"name" : "죠가사키 미카",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://www.project-imas.com/w/images/9/9d/Mika_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 견실한 소망]",
+			"name" : "쿠리하라 네네",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100495.png"
+		},
+		{
+			"title" : "[SSR 아이러니컬 에트랑제]",
+			"name" : "이치노세 시키",
+			"type" : "cute",
+			"gacha_type" : "cindeFest",
+			"sign" : "https://www.project-imas.com/w/images/0/01/Shiki_signature_SS.png"
+		},
+		{
+			"title" : "[SSR 뉴 웨이브 피치]",
+			"name" : "무라마츠 사쿠라",
+			"type" : "cute",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/100505.png"
+		},
+		{
+			"title" : "[SSR 번 앤드 쾅!!]",
+			"name" : "코세키 레이나",
+			"type" : "passion",
+			"gacha_type" : "tsujyou",
+			"sign" : "https://truecolor.kirara.ca/sign/300497.png"
+		}
 	],
 	"response": [
 		"아니요",

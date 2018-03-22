@@ -142,7 +142,51 @@ client.on('message', message => {
                 '.전부 -> 가챠시 SSR 등장 외 카드들도 전부 알려드리는 것 인거예요.'
                 , { code: 'true' });
         } else if (JK == '0') {
-            message.channel.send('.추천곡' + '\n' + '\n' +
+            const embed = new discord.RichEmbed()
+                    .setTitle("명령어")
+                    .setAuthor(client.user.username, client.user.avatarURL)
+                    .setColor(3447003)
+                    .setDescription("**__명령어 앞에 .을 붙여서 이용하실 수 있습니다.__**")
+                    .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
+                    //.setImage("") //하단 이미지
+                    //.setThumbnail("https://www.project-imas.com/w/images/a/a7/Fumika_signature_SS.png") //썸네일 이미지
+                    .setTimestamp()
+                    //.setURL("") //타이틀에 URL
+                .addField("가챠",
+                    "게임과 동일한 확률로 10연가샤 시뮬을 지원합니다.")
+                .addField("페스",
+                    "가챠의 출현 테이블에 페스돌을 추가하고 SSR의 확률을 두 배 높입니다.")
+                .addField("한정",
+                    "가챠의 출현 테이블에 한정돌을 추가합니다.")
+                .addField("통상",
+                    "가챠의 출현 테이블에서 한정돌을 전부 제거하고 SSR의 확률을 원래대로 돌립니다.")
+                .addField("생략",
+                    "가챠시 SSR등장 외 카드들은 결과로만 알려줍니다.")
+                .addField("전부",
+                    "가챠시 SSR등장 외 카드들도 전부 알려줍니다.")
+                .addField("여고생모드",
+                    "일부 대답을 여고생 말투로 하는 후미카씨의 여고생모드를 on합니다.")
+                .addField("해제",
+                    "여고생모드를 해제합니다.")
+                .addField("모드",
+                    "현재의 여고생모드와 신데페스 모드/한정모드의 on/off 여부를 알려줍니다.")
+                .addField("도움말",
+                    "추천곡 기능의 도움말을 표출합니다.")
+                .addField("야 + 할 말",
+                    "질문에 대한 일정한 대답을 얻을 수 있습니다.")
+                .addField("말 + 할 말",
+                    "후미카씨에게 입력한 말을 시킬 수 있습니다.")
+                .addField("번역기",
+                    "번역기 기능에 대한 설명은 추후 추가될 예정입니다.")
+                //.addField("", "", true) //인라인필드
+                /*
+                 * 빈 칸 만들어주는 필드
+                 */
+                //.addBlankField(true)
+                //.addField("필드3", "필드 25개까지.", true);
+
+                message.channel.send({ embed });
+            /* message.channel.send('.추천곡' + '\n' + '\n' +
                 '.도움말 -> 추천곡 기능의 도움말을 제공합니다.' + '\n' + '\n' +
                 '.야 -> +할말로 일정 대답을 얻을 수 있습니다.' + '\n' + '\n' +
                 '.채널아이디 -> 속해있는 채널의 아이디를 제공합니다.' + '\n' + '\n' +
@@ -166,7 +210,7 @@ client.on('message', message => {
                 '.모드 -> 현재의 여고생모드와 신데페스 모드의 on/off 여부를 알려줍니다.' + '\n' + '\n' +
                 '.생략 -> 가챠시 SSR 등장 외 카드들은 결과로만 알려줍니다.' + '\n' + '\n' +
                 '.전부 -> 가챠시 SSR 등장 외 카드들도 전부 알려줍니다.'
-                , { code: 'true' });
+                , { code: 'true' }); */
         }
     }
 
@@ -288,17 +332,17 @@ client.on('message', message => {
     }
 
     if (message.content.startsWith(prefix + '가챠')) {
-        let objectCount = Object.keys(data.ssr).length;
         SR_COUNT = '0';
         let j = 0;
         if (skip == 0) { //비 생략모드
             if (cindeFest == '1') {
+                let objectCount = Object.keys(data.ssr_cindeFest).length;
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
                         message.channel.send(result_SR[0]);
                     } else if (gacha <= '6') {
-                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                        let gachaResult = data.ssr_cindeFest[objectCount - Math.floor((Math.random() * objectCount) + 1)];
                     let genTeiSwitch = gachaResult.gacha_type;
                     let upTitle = gachaResult.title;
                     let upName = gachaResult.name;
@@ -348,12 +392,13 @@ client.on('message', message => {
                     }
                 }
             } else if (cindeFest == '0') {
+                let objectCount = Object.keys(data.ssr_tsujyou).length;
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
                         message.channel.send(result_SR[0]);
                     } else if (gacha <= '3') {
-                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                        let gachaResult = data.ssr_tsujyou[objectCount - Math.floor((Math.random() * objectCount) + 1)];
                     let genTeiSwitch = gachaResult.gacha_type;
                     let upTitle = gachaResult.title;
                     let upName = gachaResult.name;
@@ -403,12 +448,13 @@ client.on('message', message => {
                     }
                 }
             } else if (cindeFest == '2') {
+                let objectCount = Object.keys(data.ssr_gentei).length;
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
                         message.channel.send(result_SR[0]);
                     } else if (gacha <= '3') {
-                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                        let gachaResult = data.ssr_gentei[objectCount - Math.floor((Math.random() * objectCount) + 1)];
                     let genTeiSwitch = gachaResult.gacha_type;
                     let upTitle = gachaResult.title;
                     let upName = gachaResult.name;
@@ -462,12 +508,13 @@ client.on('message', message => {
             SR_RESULT = 0;
             RARE_RESULT = 0;
             if (cindeFest == '1') {
+                let objectCount = Object.keys(data.ssr_cindeFest).length;
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
                         SR_RESULT++;
                     } else if (gacha <= '6') {
-                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                        let gachaResult = data.ssr_cindeFest[objectCount - Math.floor((Math.random() * objectCount) + 1)];
                     let genTeiSwitch = gachaResult.gacha_type;
                     let upTitle = gachaResult.title;
                     let upName = gachaResult.name;
@@ -518,12 +565,13 @@ client.on('message', message => {
                 } message.channel.send('획득한 RARE : ' + RARE_RESULT);
                 message.channel.send('획득한 SR : ' + SR_RESULT);
             } else if (cindeFest == '0') {
+                let objectCount = Object.keys(data.ssr_tsujyou).length;
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
                         SR_RESULT++;
                     } else if (gacha <= '3') {
-                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                        let gachaResult = data.ssr_tsujyou[objectCount - Math.floor((Math.random() * objectCount) + 1)];
                     let genTeiSwitch = gachaResult.gacha_type;
                     let upTitle = gachaResult.title;
                     let upName = gachaResult.name;
@@ -574,12 +622,13 @@ client.on('message', message => {
                 } message.channel.send('획득한 RARE : ' + RARE_RESULT);
                 message.channel.send('획득한 SR : ' + SR_RESULT);
             } else if (cindeFest == '2') {
+                let objectCount = Object.keys(data.ssr_gentei).length;
                 for (let i = 0; i < 10; i++) {
                     let gacha = Math.floor((Math.random() * 100) + 1);
                     if (SR_COUNT == '9') {
                         SR_RESULT++;
                     } else if (gacha <= '3') {
-                        let gachaResult = data.ssr[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                        let gachaResult = data.ssr_gentei[objectCount - Math.floor((Math.random() * objectCount) + 1)];
                     let genTeiSwitch = gachaResult.gacha_type;
                     let upTitle = gachaResult.title;
                     let upName = gachaResult.name;
