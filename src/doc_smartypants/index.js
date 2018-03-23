@@ -1,4 +1,5 @@
 const config = require('../../config.json');
+const dictionary = require('./dictionary');
 const prefix = config.prefix;
 
 const axios = require('axios');
@@ -174,6 +175,20 @@ module.exports = (client) => {
         }
         if (message.content.startsWith(prefix + '구글')) {
             message.channel.send('https://translate.google.com');
+        }
+
+        if (message.content.startsWith( prefix + 'dick ')) {
+            dictionary.dictionary(message.content.slice(message.content.search(/\s/)))
+                .then((res) => {
+                    let content = '';
+                    for(let i in res.data.items) {
+                        content += i + '. ' + res.data.items[i].title + '\n';
+                    }
+                    //hime hime처럼 넘버링 후 클릭 시 해당 타이틀의 Description을 볼 수 있게 하면 좋겠당 ㅎㅎ
+                    content = content.replace(/<b>/gi,'**');
+                    content = content.replace(/<\/b>/gi,'**');
+                    message.channel.send(content);
+                });
         }
     });    
 };
