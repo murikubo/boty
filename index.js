@@ -11,8 +11,8 @@ const talkedRecently = new Set();
 //import todo
 const smartypants = require('./src/doc_smartypants')(client);
 const laboratory = require('./src/laboratory')(client);
-const swear_words = require('./src/swear_words')(client);
-const voiceQuize = require('./src/voice_quize')(client);
+const swearWords = require('./src/swear_words')(client);
+const voiceQuiz = require('./src/voice_quiz')(client);
 
 
 const prefix = '.';
