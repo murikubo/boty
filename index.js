@@ -25,8 +25,8 @@ let RARE_RESULT = 0;
 let testModSwitch = '0';
 
 client.on('ready', () => {
-    console.info('Fumikasan Ver.2.7.0 Test (Smarty Pants)');
-    client.user.setActivity('Smarty Pants');
+    console.info('Fumikasan Ver.2.6.5 (Radio Happy)');
+    client.user.setActivity('Radio Happy');
 });
 
 // Play streams using ytdl-core
