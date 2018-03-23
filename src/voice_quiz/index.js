@@ -27,11 +27,10 @@ module.exports = client => {
                     _.slice(
                         _.shuffle(
                             _.filter(voiceQuiz, q => !q.voiceLink)
-                            , 0, 2
-                        )
+                        ), 0, 3 
                     );
 
-                // connection.playArbitraryInput(correct.voiceLink);
+                connection.playArbitraryInput(correct.voiceLink);
 
                 const quiz = _.shuffle([correct, ...incorrect]);
                 message.channel.send(
