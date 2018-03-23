@@ -12,6 +12,7 @@ const talkedRecently = new Set();
 const smartypants = require('./src/doc_smartypants')(client);
 const laboratory = require('./src/laboratory')(client);
 const swear_words = require('./src/swear_words')(client);
+const voiceQuize = require('./src/voice_quize')(client);
 
 
 const prefix = '.';
@@ -27,7 +28,7 @@ let RARE_RESULT = 0;
 let testModSwitch = '0';
 
 client.on('ready', () => {
-    console.info('Fumikasan Ver.2.6.5 (Radio Happy)');
+    console.info('Fumikasan Ver.2.7.0 (Radio Happy)');
     client.user.setActivity('Radio Happy');
 });
 
@@ -1301,10 +1302,12 @@ client.on('message', message => {
     }
     if (message.content === '.꺼져') {
         if (message.member.voiceChannel) {
-            message.member.voiceChannel.leave()
-            message.channel.send('다른 분들께는 말조심 하시는게 좋을거에요.');
+            //message.member.voiceChannel.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/3/37/Shimushu-Minor_Damage_2.ogg/revision/latest?cb=20170502222723');
+            message.member.voiceChannel.leave();
+            message.channel.send('다른 분들에게는 입조심 하시는게 좋을거에요.');
+            inChannel = '0';
         } else {
-            message.channel.send('그건 밖에 있어도 기분나쁘네요.');
+            message.channel.send('어디 있지도 않은데 무슨 소리세요');
         }
     }
 });
