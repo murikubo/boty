@@ -11,6 +11,7 @@ const talkedRecently = new Set();
 //import todo
 const smartypants = require('./src/doc_smartypants')(client);
 const laboratory = require('./src/laboratory')(client);
+const swear_words = require('./src/swear_words')(client);
 
 
 const prefix = '.';
@@ -34,18 +35,7 @@ client.on('ready', () => {
 const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 client.on('message', message => {
-    //if (!message.content.startsWith(prefix)) return; //프리픽스로 시작되지 않는 명령어들은 비활성화.
-
-    const swearWords = require('./data/swear_words.json');
-    for(let i in swearWords) {
-        if(message.content.search(i) != -1) {
-            message.delete()
-                .then(() => {
-                    message.reply(message.content.replace(i, swearWords[i]));
-                });
-        }
-    }
-    
+    //if (!message.content.startsWith(prefix)) return; //프리픽스로 시작되지 않는 명령어들은 비활성화.    
 
     let word1 = ['아니요', '아닐걸요?', '꼭 그래야만 하나요?', '글쎄요', '그럴까요?', '진짜요?', '진심이세요?', '아마도요.', '그렇나봐요.', '저는 잘 모르죠.', '별로요.', '어떻게 그럴 수 있나요'];//'제가 이런 말 잘 안 하는데 이번만 말씀드릴게요.'+'\n'+'\n'+'네 그래요!'
     let word2 = ['아니예요', '아닐걸요? 인거예요', '하와와 꼭 그래야만 하나요?', '하와와...글쎄요', '호에에 그럴까요?', '호에에~ 진짜요?', '호게겟 진심이세요??', '아마도 인 것 같아예요.', '그렇나봐요 인거예요', '하와와 저는 잘 모르죠.', '호에에 별로에요.', '하와와..어떻게 그럴 수 있나요??']
