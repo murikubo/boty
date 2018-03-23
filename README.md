@@ -1,12 +1,5 @@
 # 후미카씨/fumikasan
 
-쓸데없는 기능들만 모아놓은? 후미카씨 입니다.
-
-# 주요 기능
-- 가챠 시뮬레이터
-- 말 받이 봇(?)
-- 다국어 번역기
-
 ## 업데이트 목록
 1.0 (벚꽃 필 무렵)
 - 후미카씨 출격~
@@ -88,3 +81,7 @@
 - Jinjeok [github link](https://github.com/Jinjeok)
 
 Special Thanks to Fumika Sagisawa, [ksgarceus](https://github.com/ksgarceus)
+=======
+## 기여자
+- Jinjeok
+- Murikubo
