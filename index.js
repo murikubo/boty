@@ -8,7 +8,7 @@ const data = require('./data.json');
 const talkedRecently = new Set();
 //import kancolle_fm
 //import todo
-const translate = require('./src/translate')(client);
+const smartypants = require('./src/doc_smartypants')(client);
 const laboratory = require('./src/laboratory')(client);
 
 
@@ -25,8 +25,8 @@ let RARE_RESULT = 0;
 let testModSwitch = '0';
 
 client.on('ready', () => {
-    console.info('Fumikasan Ver.2.6.0(Radio Happy)');
-    client.user.setActivity('Radio Happy');
+    console.info('Fumikasan Ver.2.7.0 Test (Smarty Pants)');
+    client.user.setActivity('Smarty Pants');
 });
 
 // Play streams using ytdl-core
@@ -35,27 +35,16 @@ const streamOptions = { seek: 0, volume: 1 };
 client.on('message', message => {
     //if (!message.content.startsWith(prefix)) return; //프리픽스로 시작되지 않는 명령어들은 비활성화.
 
-    const swearWords = ['됬', '됌', '엇을', '엇음', '겻', '깻', '햇음', '햇삼', '햇다', '햇을', '잇음', '밋음', '왓음', '겟음', '겟다', '엇다', '잇나', '잇게', '잇엇', '랫나', '랫엇','됏음','됏다','됏어'];
-    if (swearWords.some(word => message.content.includes(word))) {
-        let Sibyl_System = Math.floor((Math.random() * 999) + 100);
-        if (Sibyl_System >= '300') {
-            let Sibyl_low = Math.floor((Math.random() * 2) + 1); // 300이상이 나올 확률이 압도적으로 높으므로 줄여주는 코드들.
-            if (Sibyl_low == 1) {
-                message.reply('*범죄계수*' + Sibyl_System);
-                message.reply('*범죄계수 오버 300, 신중하게 조준하여, 대상을 배제하십시오.*');
-            } else if (Sibyl_low == 2) {
-                let Sibyl_reTry_hight = Math.floor((Math.random() * 300) + 100);
-                if (Sibyl_reTry_hight >= '100') {
-                    message.reply('*범죄계수* ' + Sibyl_reTry_hight + ',*신중하게 조준하여 대상을 제압해주십시오.*');
-                } else if (Sibyl_reTry_hight == 300) {
-                    message.reply('*범죄계수*' + Sibyl_reTry_hight);
-                    message.reply('*범죄계수 오버 300, 신중하게 조준하여, 대상을 배제하십시오.*');
-                }
-            }
-        } else if (Sibyl_System >= '100') {
-            message.reply('*범죄계수* ' + Sibyl_System + ',*신중하게 조준하여 대상을 제압해주십시오.*');
+    const swearWords = require('./data/swear_words.json');
+    for(let i in swearWords) {
+        if(message.content.search(i) != -1) {
+            message.delete()
+                .then(() => {
+                    message.reply(message.content.replace(i, swearWords[i]));
+                });
         }
-    } 
+    }
+    
 
     let word1 = ['아니요', '아닐걸요?', '꼭 그래야만 하나요?', '글쎄요', '그럴까요?', '진짜요?', '진심이세요?', '아마도요.', '그렇나봐요.', '저는 잘 모르죠.', '별로요.', '어떻게 그럴 수 있나요'];//'제가 이런 말 잘 안 하는데 이번만 말씀드릴게요.'+'\n'+'\n'+'네 그래요!'
     let word2 = ['아니예요', '아닐걸요? 인거예요', '하와와 꼭 그래야만 하나요?', '하와와...글쎄요', '호에에 그럴까요?', '호에에~ 진짜요?', '호게겟 진심이세요??', '아마도 인 것 같아예요.', '그렇나봐요 인거예요', '하와와 저는 잘 모르죠.', '호에에 별로에요.', '하와와..어떻게 그럴 수 있나요??']
