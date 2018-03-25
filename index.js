@@ -11,8 +11,8 @@ const talkedRecently = new Set();
 //import todo
 const smartypants = require('./src/doc_smartypants')(client);
 const laboratory = require('./src/laboratory')(client);
-const swear_words = require('./src/swear_words')(client);
-const voiceQuize = require('./src/voice_quize')(client);
+const swearWords = require('./src/swear_words')(client);
+const voiceQuiz = require('./src/voice_quiz')(client);
 
 
 const prefix = '.';
@@ -1232,7 +1232,7 @@ client.on('message', message => {
     }
     if (!message.guild) return;
 
-    if (message.content === '.이리와' || message.content === '.들어와') {
+    if (message.content.startsWith(config.prefix + '이리와') || message.content.startsWith(config.prefix + '들어와')) {
         if (inChannel == '0') {
             if (message.member.voiceChannel) {
                 message.member.voiceChannel.join()
@@ -1251,7 +1251,7 @@ client.on('message', message => {
             message.channel.send('이미 들어와있는데요?');
         }
     }
-    if (message.content === '.나가') {
+    if (message.content.startsWith(config.prefix + '나가')) {
         if (message.member.voiceChannel) {
             //message.member.voiceChannel.playArbitraryInput('https://vignette.wikia.nocookie.net/kancolle/images/3/37/Shimushu-Minor_Damage_2.ogg/revision/latest?cb=20170502222723');
             message.member.voiceChannel.leave();

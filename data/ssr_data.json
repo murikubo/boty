@@ -1175,13 +1175,6 @@
 			"type" : "passion",
 			"gacha_type" : "tsujyou",
 			"sign" : "https://truecolor.kirara.ca/sign/300497.png"
-		},
-		{
-			"title" : "[SSR 브레이크 원 모멘트]",
-			"name"  : "미즈키 세이라",
-			"type"  : "cool",
-			"gacha_type" : "tsujyou",
-			"sign" : "https://truecolor.kirara.ca/sign/200513.png"
 		}
 	],
 	"ssr_tsujyou": [
@@ -1827,13 +1820,6 @@
 			"type" : "passion",
 			"gacha_type" : "tsujyou",
 			"sign" : "https://truecolor.kirara.ca/sign/300497.png"
-		},
-		{
-			"title" : "[SSR 브레이크 원 모멘트]",
-			"name"  : "미즈키 세이라",
-			"type"  : "cool",
-			"gacha_type" : "tsujyou",
-			"sign" : "https://truecolor.kirara.ca/sign/200513.png"
 		}
 	],
 	"ssr_gentei": [
@@ -2900,13 +2886,6 @@
 			"type" : "passion",
 			"gacha_type" : "tsujyou",
 			"sign" : "https://truecolor.kirara.ca/sign/300497.png"
-		},
-		{
-			"title" : "[SSR 브레이크 원 모멘트]",
-			"name"  : "미즈키 세이라",
-			"type"  : "cool",
-			"gacha_type" : "tsujyou",
-			"sign" : "https://truecolor.kirara.ca/sign/200513.png"
 		}
 	],
 	"ssr_cindeFest": [
@@ -3664,13 +3643,6 @@
 			"type" : "passion",
 			"gacha_type" : "tsujyou",
 			"sign" : "https://truecolor.kirara.ca/sign/300497.png"
-		},
-		{
-			"title" : "[SSR 브레이크 원 모멘트]",
-			"name"  : "미즈키 세이라",
-			"type"  : "cool",
-			"gacha_type" : "tsujyou",
-			"sign" : "https://truecolor.kirara.ca/sign/200513.png"
 		}
 	]
 }
