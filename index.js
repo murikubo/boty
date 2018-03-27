@@ -14,6 +14,7 @@ const laboratory = require('./src/laboratory')(client);
 const swearWords = require('./src/swear_words')(client);
 const voiceQuiz = require('./src/voice_quiz')(client);
 const youtube = require('./src/youtube')(client);
+const convertEnToKo = require('./src/convertEnglishToKorean')(client);
 
 const prefix = '.';
 let inChannel = '0'; //채널에 봇이 들어가있을 때를 구별하기 위한 전역변수. 만약 채널에 들어가있으면 1, 들어가있지 않으면 0.
@@ -28,7 +29,7 @@ let RARE_RESULT = 0;
 let testModSwitch = '0';
 
 client.on('ready', () => {
-    console.info('Fumikasan Ver.2.7.0 (Radio Happy)');
+    console.info('Fumikasan Ver.2.9.0 (Radio Happy)');
     client.user.setActivity('Radio Happy');
 });
 
