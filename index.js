@@ -13,6 +13,7 @@ const smartypants = require('./src/doc_smartypants')(client);
 const laboratory = require('./src/laboratory')(client);
 const swearWords = require('./src/swear_words')(client);
 const voiceQuiz = require('./src/voice_quiz')(client);
+const convertEnToKo = require('./src/convertEnglishToKorean')(client);
 
 
 const prefix = '.';
@@ -28,7 +29,7 @@ let RARE_RESULT = 0;
 let testModSwitch = '0';
 
 client.on('ready', () => {
-    console.info('Fumikasan Ver.2.7.0 (Radio Happy)');
+    console.info('Fumikasan Ver.2.8.0 (Radio Happy)');
     client.user.setActivity('Radio Happy');
 });
 
