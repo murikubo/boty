@@ -29,7 +29,7 @@ let RARE_RESULT = 0;
 let testModSwitch = '0';
 
 client.on('ready', () => {
-    console.info('Fumikasan Ver.2.8.0 (Radio Happy)');
+    console.info('Fumikasan Ver.2.9.0 (Radio Happy)');
     client.user.setActivity('Radio Happy');
 });
 

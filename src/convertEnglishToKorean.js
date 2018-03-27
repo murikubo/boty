@@ -12,7 +12,6 @@ var convertEngToKor = function(variable) {
 		return String.fromCharCode(engChosung.indexOf(cho) * 588 + engJungsung[jung] * 28 + engJongsung[jong] + 44032);
 	};
 	var result = variable.replace(regExp, converter);
-	console.log(result);
 	return result;
 }
 
