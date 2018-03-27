@@ -1,6 +1,23 @@
 const fs = require('fs');
-
+const prefix = require('../../config.json').prefix;
+let saveId = '';
 //This is index of Kancolle Fleet Management system
+
+function handleFleetManage(id) {
+    
+}
+
+function fleetManage
+
+module.exports = (client) => {
+    client.on('message', message => {
+        if (!message.content.startsWith(prefix + '함대')) {
+            return;
+        }
+        handleFleetManage(message.author.id);
+    });
+};
+
 
 /*
 "{user_id}": [
