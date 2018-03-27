@@ -1,4 +1,3 @@
-let fs = require('fs');
 let {google} = require('googleapis');
 const config = require('../../config.json');
 
