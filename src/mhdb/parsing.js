@@ -8,10 +8,12 @@ exports.urlParse = (string = String, object = Object) => {
         if(!object.종류) return false;
         return dbUrl + '/weapons/' + encodeURI(object.종류);
     case '장비':
+    case '방어구':
         return dbUrl + '/armors';
     case '호석':
         return dbUrl + '/charms';
     case '장식품':
+    case '장식주':
         return dbUrl + '/jewels';
     default:
         return false;
