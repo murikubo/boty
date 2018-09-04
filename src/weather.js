@@ -155,7 +155,6 @@ module.exports = (client) => {
                         name: `${moment.unix(res.data.list[parsedTime + 4].dt).format('MMMM Do dddd, A h:mm')} ${Math.floor(res.data.list[parsedTime + 4].main.temp - 273.15)}°C`,
                         value: `날씨 : ${weatherEngToKor(res.data.list[parsedTime + 4].weather[0].main)} ${imojiChange(weatherEngToKor(res.data.list[parsedTime + 4].weather[0].main))} 습도 : ${res.data.list[parsedTime + 4].main.humidity}%`
                     });
-                time = `현재 테스트중`;
                 return content;
             }).then((content) => {
                 message.channel.send({
@@ -163,9 +162,10 @@ module.exports = (client) => {
                         title: `${cityName(parsed.pparam.지역)}`,
                         color: '3447003',
                         fields: content,
+                        timestamp: new Date(),
                         footer: {
                             icon_url: client.user.avatarURL,
-                            text: `${time}`
+                            text: `명령어 입력 시간`
                         }
                     }
                 });
@@ -175,7 +175,7 @@ module.exports = (client) => {
         }
 
         if (parsed.command == '날씨') {
-            if(parsed.param == '도움말') return message.channel.send(guide);
+            if (parsed.param == '도움말') return message.channel.send(guide);
             const cityParam = (shimamura) => {
                 const uzuki = {
                     '서울': 'seoul',
