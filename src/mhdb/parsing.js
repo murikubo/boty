@@ -4,6 +4,8 @@ exports.urlParse = (string = String, object = Object) => {
     switch (string) {
     case '몬스터':
         return dbUrl + '/monsters';
+    case '스킬':
+        return dbUrl + '/skills';
     case '무기':
         if(!object.종류) return false;
         return dbUrl + '/weapons/' + encodeURI(object.종류);

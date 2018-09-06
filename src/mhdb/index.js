@@ -50,6 +50,8 @@ module.exports = (client) => {
                 let data;
                 if(Array.isArray(res.data)) data = JSON.stringify(res.data[0],null,'\t');
                 else data = JSON.stringify(res.data,null,'\t');
+                if(data == '""') data = '검색 결과가 없습니다.';
+                if(data.length >= 2000) data = data.substring(0,1988);
                 message.channel.send('```json\n' + data + '```');
             })
             .catch((err) => {
