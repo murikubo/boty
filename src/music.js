@@ -380,7 +380,7 @@ module.exports = (client) => {
             (function play(song) {
                 if (song === undefined) return message.channel.send('재생목록이 없어요.').then(() => {
                     queue[message.guild.id].playing = false;
-                    message.member.voiceChannel.leave();
+                    //message.member.voiceChannel.leave();
                 });
                 if (!message.guild.voiceConnection) return dispatcher.end();
                 message.channel.send(`:musical_note:**현재 재생중** ${song.title}`);
