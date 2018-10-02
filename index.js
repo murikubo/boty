@@ -2,6 +2,8 @@ const discord = require('discord.js');
 const client = new discord.Client();
 const fs = require('fs');
 const yt = require('ytdl-core');
+const http = require('http');
+const url = require('url');
 const config = require('./config.json');
 const ssrData = require('./data/ssr_data.json');
 const general = require('./data/general_data.json');
@@ -28,6 +30,30 @@ const monsterHunter = require('./src/mhdb')(client);
 const weather = require('./src/weather')(client);
 //const setMod = require('./src/mod')(client);
 let mod = JSON.parse(fs.readFileSync("./data/mod_data.json", "utf8"));
+
+let server = http.createServer(function (request, response) {
+    let parsedUrl = url.parse(request.url);
+    let resource = parsedUrl.pathname;
+
+    if (resource == '/ff') {
+      fs.readFile('./src/fumikasan_web/fumikasan_web.html', 'utf-8', function (error, data) {
+        if (error) {
+          response.writeHead(500, { 'Content-Type': 'text/html' });
+          response.end('500 Internal Server Error : ' + error);
+        } else {
+          response.writeHead(200, { 'Content-Type': 'text/html' });
+          response.end(data);
+        }
+      });
+    } else {
+      response.writeHead(404, { 'Content-Type': 'text/html' });
+      response.end('404 Page Not Found');
+    }
+  });
+
+  server.listen(80, function () {
+    console.log('Running Web');
+  });
 
 let pie = '3.14'; //원주율
 const getTime = (s) => {
