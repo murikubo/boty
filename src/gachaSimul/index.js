@@ -109,7 +109,7 @@ module.exports = (client) => {
         }
 
         if (message.content.startsWith(prefix + '가챠')) {
-            let JewelData = Jewel[message.author.id];
+            /* let JewelData = Jewel[message.author.id];
             if (JewelData.Jewel < 2500) {
                 message.reply('쥬얼이 부족해요.');
             } else {
@@ -120,7 +120,7 @@ module.exports = (client) => {
                         description: `쥬얼을 소모하여 10연챠를 합니다. 현재 남은 쥬얼 **${JewelData.Jewel.toLocaleString()}**`
                     }
                 });
-                fs.writeFileSync('./data/Jewel_data.json', JSON.stringify(Jewel));
+                fs.writeFileSync('./data/Jewel_data.json', JSON.stringify(Jewel)); */
                 SR_COUNT = '0';
                 let j = 0;
                 if (mod.mod.skip == 0) { //비 생략모드
@@ -488,9 +488,9 @@ module.exports = (client) => {
                     } message.channel.send('획득한 RARE : ' + RARE_RESULT);
                     message.channel.send('획득한 SR : ' + SR_RESULT);
                 }
-            }
+            //}
         }
-        if (_.isEmpty(Jewel)) return;
-        else fs.writeFileSync('./data/Jewel_data.json', JSON.stringify(Jewel));
+        /* if (_.isEmpty(Jewel)) return;
+        else fs.writeFileSync('./data/Jewel_data.json', JSON.stringify(Jewel)); */
     });
 };
