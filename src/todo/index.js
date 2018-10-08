@@ -76,6 +76,11 @@ module.exports = (client) => {
                 name: todoObject.selectedFolder + ' 폴더의 할 일 리스트',
                 value: todoObject[todoObject.selectedFolder].map((list, index) => `${index+1}. ${list}\n`).toString().replace(/,/g,'')
             });
+            if(parsed.content) {
+                if(isNaN(parsed.content) || todoObject[todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1]]) return;
+                message.channel.send(todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1]);
+                return;
+            }
             message.channel.send({
                 embed: {
                     author: {
@@ -154,7 +159,7 @@ module.exports = (client) => {
             fs.writeFileSync('./data/todo_data.json', JSON.stringify(todoData, null, '\t'));
             message.channel.send(parsed.content + '번 할일이 삭제되었습니다.');
         }
-/*
+
         if(parsed.param == '변경') {
             message.channel.send({
                 embed: {
@@ -191,7 +196,7 @@ module.exports = (client) => {
                                         errors: ['time'],
                                     })
                                         .then((collected) => {
-                                            todoObject[selectedList] = collected.first().content;
+                                            todoObject[todoObject.selectedFolder][selectedList] = collected.first().content;
                                             fs.writeFileSync('./data/todo_data.json', JSON.stringify(todoData, null, '\t'));
                                             message.channel.send('`' + collected.first().content + '` 할일로 변경되었습니다.');
 
@@ -204,7 +209,7 @@ module.exports = (client) => {
                         });
                 });
         }
-*/
+
         if(parsed.param == '이동' && parsed.content != '') {
             let changeNumber = parsed.content.split(',');
             if(isNaN(parseInt(changeNumber[0])) || isNaN(parseInt(changeNumber[1])) || !todoObject[todoObject.selectedFolder][parseInt(changeNumber[0])-1] || !todoObject[todoObject.selectedFolder][parseInt(changeNumber[1])-1]) {
@@ -389,5 +394,6 @@ module.exports = (client) => {
                 });
             }
         }
+        
     });
 };
