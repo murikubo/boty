@@ -1,3 +1,6 @@
+require('events').EventEmitter.defaultMaxListeners = 30;
+
+
 const discord = require('discord.js');
 const client = new discord.Client();
 const fs = require('fs');
@@ -51,9 +54,6 @@ let server = http.createServer(function (request, response) {
     }
   });
 
-  server.listen(80, function () {
-    console.log('Running Web');
-  });
 
 let pie = '3.14'; //원주율
 const getTime = (s) => {
