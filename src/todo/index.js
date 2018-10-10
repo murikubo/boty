@@ -153,14 +153,26 @@ module.exports = (client) => {
                     message.channel.send('시원하게 날렸어요.');
                 });
         }
-        if(parsed.param == '바삭' && parsed.content != '') {
-            if(isNaN(parseInt(parsed.content)) || !todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1] ) return message.channel.send('올바르지 않은 입력값입니다.');
-            todoObject[todoObject.selectedFolder].splice(parseInt(parsed.content)-1,1);
-            fs.writeFileSync('./data/todo_data.json', JSON.stringify(todoData, null, '\t'));
-            message.channel.send(parsed.content + '번 할일이 삭제되었습니다.');
-        }
-
         if(parsed.param == '변경') {
+            if(!isNaN(parseInt(parsed.content)) || todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1]) {
+                let selectedList = parseInt(parsed.content)-1;
+                message.channel.send(`${selectedList+1}번 할일을 선택하셨습니다. 변경할 할일을 입력해주세요. \n\n기존 입력값: ${todoObject[todoObject.selectedFolder][selectedList]}`)
+                .then(() => {
+                    const filter = m => m.author.id === message.author.id;
+                    message.channel.awaitMessages(filter, {
+                        max: 1,
+                        time: 30000,
+                        errors: ['time'],
+                    })
+                        .then((collected) => {
+                            todoObject[todoObject.selectedFolder][selectedList] = collected.first().content;
+                            fs.writeFileSync('./data/todo_data.json', JSON.stringify(todoData, null, '\t'));
+                            message.channel.send('`' + collected.first().content + '` 할일로 변경되었습니다.');
+
+                        });
+                });
+                return;
+            }
             message.channel.send({
                 embed: {
                     title: ' ',
@@ -335,6 +347,14 @@ module.exports = (client) => {
                     });
             }
             if(parsed.content == '삭제') {
+                
+                if(!isNaN(parseInt(parsed.content)) || todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1]) {
+                    todoObject[todoObject.selectedFolder].splice(parseInt(parsed.content)-1,1);
+                    fs.writeFileSync('./data/todo_data.json', JSON.stringify(todoData, null, '\t'));
+                    message.channel.send(parsed.content + '번 할일이 삭제되었습니다.');
+                    return;
+                }
+
                 message.channel.send({
                     embed: {
                         title: ' ',
