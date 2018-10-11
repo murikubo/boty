@@ -335,9 +335,11 @@ module.exports = (client) => {
                     message.channel.send('ERROR: `' + err + '`');
                 });
         }
-        
+
         if (command.command == 'cut' || command.command == '유자') {
-            message.channel.send(command.content.slice(command.content.search('=')+1,command.content.search('&')));
+            let messageCont = command.content.slice(command.content.search('=')+1,command.content.search('&')) + '\n `' + command.content.slice(0,command.content.search('&')) + '`';
+
+            message.channel.send(messageCont);
         }
     });
     //핑 커멘드 사용을 위한 message async.
