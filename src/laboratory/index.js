@@ -335,6 +335,10 @@ module.exports = (client) => {
                     message.channel.send('ERROR: `' + err + '`');
                 });
         }
+        
+        if (command.command == 'cut' || command.command == '유자') {
+            message.channel.send(command.content.slice(command.content.search('=')+1,command.content.search('&')));
+        }
     });
     //핑 커멘드 사용을 위한 message async.
     client.on("message", async message => {
