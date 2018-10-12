@@ -29,6 +29,12 @@ const getWeekNo = (date) => {
 module.exports = (client) => {
     client.on('message', message => {
         let command = util.slice(message.content);
+        
+
+        if (command.command == '탕수육' || command.command == '탕') {
+            require('./tangsoo.js')(message);
+        }
+
         if (command.command == '말') {
             message.delete()
                 .then(() => {
