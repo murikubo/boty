@@ -342,6 +342,9 @@ module.exports = (client) => {
 
         if (command.command == 'cut' || command.command == '유자') {
             let messageCont = command.content.slice(command.content.search('=')+1,command.content.search('&')) + '\n `' + command.content.slice(0,command.content.search('&')) + '`';
+            if(command.content.search('&') == -1) {
+                messageCont = command.content.slice(command.content.search('=')+1) + '\n `' + command.content.slice(0) + '`';
+            }
 
             message.channel.send(messageCont);
         }
