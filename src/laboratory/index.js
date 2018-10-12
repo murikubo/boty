@@ -44,6 +44,10 @@ module.exports = (client) => {
                 });
         }
 
+        if (command.command == '이전') {
+            message.channel.send('마지막 말 : ' + message.channel.lastMessage);
+        }
+
         if (command.command == '크롱') {
             const http = require('https'); // https모듈과 http모듈이 호환될까?? 궁금하긴 한데 해보진 않았다.
             const url = `${encodeURI(`https://namu.wiki/search/${command.content}`)}`;
