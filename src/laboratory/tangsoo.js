@@ -7,7 +7,7 @@ module.exports = (message) => {
                 const filter = m => m.author.id === message.author.id;
                 message.channel.awaitMessages(filter, {
                     max: 1,
-                    time: 1200,
+                    time: 1020,
                     errors: ['time'],
                 })
                     .then((collected) => {
@@ -19,7 +19,7 @@ module.exports = (message) => {
                                     const filter = m => m.author.id === message.author.id;
                                     message.channel.awaitMessages(filter, {
                                         max: 1,
-                                        time: 1200,
+                                        time: 1020,
                                         errors: ['time'],
                                     })
                                         .then((collected) => {
@@ -31,7 +31,7 @@ module.exports = (message) => {
                                                         const filter = m => m.author.id === message.author.id;
                                                         message.channel.awaitMessages(filter, {
                                                             max: 1,
-                                                            time: 1200,
+                                                            time: 1020,
                                                             errors: ['time'],
                                                         })
                                                             .then((collected) => {
