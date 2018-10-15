@@ -354,6 +354,10 @@ module.exports = (client) => {
 
             message.channel.send(messageCont);
         }
+
+        if (command.command == '배열거꾸로' || command.command == '배열반대로') {
+            message.channel.send(command.content.split(',').reverse().join(','));
+        }
     });
     //핑 커멘드 사용을 위한 message async.
     client.on("message", async message => {
