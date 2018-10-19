@@ -40,6 +40,90 @@ module.exports = (client) => {
 
         const parsed = util.slice(message.content);
 
+        if (parsed.command == '로또시뮬') {
+            let randomLotto = {};
+            let Vdata = [];
+            let tempRandomLotto;
+            let length;
+            if (parseInt(parsed.content) <= 5) {
+                length = parseInt(parsed.content) - 1;
+            } else {
+                length = 0;
+            }
+            for (let j = 0; j <= length; j++) {
+                randomLotto[j] = [];
+                for (let i = 0; i < 6; i++) {
+                    tempRandomLotto = _.random(1, 45);
+                    randomLotto[j].push(tempRandomLotto);
+                }
+                randomLotto[j] = overlap(randomLotto[j]);
+                randomLotto[j] = randomLotto[j].sort((a, b) => a - b);
+                Vdata.push(
+                    randomLotto[j].map(i => i)
+                );
+            }
+            let content = [];
+            for (i = 0; i < Vdata.length; i++) {
+                let lottoNumCol = Vdata[i].toString().split(',');
+                lottoNumCol.sort(function (a, b) {
+                    return a - b;
+                });
+                const lottoHandle = Promise.resolve();
+                lottoHandle.then(() => {
+                    return lottoDataUpdate();
+                }).then(() => {
+                    return axios({
+                        method: 'get',
+                        url: `http://www.nlotto.co.kr/common.do?method=getLottoNumber&drwNo=${encodeURI(tempData.lottoTurn.episode)}`,
+                    }).then((res) => {
+                        let ranking;
+                        if (res.data.returnValue != 'success') throw new Error('Request Error.');
+                        let lottoNumNow = [`${res.data.drwtNo1}`, `${res.data.drwtNo2}`, `${res.data.drwtNo3}`, `${res.data.drwtNo4}`, `${res.data.drwtNo5}`, `${res.data.drwtNo6}`];
+                        let lottoBnsNum = [`${res.data.bnusNo}`];
+                        let intersection = lottoNumCol.filter(x => lottoNumNow.includes(x));
+                        let bns = lottoNumCol.filter(x => lottoBnsNum.includes(x));
+                        if (intersection.length == 3) ranking = '5등';
+                        else if ((intersection.length == 5) && (bns.length == 1)) ranking = '2등';
+                        else if (intersection.length == 4) ranking = '4등';
+                        else if (intersection.length == 5) ranking = '3등';
+                        else if (intersection.length == 6) ranking = '1등';
+                        else ranking = '꽝! 다시 해봐요'
+                        content.push({
+                            name: `입력된 번호 : ${lottoNumCol}`,
+                            value: `일치한 숫자 갯수 **${intersection.length + bns.length}**개 / **${ranking}!**`
+                        });
+                        return content;
+                    }).then((content) =>{
+                        message.channel.send({
+                            embed: {
+                                title: '시뮬레이션 결과',
+                                color: '3447003',
+                                fields: content,
+                                timestamp: new Date(),
+                                footer: {
+                                    icon_url: client.user.avatarURL,
+                                    text: '명령어 입력 시간'
+                                }
+                            }
+                        });
+                    });
+                }); 
+            }
+            /* console.log(content);
+            message.channel.send({
+                embed: {
+                    title: '시뮬레이션 결과',
+                    color: '3447003',
+                    fields: content,
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: '명령어 입력 시간'
+                    }
+                }
+            }); */
+        }
+
         if (parsed.command == '로또') {
             const lottoHandle = Promise.resolve();
             lottoHandle.then(() => {
@@ -88,7 +172,6 @@ module.exports = (client) => {
                     }
                 });
             }).catch((err) => {
-                console.error(err);
                 message.channel.send('Error occurred : `' + err + '`');
             });
         }
@@ -97,7 +180,6 @@ module.exports = (client) => {
             let tempLotto = parsed.content.split('/');
             for (i = 0; i < tempLotto.length; i++) {
                 let lottoNumCol = tempLotto[i].split(',');
-                console.log(lottoNumCol);
                 lottoNumCol.sort(function (a, b) {
                     return a - b;
                 });
@@ -171,7 +253,6 @@ module.exports = (client) => {
                         }
                     });
                 }).catch((err) => {
-                    console.error(err);
                     message.channel.send('Error occurred : `' + err + '`');
                 });
             }
@@ -182,7 +263,6 @@ module.exports = (client) => {
             for (let i in lottoNumber) {
                 lottoNumber[i] = lottoNumber[i].split(',', 6);
             }
-            console.log(lottoNumber);
             return lottoNumber;
         }
 

@@ -35,6 +35,86 @@ module.exports = (client) => {
             require('./tangsoo.js')(message);
         }
 
+        if (command.command == '엑셀') {
+            if (command.content.length < 2) return message.channel.send('그런건 직접 세어보세요.');
+            else {
+                const firstAlphabet = (fstAlp) => {
+                    const fstAlpInfo = {
+                        'A': `${26*1}`,
+                        'B': `${26*2}`,
+                        'C': `${26*3}`,
+                        'D': `${26*4}`,
+                        'E': `${26*5}`,
+                        'F': `${26*6}`,
+                        'G': `${26*7}`,
+                        'H': `${26*8}`,
+                        'I': `${26*9}`,
+                        'J': `${26*10}`,
+                        'K': `${26*11}`,
+                        'L': `${26*12}`,
+                        'M': `${26*13}`,
+                        'N': `${26*14}`,
+                        'O': `${26*15}`,
+                        'P': `${26*16}`,
+                        'Q': `${26*17}`,
+                        'R': `${26*18}`,
+                        'S': `${26*19}`,
+                        'T': `${26*20}`,
+                        'U': `${26*21}`,
+                        'V': `${26*22}`,
+                        'W': `${26*23}`,
+                        'X': `${26*24}`,
+                        'Y': `${26*25}`,
+                        'Z': `${26*26}`
+                    };
+                    for (let i in fstAlpInfo) {
+                        if (fstAlp == i) {
+                            return fstAlpInfo[i];
+                        }
+                    }
+                };
+                const secondAlphabet = (sndAlp) => {
+                    const sndAlpInfo = {
+                        'A': '1',
+                        'B': '2',
+                        'C': '3',
+                        'D': '4',
+                        'E': '5',
+                        'F': '6',
+                        'G': '7',
+                        'H': '8',
+                        'I': '9',
+                        'J': '10',
+                        'K': '11',
+                        'L': '12',
+                        'M': '13',
+                        'N': '14',
+                        'O': '15',
+                        'P': '16',
+                        'Q': '17',
+                        'R': '18',
+                        'S': '19',
+                        'T': '20',
+                        'U': '21',
+                        'V': '22',
+                        'W': '23',
+                        'X': '24',
+                        'Y': '25',
+                        'Z': '26'
+                    };
+                    for (let i in sndAlpInfo) {
+                        if (sndAlp == i) {
+                            return sndAlpInfo[i];
+                        }
+                    }
+                };
+                message.channel.send({embed: {
+                    color: 3447003,
+                    description: `A부터 ${command.content}까지는 총 **${parseInt(firstAlphabet(command.content[0])) + parseInt(secondAlphabet(command.content[1]))}**칸이네요.`
+                }});
+            };
+        }
+
         if (command.command == '말') {
             message.delete()
                 .then(() => {
