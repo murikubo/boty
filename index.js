@@ -34,27 +34,6 @@ const weather = require('./src/weather')(client);
 //const setMod = require('./src/mod')(client);
 let mod = JSON.parse(fs.readFileSync("./data/mod_data.json", "utf8"));
 
-let server = http.createServer(function (request, response) {
-    let parsedUrl = url.parse(request.url);
-    let resource = parsedUrl.pathname;
-
-    if (resource == '/ff') {
-      fs.readFile('./src/fumikasan_web/fumikasan_web.html', 'utf-8', function (error, data) {
-        if (error) {
-          response.writeHead(500, { 'Content-Type': 'text/html' });
-          response.end('500 Internal Server Error : ' + error);
-        } else {
-          response.writeHead(200, { 'Content-Type': 'text/html' });
-          response.end(data);
-        }
-      });
-    } else {
-      response.writeHead(404, { 'Content-Type': 'text/html' });
-      response.end('404 Page Not Found');
-    }
-  });
-
-
 let pie = '3.14'; //원주율
 const getTime = (s) => {
     // Pad to 2 or 3 digits, default is 2
@@ -64,7 +43,7 @@ const getTime = (s) => {
 
 client.on('ready', () => {
     console.info(config.version);
-    client.user.setActivity('Orange Sapphire', { type: 'LISTENING' });
+    client.user.setActivity('Halloween♥Code', { type: 'LISTENING' });
 });
 const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };

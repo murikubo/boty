@@ -514,6 +514,29 @@ module.exports = (client) => {
                 voiceChannel.join().then(connection => resolve(connection)).catch(err => reject(err));
             });
         },
+        '커스텀' : (message) => {
+            if (message.member.voiceChannel) {
+              message.member.voiceChannel.join()
+                .then(connection => {
+                    let dispatcher;
+                    message.channel.send({embed: {
+                        color: 3447003,
+                        description: `해당 주소의 음원파일을 재생합니다. \n${util.slice(message.content).content}`
+                    }});
+                    dispatcher = connection.playArbitraryInput(`${util.slice(message.content).content}`, { passes: config.passes, bitrate:320, fec:true });
+                    dispatcher.on('end', () => {
+                        message.member.voiceChannel.leave();
+                    });
+                    dispatcher.on('error', (err) => {
+                        return message.channel.send('error: ' + err).then(() => {
+                            message.member.voiceChannel.leave();
+                        });
+                    });
+                }).catch((err) => message.channel.send('This is an error: ' + err));
+            } else {
+              message.reply('이 명령어는 음성채널 안에서만 가능해요!');
+            }
+        },
         '추가': (message) => {
             let url = message.content.split(' ')[1];
             if (url == '' || url === undefined) return message.channel.send('유튜브 URL주소를 프리픽스+명령어 와 함께 입력해주세요.');
