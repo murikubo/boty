@@ -372,7 +372,7 @@ module.exports = (client) => {
     const commands = {
         '일시정지' : (message) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
-            if (!client.voiceChannel) return message.channel.send('현재 재생중인 목록이 없어요.');
+            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
             message.channel.send('일시정지했어요.').then(() => { dispatcher.pause(); });
         },
         '계속' : (message) => {
@@ -392,7 +392,6 @@ module.exports = (client) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
             if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
             message.channel.send('스킵했어요.').then(() => { dispatcher.end(); });
-            dispatcher;
         },
         /* '현재' : (message) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
@@ -897,7 +896,6 @@ module.exports = (client) => {
             if (message.member.voiceChannel) {
                 message.member.voiceChannel.leave();
                 message.channel.send('네 나갈게요...');
-                dispatcher;
             } else {
                 return;
             }
