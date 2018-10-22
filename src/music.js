@@ -499,18 +499,12 @@ module.exports = (client) => {
         },
         '커스텀': (message) => {
             let Attachment = (message.attachments).array();
-            let attUrl = Attachment[0].url;
 
             if (message.member.voiceChannel) {
                 message.member.voiceChannel.join()
                     .then(connection => {
-                        message.channel.send({
-                            embed: {
-                                color: 3447003,
-                                description: `해당 주소의 음원파일을 재생합니다. \n${attUrl}`
-                            }
-                        });
-                        dispatcher = connection.playArbitraryInput(`${attUrl}`, { passes: config.passes, bitrate: 320, fec: true });
+                        message.channel.send(`:musical_note:**현재 재생중** ${Attachment[0].filename}`);
+                        dispatcher = connection.playArbitraryInput(`${Attachment[0].url}`, { passes: config.passes, bitrate: 320, fec: true });
                         dispatcher.on('end', () => {
                             message.member.voiceChannel.leave();
                         });
