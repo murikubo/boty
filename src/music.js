@@ -374,13 +374,11 @@ module.exports = (client) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
             if (!client.voiceChannel) return message.channel.send('현재 재생중인 목록이 없어요.');
             message.channel.send('일시정지했어요.').then(() => { dispatcher.pause(); });
-            dispatcher;
         },
         '계속' : (message) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
             if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
             message.channel.send('계속할게요.').then(() => { dispatcher.resume(); });
-            dispatcher;
         },
         '볼륨' : (message) => {
             let parsed = util.slice(message.content);
@@ -389,7 +387,6 @@ module.exports = (client) => {
             if (isNaN(parseInt(parsed.content)) || parseInt(parsed.content) > 100 || parseInt(parsed.content) < 0) return message.channel.send('0 ~ 100 사이 정수를 입력해주세요.');
             dispatcher.setVolume(Math.max((parseInt(parsed.content) / 50)));
             message.channel.send(`현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`);
-            dispatcher;
         },
         '스킵' : (message) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
@@ -906,6 +903,7 @@ module.exports = (client) => {
             if (message.member.voiceChannel) {
                 message.member.voiceChannel.leave();
                 message.channel.send('네 나갈게요...');
+                dispatcher;
             } else {
                 return;
             }
