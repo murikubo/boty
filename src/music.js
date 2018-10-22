@@ -9,7 +9,7 @@ const _ = require('lodash');
 const getTime = (s) => {
     // Pad to 2 or 3 digits, default is 2
     let pad = (n, z = 2) => ('00' + n).slice(-z);
-    return pad(s/3.6e6|0) + ':' + pad((s%3.6e6)/6e4 | 0) + ':' + pad((s%6e4)/1000|0);
+    return pad(s / 3.6e6 | 0) + ':' + pad((s % 3.6e6) / 6e4 | 0) + ':' + pad((s % 6e4) / 1000 | 0);
 };
 
 const move = (arr, oldIndex, newIndex) => {
@@ -84,9 +84,9 @@ module.exports = (client) => {
     client.on('message', message => {
         client.setMaxListeners(100);
         let parsed = util.slice(message.content);
-        if(message.author.bot) return;
-        if(parsed.command != '노래') return;
-        if(parsed.param == '추가') {
+        if (message.author.bot) return;
+        if (parsed.command != '노래') return;
+        if (parsed.param == '추가') {
             message.channel.send('추가할 곡을 입력해주세요.')
                 .then(() => {
                     const filter = m => m.author.id === message.author.id;
@@ -96,8 +96,8 @@ module.exports = (client) => {
                         errors: ['time'],
                     })
                         .then((collected) => {
-                            if(!musicData[message.author.id]) musicData[message.author.id] = [];
-                            if(musicData[message.author.id].length>=9) return message.reply('제한인 9개를 초과하였습니다.');
+                            if (!musicData[message.author.id]) musicData[message.author.id] = [];
+                            if (musicData[message.author.id].length >= 9) return message.reply('제한인 9개를 초과하였습니다.');
                             musicData[message.author.id].push(collected.first().content);
                             fs.writeFileSync('./data/music_data.json', JSON.stringify(musicData, null, '\t'));
                             message.channel.send('`' + collected.first().content + '` 곡이 추가되었습니다.');
@@ -109,15 +109,15 @@ module.exports = (client) => {
                         });
                 });
         }
-        if(parsed.param == '리스트' || !parsed.param) {
-            if(!musicData[message.author.id] || musicData[message.author.id].length == 0) {
+        if (parsed.param == '리스트' || !parsed.param) {
+            if (!musicData[message.author.id] || musicData[message.author.id].length == 0) {
                 message.channel.send('리스트가 없습니다. `노래 -추가`로 추가해주세요.');
                 return;
             }
             let content = [];
             content.push({
                 name: '곡 리스트',
-                value: musicData[message.author.id].map((list, index) => `${index+1}. ${list}\n`).toString().replace(/,/g,'')
+                value: musicData[message.author.id].map((list, index) => `${index + 1}. ${list}\n`).toString().replace(/,/g, '')
             });
             message.channel.send({
                 embed: {
@@ -139,10 +139,10 @@ module.exports = (client) => {
                 //console.log(musicData[message.author.id][0]);
                 //console.log(musicData[message.author.id][1]);
                 //console.log(musicData[message.author.id][2]);
-                for(let i = 1; i <= musicData[message.author.id].length; i++) {
-                    await sentMessage.react(i+'⃣')
+                for (let i = 1; i <= musicData[message.author.id].length; i++) {
+                    await sentMessage.react(i + '⃣')
                         .then(mReaction => {
-                            const filter = (reaction, user) => reaction.emoji.name === i+'⃣' && user.id === message.author.id;
+                            const filter = (reaction, user) => reaction.emoji.name === i + '⃣' && user.id === message.author.id;
                             const collector = sentMessage.createReactionCollector(filter, { time: 15000 });
                             collector.on('collect', reaction => {
                                 //console.log(musicData[message.author.id][i-1]);
@@ -150,7 +150,7 @@ module.exports = (client) => {
                                     let options = {
                                         auth: config.googleApiKey,
                                         part: 'id, snippet',
-                                        q: musicData[message.author.id][i-1],
+                                        q: musicData[message.author.id][i - 1],
                                         type: 'video'
                                     };
                                     resolve(options);
@@ -173,31 +173,31 @@ module.exports = (client) => {
                                                         icon_url: client.user.avatarURL
                                                     },
                                                     title: `:ballot_box_with_check:곡이 추가되었어요.`,
-                                                    description : result.snippet.title,
+                                                    description: result.snippet.title,
                                                     thumbnail: {
                                                         url: result.snippet.thumbnails.high.url
                                                     },
                                                     fields: [
-/*                                                         {
-                                                            name: '아이디',
-                                                            value: imshiId,
-                                                            inline: true
-                                                        }, */
+                                                        /*                                                         {
+                                                                                                                    name: '아이디',
+                                                                                                                    value: imshiId,
+                                                                                                                    inline: true
+                                                                                                                }, */
                                                         {
                                                             name: '재생 시간',
                                                             value: convertTime(result.contentDetails.duration),
                                                             inline: true
                                                         },
-/*                                                         {
-                                                            name: '채널명',
-                                                            value: result.snippet.channelTitle,
-                                                            inline: true
-                                                        },
-                                                        {
-                                                            name: '유튜브 바로가기',
-                                                            value: `[링크](https://youtu.be/${imshiId})`,
-                                                            inline: true
-                                                        } */
+                                                        /*                                                         {
+                                                                                                                    name: '채널명',
+                                                                                                                    value: result.snippet.channelTitle,
+                                                                                                                    inline: true
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    name: '유튜브 바로가기',
+                                                                                                                    value: `[링크](https://youtu.be/${imshiId})`,
+                                                                                                                    inline: true
+                                                                                                                } */
                                                     ],
                                                     color: '3447003',
                                                     timestamp: new Date(),
@@ -208,10 +208,10 @@ module.exports = (client) => {
                                                 }
                                             })
                                                 .then(() => collector.stop());
-                                                if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
-                                                queue[message.guild.id].songs.push({ url: `https://youtu.be/${imshiId}`, title: imshiTitle, requester: message.author.username });
-                                                //message.channel.send(`:ballot_box_with_check:**${imshiTitle}** 곡이 리스트에 추가되었습니다.`);
-                                            
+                                            if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
+                                            queue[message.guild.id].songs.push({ url: `https://youtu.be/${imshiId}`, title: imshiTitle, requester: message.author.username });
+                                            //message.channel.send(`:ballot_box_with_check:**${imshiTitle}** 곡이 리스트에 추가되었습니다.`);
+
                                         })
                                             .catch((err) => message.channel.send('This is an error: ' + err));
                                     });
@@ -221,14 +221,14 @@ module.exports = (client) => {
                 }
             });
         }
-        if(parsed.param == '삭제') {
+        if (parsed.param == '삭제') {
             message.channel.send({
                 embed: {
                     title: ' ',
                     color: '3447003',
                     fields: [{
                         name: '삭제할 곡의 번호룰 입력해주세요.',
-                        value: musicData[message.author.id].map((list, index) => `${index+1}. ${list}\n`).toString().replace(/,/g,'')
+                        value: musicData[message.author.id].map((list, index) => `${index + 1}. ${list}\n`).toString().replace(/,/g, '')
                     }],
                     timestamp: new Date(),
                     footer: {
@@ -245,22 +245,22 @@ module.exports = (client) => {
                         errors: ['time'],
                     })
                         .then((collected) => {
-                            if(collected.first().content == '나가기') throw new Error('취소했습니다.');
-                            if(isNaN(parseInt(collected.first().content)) || !musicData[message.author.id][parseInt(collected.first().content)-1] ) throw new Error('올바르지 않은 입력값입니다.');
-                            musicData[message.author.id].splice(parseInt(collected.first().content)-1,1);
+                            if (collected.first().content == '나가기') throw new Error('취소했습니다.');
+                            if (isNaN(parseInt(collected.first().content)) || !musicData[message.author.id][parseInt(collected.first().content) - 1]) throw new Error('올바르지 않은 입력값입니다.');
+                            musicData[message.author.id].splice(parseInt(collected.first().content) - 1, 1);
                             fs.writeFileSync('./data/music_data.json', JSON.stringify(musicData, null, '\t'));
                             message.channel.send(collected.first().content + '번 곡이 삭제되었습니다.');
                         })
                         .catch((err) => {
-                            if(!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
+                            if (!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
                             else message.channel.send(err.message);
                         });
                 });
         }
-        if(parsed.param == '일괄삭제') {
+        if (parsed.param == '일괄삭제') {
             message.channel.send('곡을 전부 날려버리고있어요.')
                 .then(() => {
-                    if(!musicData[message.author.id] || musicData[message.author.id].length == 0) {
+                    if (!musicData[message.author.id] || musicData[message.author.id].length == 0) {
                         message.channel.send('날릴 데이터가 없어요.');
                         return;
                     }
@@ -276,7 +276,7 @@ module.exports = (client) => {
                         message.channel.send('추가할 곡이 없어요.');
                         return;
                     }
-                    for (let i = 0;  i <= musicData[message.author.id].length-1; i++) {
+                    for (let i = 0; i <= musicData[message.author.id].length - 1; i++) {
                         const youtube = new Promise((resolve) => {
                             let options = {
                                 auth: config.googleApiKey,
@@ -300,21 +300,21 @@ module.exports = (client) => {
                     message.channel.send(`:ballot_box_with_check:총 **${musicData[message.author.id].length}** 곡이 리스트에 추가되었습니다.`);
                 });
         }
-        if(parsed.param == '바삭' && parsed.content != '') {
-            if(parsed.content == '나가기') return message.channel.send('취소했습니다.');
-            if(isNaN(parseInt(parsed.content)) || !musicData[message.author.id][parseInt(parsed.content)-1] ) return message.channel.send('올바르지 않은 입력값입니다.');
-            musicData[message.author.id].splice(parseInt(parsed.content)-1,1);
+        if (parsed.param == '바삭' && parsed.content != '') {
+            if (parsed.content == '나가기') return message.channel.send('취소했습니다.');
+            if (isNaN(parseInt(parsed.content)) || !musicData[message.author.id][parseInt(parsed.content) - 1]) return message.channel.send('올바르지 않은 입력값입니다.');
+            musicData[message.author.id].splice(parseInt(parsed.content) - 1, 1);
             fs.writeFileSync('./data/music_data.json', JSON.stringify(musicData, null, '\t'));
             message.channel.send(parsed.content + '번 곡이 삭제되었습니다.');
         }
-        if(parsed.param == '변경') {
+        if (parsed.param == '변경') {
             message.channel.send({
                 embed: {
                     title: ' ',
                     color: '3447003',
                     fields: [{
                         name: '변경할 곡의 번호룰 입력해주세요.',
-                        value: musicData[message.author.id].map((list, index) => `${index+1}. ${list}\n`).toString().replace(/,/g,'')
+                        value: musicData[message.author.id].map((list, index) => `${index + 1}. ${list}\n`).toString().replace(/,/g, '')
                     }],
                     timestamp: new Date(),
                     footer: {
@@ -331,10 +331,10 @@ module.exports = (client) => {
                         errors: ['time'],
                     })
                         .then((collected) => {
-                            if(collected.first().content == '나가기') throw new Error('취소했습니다.');
-                            if(isNaN(parseInt(collected.first().content)) || !musicData[message.author.id][parseInt(collected.first().content)-1] ) throw new Error('올바르지 않은 입력값입니다.');
-                            let selectedList = parseInt(collected.first().content)-1;
-                            message.channel.send(`${selectedList+1}번 노래를 선택하셨습니다. 변경할 노래를 입력해주세요. \n\n기존 입력값: ${musicData[message.author.id][selectedList]}`)
+                            if (collected.first().content == '나가기') throw new Error('취소했습니다.');
+                            if (isNaN(parseInt(collected.first().content)) || !musicData[message.author.id][parseInt(collected.first().content) - 1]) throw new Error('올바르지 않은 입력값입니다.');
+                            let selectedList = parseInt(collected.first().content) - 1;
+                            message.channel.send(`${selectedList + 1}번 노래를 선택하셨습니다. 변경할 노래를 입력해주세요. \n\n기존 입력값: ${musicData[message.author.id][selectedList]}`)
                                 .then(() => {
                                     const filter = m => m.author.id === message.author.id;
                                     message.channel.awaitMessages(filter, {
@@ -342,39 +342,135 @@ module.exports = (client) => {
                                         time: 30000,
                                         errors: ['time'],
                                     })
-                                    .then((collected) => {
-                                        musicData[message.author.id][selectedList] = collected.first().content;
-                                        fs.writeFileSync('./data/music_data.json', JSON.stringify(musicData, null, '\t'));
-                                        message.channel.send('`' + collected.first().content + '` 곡으로 변경되었습니다.');
+                                        .then((collected) => {
+                                            musicData[message.author.id][selectedList] = collected.first().content;
+                                            fs.writeFileSync('./data/music_data.json', JSON.stringify(musicData, null, '\t'));
+                                            message.channel.send('`' + collected.first().content + '` 곡으로 변경되었습니다.');
 
-                                    });
+                                        });
                                 });
                         })
                         .catch((err) => {
-                            if(!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
+                            if (!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
                             else message.channel.send(err.message);
                         });
                 });
         }
-        if(parsed.param == '이동' && parsed.content != '') {
+        if (parsed.param == '이동' && parsed.content != '') {
             let changeNumber = parsed.content.split(',');
-            if(isNaN(parseInt(changeNumber[0])) || isNaN(parseInt(changeNumber[1])) || !musicData[message.author.id][parseInt(changeNumber[0])-1] || !musicData[message.author.id][parseInt(changeNumber[1])-1]) {
+            if (isNaN(parseInt(changeNumber[0])) || isNaN(parseInt(changeNumber[1])) || !musicData[message.author.id][parseInt(changeNumber[0]) - 1] || !musicData[message.author.id][parseInt(changeNumber[1]) - 1]) {
                 message.channel.send('올바르지 않은 입력값입니다.');
                 return;
             }
-            musicData[message.author.id] = move(musicData[message.author.id], parseInt(changeNumber[0])-1, parseInt(changeNumber[1])-1);
+            musicData[message.author.id] = move(musicData[message.author.id], parseInt(changeNumber[0]) - 1, parseInt(changeNumber[1]) - 1);
             fs.writeFileSync('./data/music_data.json', JSON.stringify(musicData, null, '\t'));
             message.channel.send(`${changeNumber[0]}번 곡을 ${changeNumber[1]}번으로 이동하였습니다.`);
 
         }
     });
-
+    let dispatcher;
     const commands = {
+        '일시정지' : (message) => {
+            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
+            if (!client.voiceChannel) return message.channel.send('현재 재생중인 목록이 없어요.');
+            message.channel.send('일시정지했어요.').then(() => { dispatcher.pause(); });
+            dispatcher;
+        },
+        '계속' : (message) => {
+            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
+            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
+            message.channel.send('계속할게요.').then(() => { dispatcher.resume(); });
+            dispatcher;
+        },
+        '볼륨' : (message) => {
+            let parsed = util.slice(message.content);
+            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
+            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
+            if (isNaN(parseInt(parsed.content)) || parseInt(parsed.content) > 100 || parseInt(parsed.content) < 0) return message.channel.send('0 ~ 100 사이 정수를 입력해주세요.');
+            dispatcher.setVolume(Math.max((parseInt(parsed.content) / 50)));
+            message.channel.send(`현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`);
+            dispatcher;
+        },
+        '스킵' : (message) => {
+            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
+            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
+            message.channel.send('스킵했어요.').then(() => { dispatcher.end(); });
+            dispatcher;
+        },
+        /* '현재' : (message) => {
+            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
+            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
+            const youtube = new Promise((resolve) => {
+                let options = {
+                    auth: config.googleApiKey,
+                    part: 'id, snippet',
+                    q: song.url,
+                    type: 'video'
+                };
+                resolve(options);
+            })
+                .then((options) => {
+                    return getSearch(options);
+                })
+                .then((result) => {
+                    let fomatted = [];
+                    let id = [];
+                    let typeCase = () => {
+                        return result[0].id.videoId;
+                    };
+                    fomatted.push({
+                        name: parseInt(0) + '. ' + result[0].snippet.title,
+                        value: `아이디: ${typeCase()}`
+                    });
+                    id.push(typeCase());
+                    return [fomatted, id];
+                })
+                .then(([fields, id]) => {
+                    const videoInfo = getVideo(id[0]);
+                    let url = id[0];
+                    if (url == '' || url === undefined) return message.channel.send('검색 결과를 찾을 수 없습니다.');
+                    videoInfo.then((result) => {
+                        message.channel.send({
+                            embed: {
+                                author: {
+                                    name: client.user.username,
+                                    icon_url: client.user.avatarURL
+                                },
+                                title: result.snippet.title,
+                                thumbnail: {
+                                    url: result.snippet.thumbnails.high.url
+                                },
+                                fields: [
+                                    {
+                                        name: '추가자',
+                                        value: `${song.requester}`,
+                                        inline: true
+                                    },
+                                    {
+                                        name: '재생 시간',
+                                        value: `${getTime(dispatcher.time)} / ${convertTime(result.contentDetails.duration)}`,
+                                        inline: true
+                                    },
+                                ],
+                                color: '3447003',
+                                timestamp: new Date(),
+                                footer: {
+                                    icon_url: client.user.avatarURL,
+                                    text: '명령어 입력 시간'
+                                }
+                            }
+                        })
+                    })
+                        .catch((err) => message.channel.send('error: ' + err));
+                })
+                .catch((err) => {
+                    message.channel.send('error: ' + err);
+                });
+        }, */
         '재생': (message) => {
             if (queue[message.guild.id] === undefined) return message.channel.send('곡을 추가해주세요.');
             if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
             if (queue[message.guild.id].playing) return message.channel.send('이미 재생중이에요.');
-            let dispatcher;
             queue[message.guild.id].playing = true;
 
             (function play(song) {
@@ -384,117 +480,7 @@ module.exports = (client) => {
                 });
                 if (!message.guild.voiceConnection) return dispatcher.end();
                 message.channel.send(`:musical_note:**현재 재생중** ${song.title}`);
-                dispatcher = message.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes: config.passes, bitrate:320, fec:true });
-                let collector = message.channel.createCollector(m => m);
-                collector.on('message', m => {
-                    let parsed = util.slice(m.content);
-                    if (!m.content.startsWith(config.prefix)) return;
-                     if (!m.member.voiceChannel) {
-                        message.channel.send('음성채널에 들어간 상태여야해요.');
-                    } else { 
-                        if (m.content.startsWith(config.prefix + '일시정지')) {
-                            message.channel.send('일시정지했어요.').then(() => { dispatcher.pause(); });
-/*                         } else if (parsed.command =='점프') {
-                            dispatcher.end();
-                            dispatcher = message.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes: config.passes, bitrate:320, fec:true, seek:12000 });
-                            //dispatcher.streamingData.count += 1200;
-                            //dispatcher.streamingData.sequence += 1200;
-                            console.log(dispatcher.time);
-                            message.channel.send('점프!');
-                            //dispatcher.streamOptions.seek += 120; */
-                        } else if (m.content.startsWith(config.prefix + '계속')) {
-                            message.channel.send('계속할게요.').then(() => { dispatcher.resume(); });
-                        } else if (m.content.startsWith(config.prefix + '스킵')) {
-                            message.channel.send('스킵했어요.').then(() => { dispatcher.end(); });
-                        } else if (m.content.startsWith(config.prefix + '크게+')) {
-                            if (Math.round(dispatcher.volume * 50) >= 100) return message.channel.send(`현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`);
-                            dispatcher.setVolume(Math.min((dispatcher.volume * 50 + (2 * (m.content.split('+').length - 1))) / 50, 2));
-                            message.channel.send(`현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`);
-                        } else if (m.content.startsWith(config.prefix + '작게-')) {
-                            if (Math.round(dispatcher.volume * 50) <= 0) return message.channel.send(`현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`);
-                            dispatcher.setVolume(Math.max((dispatcher.volume * 50 - (2 * (m.content.split('-').length - 1))) / 50, 0));
-                            message.channel.send(`현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`);
-                        } else if (parsed.command == '볼륨') {
-                            if (isNaN(parseInt(parsed.content)) || parseInt(parsed.content) > 100 || parseInt(parsed.content) < 0) return message.channel.send('0 ~ 100 사이 정수를 입력해주세요.');
-                            dispatcher.setVolume(Math.max((parseInt(parsed.content) / 50)));
-                            message.channel.send(`현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`);
-                        } else if (m.content.startsWith(config.prefix + '재생시간')) {
-                            message.channel.send(`재생시간: ${Math.floor(dispatcher.time / 60000)}:${Math.floor((dispatcher.time % 60000) / 1000) < 10 ? '0' + Math.floor((dispatcher.time % 60000) / 1000) : Math.floor((dispatcher.time % 60000) / 1000)}`);
-                        } else if (parsed.command == '현재'){
-                            const youtube = new Promise((resolve) => {
-                                let options = {
-                                    auth: config.googleApiKey,
-                                    part: 'id, snippet',
-                                    q: song.url,
-                                    type: 'video'
-                                };
-                                resolve(options);
-                            })
-                                .then((options) => {
-                                    return getSearch(options);
-                                })
-                                .then((result) => {
-                                    let fomatted = [];
-                                    let id = [];
-                                    let typeCase = () => {
-                                        return result[0].id.videoId;
-                                    };
-                                    fomatted.push({
-                                        name: parseInt(0) + '. ' + result[0].snippet.title,
-                                        value: `아이디: ${typeCase()}`
-                                    });
-                                    id.push(typeCase());
-                                    return [fomatted, id];
-                                })
-                                .then(([fields, id]) => {
-                                    const videoInfo = getVideo(id[0]);
-                                    let url = id[0];
-                                    if (url == '' || url === undefined) return message.channel.send('검색 결과를 찾을 수 없습니다.');
-                                    videoInfo.then((result) => {
-                                        message.channel.send({
-                                            embed: {
-                                                author: {
-                                                    name: client.user.username,
-                                                    icon_url: client.user.avatarURL
-                                                },
-                                                title: result.snippet.title,
-                                                thumbnail: {
-                                                    url: result.snippet.thumbnails.high.url
-                                                },
-                                                fields: [
-                                                    {
-                                                        name: '추가자',
-                                                        value: `${song.requester}`,
-                                                        inline: true
-                                                    },
-                                                    {
-                                                        name: '재생 시간',
-                                                        value: `${getTime(dispatcher.time)} / ${convertTime(result.contentDetails.duration)}`,
-                                                        inline: true
-                                                    },
-/*                                                     {
-                                                        name: '채널명',
-                                                        value: result.snippet.channelTitle,
-                                                        inline: true
-                                                    }, */
-                                                ],
-                                                color: '3447003',
-                                                timestamp: new Date(),
-                                                footer: {
-                                                    icon_url: client.user.avatarURL,
-                                                    text: '명령어 입력 시간'
-                                                }
-                                            }
-                                        })
-                                    })
-                                        .catch((err) => message.channel.send('error: ' + err));
-                                })
-                                .catch((err) => {
-                                    message.channel.send('error: ' + err);
-                                });
-                         } 
-                    }
-                });
+                dispatcher = message.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes: config.passes, bitrate: 320, fec: true });
                 dispatcher.on('end', () => {
                     collector.stop();
                     play(queue[message.guild.id].songs.shift());
@@ -514,31 +500,32 @@ module.exports = (client) => {
                 voiceChannel.join().then(connection => resolve(connection)).catch(err => reject(err));
             });
         },
-        '커스텀' : (message) => {
+        '커스텀': (message) => {
             let Attachment = (message.attachments).array();
             let attUrl = Attachment[0].url;
 
             if (message.member.voiceChannel) {
                 message.member.voiceChannel.join()
-                  .then(connection => {
-                      let dispatcher;
-                      message.channel.send({embed: {
-                          color: 3447003,
-                          description: `해당 주소의 음원파일을 재생합니다. \n${attUrl}`
-                      }});
-                      dispatcher = connection.playArbitraryInput(`${attUrl}`, { passes: config.passes, bitrate:320, fec:true });
-                      dispatcher.on('end', () => {
-                          message.member.voiceChannel.leave();
-                      });
-                      dispatcher.on('error', (err) => {
-                          return message.channel.send('error: ' + err).then(() => {
-                              message.member.voiceChannel.leave();
-                          });
-                      });
-                  }).catch((err) => message.channel.send('This is an error: ' + err));
-              } else {
+                    .then(connection => {
+                        message.channel.send({
+                            embed: {
+                                color: 3447003,
+                                description: `해당 주소의 음원파일을 재생합니다. \n${attUrl}`
+                            }
+                        });
+                        dispatcher = connection.playArbitraryInput(`${attUrl}`, { passes: config.passes, bitrate: 320, fec: true });
+                        dispatcher.on('end', () => {
+                            message.member.voiceChannel.leave();
+                        });
+                        dispatcher.on('error', (err) => {
+                            return message.channel.send('error: ' + err).then(() => {
+                                message.member.voiceChannel.leave();
+                            });
+                        });
+                    }).catch((err) => message.channel.send('This is an error: ' + err));
+            } else {
                 message.reply('이 명령어는 음성채널 안에서만 가능해요!');
-              }
+            }
         },
         '추가': (message) => {
             let url = message.content.split(' ')[1];
@@ -600,31 +587,31 @@ module.exports = (client) => {
                                     icon_url: client.user.avatarURL
                                 },
                                 title: `:ballot_box_with_check:곡이 추가되었어요.`,
-                                description : result.snippet.title,
+                                description: result.snippet.title,
                                 thumbnail: {
                                     url: result.snippet.thumbnails.high.url
                                 },
                                 fields: [
-/*                                     {
-                                        name: '추가자',
-                                        value: `${message.author.username}`,
-                                        inline: true
-                                    }, */
+                                    /*                                     {
+                                                                            name: '추가자',
+                                                                            value: `${message.author.username}`,
+                                                                            inline: true
+                                                                        }, */
                                     {
                                         name: '재생 시간',
                                         value: convertTime(result.contentDetails.duration),
                                         inline: true
                                     },
-/*                                     {
-                                        name: '채널명',
-                                        value: result.snippet.channelTitle,
-                                        inline: true
-                                    },
-                                    {
-                                        name: '아이디',
-                                        value: id[0],
-                                        inline: true
-                                    } */
+                                    /*                                     {
+                                                                            name: '채널명',
+                                                                            value: result.snippet.channelTitle,
+                                                                            inline: true
+                                                                        },
+                                                                        {
+                                                                            name: '아이디',
+                                                                            value: id[0],
+                                                                            inline: true
+                                                                        } */
                                 ],
                                 color: '3447003',
                                 timestamp: new Date(),
@@ -815,31 +802,31 @@ module.exports = (client) => {
                                                             icon_url: client.user.avatarURL
                                                         },
                                                         title: `:ballot_box_with_check:곡이 추가되었어요.`,
-                                                        description : result.snippet.title,
+                                                        description: result.snippet.title,
                                                         thumbnail: {
                                                             url: result.snippet.thumbnails.high.url
                                                         },
                                                         fields: [
-/*                                                             {
-                                                                name: '추가자',
-                                                                value: `${message.author.username}`,
-                                                                inline: true
-                                                            }, */
+                                                            /*                                                             {
+                                                                                                                            name: '추가자',
+                                                                                                                            value: `${message.author.username}`,
+                                                                                                                            inline: true
+                                                                                                                        }, */
                                                             {
                                                                 name: '재생 시간',
                                                                 value: convertTime(result.contentDetails.duration),
                                                                 inline: true
                                                             },
-/*                                                             {
-                                                                name: '채널명',
-                                                                value: result.snippet.channelTitle,
-                                                                inline: true
-                                                            },
-                                                            {
-                                                                name: '아이디',
-                                                                value: id[0],
-                                                                inline: true
-                                                            } */
+                                                            /*                                                             {
+                                                                                                                            name: '채널명',
+                                                                                                                            value: result.snippet.channelTitle,
+                                                                                                                            inline: true
+                                                                                                                        },
+                                                                                                                        {
+                                                                                                                            name: '아이디',
+                                                                                                                            value: id[0],
+                                                                                                                            inline: true
+                                                                                                                        } */
                                                         ],
                                                         color: '3447003',
                                                         timestamp: new Date(),
