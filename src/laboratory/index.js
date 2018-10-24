@@ -124,10 +124,6 @@ module.exports = (client) => {
                 });
         }
 
-        if (command.command == '이전') {
-            message.channel.send('마지막 말 : ' + message.channel.lastMessage);
-        }
-
         if (command.command == '크롱') {
             const http = require('https'); // https모듈과 http모듈이 호환될까?? 궁금하긴 한데 해보진 않았다.
             const url = `${encodeURI(`https://namu.wiki/search/${command.content}`)}`;
@@ -283,7 +279,7 @@ module.exports = (client) => {
         }
 
         if (command.command == '한글') {
-            if (!isNaN(parseInt(command.param)) && parseInt(command.param) <= 100) {
+            if (!isNaN(parseInt(command.param)) && parseInt(command.param) <= 2000) {
                 let content = '';
                 for (let i = 1; i <= parseInt(command.param); i++) {
                     content += String.fromCharCode(44031 + Math.ceil(11172 * Math.random()));
@@ -292,6 +288,32 @@ module.exports = (client) => {
                 return;
             }
             message.channel.send(String.fromCharCode(44031 + Math.ceil(11172 * Math.random())));
+        }
+
+        if (command.command == '영어') {
+            const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+            if (!isNaN(parseInt(command.param)) && parseInt(command.param) <= 2000) {
+                let content = '';
+                for (let i = 1; i <= parseInt(command.param); i++) {
+                    content += alphabet[_.random(0,alphabet.length-1)];
+                }
+                message.channel.send(content);
+                return;
+            }
+            message.channel.send(alphabet[_.random(0,alphabet.length-1)]);
+        }
+        
+        if (command.command == '일본어') {
+            const hiragana = ['あ', 'い', 'う', 'え', 'お', 'か', 'き', 'く', 'け', 'こ', 'さ', 'し', 'す', 'せ', 'そ', 'た', 'ち', 'つ', 'て', 'と', 'な', 'に', 'ぬ', 'ひ', 'ふ', 'へ', 'ほ', 'ま', 'み', 'む', 'め', 'も', 'や', 'ゆ', 'よ', 'ら', 'り', 'る', 'れ', 'ろ', 'わ', 'ゐ', 'を', 'ん'];
+            if (!isNaN(parseInt(command.param)) && parseInt(command.param) <= 2000) {
+                let content = '';
+                for (let i = 1; i <= parseInt(command.param); i++) {
+                    content += hiragana[_.random(0,hiragana.length-1)];
+                }
+                message.channel.send(content);
+                return;
+            }
+            message.channel.send(hiragana[_.random(0,hiragana.length-1)]);
         }
 
         if (command.command == '선택') {
