@@ -38,7 +38,7 @@ module.exports = (client) => {
                         title: '섀도우버스 카드 맞추기',
                         fields: [{
                             name: `${cardCost}코스트 ${cardATKLIFE}`,
-                            value: `${cardText}`
+                            value: `${cardText.replace(/<br>/gi, `\n`)}`
                         }],
                         timestamp: new Date(),
                         footer: {
