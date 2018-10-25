@@ -5,6 +5,7 @@ let { google } = require('googleapis');
 const musicData = require('../data/music_data.json');
 const fs = require('fs');
 const _ = require('lodash');
+const jsmediatags = require('jsmediatags');
 
 const getTime = (s) => {
     // Pad to 2 or 3 digits, default is 2
@@ -498,24 +499,31 @@ module.exports = (client) => {
         },
         '커스텀': (message) => {
             let Attachment = (message.attachments).array();
-
-            if (message.member.voiceChannel) {
-                message.member.voiceChannel.join()
-                    .then(connection => {
-                        message.channel.send(`:musical_note:**현재 재생중** ${Attachment[0].filename}`);
-                        dispatcher = connection.playArbitraryInput(`${Attachment[0].url}`, { passes: config.passes, bitrate: 320, fec: true });
-                        dispatcher.on('end', () => {
-                            message.member.voiceChannel.leave();
-                        });
-                        dispatcher.on('error', (err) => {
-                            return message.channel.send('error: ' + err).then(() => {
+            new jsmediatags.Reader(`${Attachment[0].url}`)
+            .read({
+              onSuccess: (tag) => {
+                if (message.member.voiceChannel) {
+                    message.member.voiceChannel.join()
+                        .then(connection => {
+                            message.channel.send(`:musical_note:**현재 재생중** ${tag.tags.title} - ${tag.tags.artist}`);
+                            dispatcher = connection.playArbitraryInput(`${Attachment[0].url}`, { passes: config.passes, bitrate: 320, fec: true });
+                            dispatcher.on('end', () => {
                                 message.member.voiceChannel.leave();
                             });
-                        });
-                    }).catch((err) => message.channel.send('This is an error: ' + err));
-            } else {
-                message.reply('이 명령어는 음성채널 안에서만 가능해요!');
-            }
+                            dispatcher.on('error', (err) => {
+                                return message.channel.send('error: ' + err).then(() => {
+                                    message.member.voiceChannel.leave();
+                                });
+                            });
+                        }).catch((err) => message.channel.send('This is an error: ' + err));
+                } else {
+                    message.reply('이 명령어는 음성채널 안에서만 가능해요!');
+                }
+              },
+              onError: (error) => {
+                message.channel.send(`error : ${error}`);
+              }
+          });
         },
         '추가': (message) => {
             let url = message.content.split(' ')[1];
