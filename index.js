@@ -298,6 +298,7 @@ client.on('message', message => {
     }
 
     if (parsed.command == '범죄계수') {
+        if(message.author.id == 415681577033400320) return message.channel.send('범죄계수 0');
         let Sibyl_System = Math.floor((Math.random() * 999));
         if (Sibyl_System < '100') {
             message.reply('*범죄계수*' + Sibyl_System + ', *트리거를 락 합니다*');
