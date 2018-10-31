@@ -6,7 +6,7 @@ exports.slice = (message = String) => {
         return false;
     }
     let object = {content: '', pparam: {}};
-    let separated = message.replace(config.prefix, '').split(' ');
+    let separated = message.replace(config.prefix, '').split(/\s/g);
     separated.map((val, index) => {
         if(val.startsWith('/')) {
             if(!separated[index + 1]) return;
