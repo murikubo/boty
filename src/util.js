@@ -1,4 +1,40 @@
 const config = require('../config.json');
+const botData = require('../data/offline_bot_data.json');
+
+exports.embedFormat = (title = String, valObjArr = Array) => {
+    let embed = {
+        embed: {
+            author: {
+                name: botData.username,
+                icon_url: botData.avatarURL
+            },
+            title: title,
+            color: '3447003',
+            fields: valObjArr,
+            timestamp: new Date(),
+            footer: {
+                icon_url: botData.avatarURL,
+                text: '명령어 입력 시간'
+            }
+        }
+    };
+    return embed;
+};
+// Cuts array 
+exports.arrayCut = (oriArr = Array) => {
+    let retArr = [];
+    for(let j=0; j < Math.ceil(oriArr.length/10); j++) {
+        let tmpArr = [];
+        for(let i=j*10; i<(j+1)*10 ;i++) {
+            if(oriArr.length<=i) break;
+            tmpArr.push(oriArr[i]);
+        }
+        retArr.push(tmpArr);
+    }
+
+    return retArr;
+};
+
 
 
 exports.slice = (message = String) => {

@@ -24,15 +24,21 @@ const getWeekNo = (date) => {
     let monthFirstDate = firstDate.getDay();
 
     return Math.ceil((someDate + monthFirstDate) / 7);
-}
+};
 
 module.exports = (client) => {
     client.on('message', message => {
         let command = util.slice(message.content);
-        
+
 
         if (command.command == '탕수육' || command.command == '탕') {
             require('./tangsoo.js')(message);
+        }
+
+        if (command.command == '테스트') {
+            var array = command.content.split(',');
+            console.log(util.arrayCut(array));
+            message.channel.send(util.arrayCut(array));  
         }
 
         if (command.command == '엑셀') {
