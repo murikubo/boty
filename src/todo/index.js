@@ -23,13 +23,51 @@ function folderlist(keys) {
     return arr;
 }
 
+
 module.exports = (client) => {
     client.on('message', message => {
+
+        let todoObject = todoData[message.author.id];
+        function listup() {
+            let arr = todoObject[todoObject.selectedFolder].concat();//.map((list, index) => `${index+1}. ${list}\n`).toString().replace(/,/g,'');
+            for(let i=0; i< arr.length; i++) {
+                arr[i] = (i+1)+'. '+arr[i];
+            }
+            let cutArr = util.arrayCut(arr);
+            let index = 0;
+            let embed = [{ name: `${index+1} 페이지`, value: cutArr[index].toString().replace(/,/g,'\n')}];
+            message.channel.send(util.embedFormat(todoObject.selectedFolder + ' 폴더의 할 일 리스트',embed))
+                .then(async (sentMessage) => {
+                    await sentMessage.react('\u2B05')
+                        .then(() => {
+                            const filter = (reaction, user) => reaction.emoji.name === '\u2B05' && user.id === message.author.id;
+                            const collector = sentMessage.createReactionCollector(filter);
+                            collector.on('collect', reaction => {
+                                if(index!=0)index--;
+                                
+                                embed = [{ name: `${index+1} 페이지`, value: cutArr[index].toString().replace(/,/g,'\n')}];
+                                sentMessage.edit(util.embedFormat(todoObject.selectedFolder + ' 폴더의 할 일 리스트',embed));
+                            });
+                        });
+                    await sentMessage.react('\u27A1')
+                        .then(() => {
+                            const filter = (reaction, user) => reaction.emoji.name === '\u27A1' && user.id === message.author.id;
+                            const collector = sentMessage.createReactionCollector(filter, { time: 30000 });
+                            collector.on('collect', reaction => {
+                                if(cutArr.length>=index+1)index++;
+                                
+                                embed = [{ name: `${index+1} 페이지`, value: cutArr[index].toString().replace(/,/g,'\n')}];
+                                sentMessage.edit(util.embedFormat(todoObject.selectedFolder + ' 폴더의 할 일 리스트',embed));
+                            });
+                            collector.on('end', () => sentMessage.clearReactions());
+                        });
+                });
+        }
+        
         client.setMaxListeners(100);
         let parsed = util.slice(message.content);
         if(message.author.bot) return;
         if(parsed.command != '할일') return;
-        let todoObject = todoData[message.author.id];
         if(parsed.param == '추가') {
             if(parsed.content) {
                 if(!todoObject) todoObject = {
@@ -71,32 +109,7 @@ module.exports = (client) => {
             return;
         }
         if(parsed.param == '리스트' || !parsed.param) {
-            let content = [];
-            content.push({
-                name: todoObject.selectedFolder + ' 폴더의 할 일 리스트',
-                value: todoObject[todoObject.selectedFolder].map((list, index) => `${index+1}. ${list}\n`).toString().replace(/,/g,'')
-            });
-            if(parsed.content) {
-                if(isNaN(parsed.content) || todoObject[todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1]]) return;
-                message.channel.send(todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1]);
-                return;
-            }
-            message.channel.send({
-                embed: {
-                    author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
-                    title: ' ',
-                    color: '3447003',
-                    fields: content,
-                    timestamp: new Date(),
-                    footer: {
-                        icon_url: client.user.avatarURL,
-                        text: '명령어 입력 시간'
-                    }
-                }
-            });
+            listup();
         }
         if(parsed.param == '삭제') {
             if(parsed.content) {
@@ -105,21 +118,7 @@ module.exports = (client) => {
                 fs.writeFileSync('./data/todo_data.json', JSON.stringify(todoData, null, '\t'));
                 message.channel.send(parsed.content + '번 할일이 삭제되었습니다.');
             } else {
-                message.channel.send({
-                    embed: {
-                        title: ' ',
-                        color: '3447003',
-                        fields: [{
-                            name: '삭제할 일의 번호룰 입력해주세요.',
-                            value: todoObject[todoObject.selectedFolder].map((list, index) => `${index+1}. ${list}\n`).toString().replace(/,/g,'')
-                        }],
-                        timestamp: new Date(),
-                        footer: {
-                            icon_url: client.user.avatarURL,
-                            text: '명령어 입력 시간'
-                        }
-                    }
-                })
+                Promise.resolve(listup())
                     .then(() => {
                         const filter = m => m.author.id === message.author.id;
                         message.channel.awaitMessages(filter, {
@@ -157,37 +156,24 @@ module.exports = (client) => {
             if(!isNaN(parseInt(parsed.content)) || todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1]) {
                 let selectedList = parseInt(parsed.content)-1;
                 message.channel.send(`${selectedList+1}번 할일을 선택하셨습니다. 변경할 할일을 입력해주세요. \n\n기존 입력값: ${todoObject[todoObject.selectedFolder][selectedList]}`)
-                .then(() => {
-                    const filter = m => m.author.id === message.author.id;
-                    message.channel.awaitMessages(filter, {
-                        max: 1,
-                        time: 30000,
-                        errors: ['time'],
-                    })
-                        .then((collected) => {
-                            todoObject[todoObject.selectedFolder][selectedList] = collected.first().content;
-                            fs.writeFileSync('./data/todo_data.json', JSON.stringify(todoData, null, '\t'));
-                            message.channel.send('`' + collected.first().content + '` 할일로 변경되었습니다.');
+                    .then(() => {
+                        const filter = m => m.author.id === message.author.id;
+                        message.channel.awaitMessages(filter, {
+                            max: 1,
+                            time: 30000,
+                            errors: ['time'],
+                        })
+                            .then((collected) => {
+                                todoObject[todoObject.selectedFolder][selectedList] = collected.first().content;
+                                fs.writeFileSync('./data/todo_data.json', JSON.stringify(todoData, null, '\t'));
+                                message.channel.send('`' + collected.first().content + '` 할일로 변경되었습니다.');
 
-                        });
-                });
+                            });
+                    });
                 return;
             }
-            message.channel.send({
-                embed: {
-                    title: ' ',
-                    color: '3447003',
-                    fields: [{
-                        name: '변경할 일의 번호룰 입력해주세요.',
-                        value: todoObject[todoObject.selectedFolder].map((list, index) => `${index+1}. ${list}\n`).toString().replace(/,/g,'')
-                    }],
-                    timestamp: new Date(),
-                    footer: {
-                        icon_url: client.user.avatarURL,
-                        text: '명령어 입력 시간'
-                    }
-                }
-            })
+            
+            Promise.resolve(listup())
                 .then(() => {
                     const filter = m => m.author.id === message.author.id;
                     message.channel.awaitMessages(filter, {
