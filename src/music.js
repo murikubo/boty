@@ -7,6 +7,10 @@ const fs = require('fs');
 const _ = require('lodash');
 const jsmediatags = require('jsmediatags');
 
+const fumika = (sagisawa) => {
+
+} 
+
 const getTime = (s) => {
     // Pad to 2 or 3 digits, default is 2
     let pad = (n, z = 2) => ('00' + n).slice(-z);
@@ -136,17 +140,12 @@ module.exports = (client) => {
                     }
                 }
             }).then(async (sentMessage) => {
-                //console.log(musicData[message.author.id].length);
-                //console.log(musicData[message.author.id][0]);
-                //console.log(musicData[message.author.id][1]);
-                //console.log(musicData[message.author.id][2]);
                 for (let i = 1; i <= musicData[message.author.id].length; i++) {
                     await sentMessage.react(i + '⃣')
                         .then(mReaction => {
                             const filter = (reaction, user) => reaction.emoji.name === i + '⃣' && user.id === message.author.id;
                             const collector = sentMessage.createReactionCollector(filter, { time: 15000 });
                             collector.on('collect', reaction => {
-                                //console.log(musicData[message.author.id][i-1]);
                                 const youtube = new Promise((resolve) => {
                                     let options = {
                                         auth: config.googleApiKey,
@@ -160,12 +159,9 @@ module.exports = (client) => {
                                         return getSearch(options);
                                     })
                                     .then((result) => {
-                                        //console.log(result);
-                                        //console.log(result[0].id.videoId);
                                         const videoInfo = getVideo(result[0].id.videoId);
                                         let imshiId = result[0].id.videoId;
                                         let imshiTitle = result[0].snippet.title;
-                                        //console.log(imshiId);
                                         videoInfo.then((result) => {
                                             sentMessage.edit({
                                                 embed: {
@@ -370,100 +366,138 @@ module.exports = (client) => {
         }
     });
     let dispatcher;
+    let tempUrl;
+    let tempPlayerName;
+    let tempUrlDiv;
+    let tempVolume = 0.6;
     const commands = {
-        '일시정지' : (message) => {
+        '일시정지': (message) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
             if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
             message.channel.send('일시정지했어요.').then(() => { dispatcher.pause(); });
         },
-        '계속' : (message) => {
+        '계속': (message) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
             if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
             message.channel.send('계속할게요.').then(() => { dispatcher.resume(); });
         },
-        '볼륨' : (message) => {
+        '볼륨': (message) => {
             let parsed = util.slice(message.content);
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
             if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
             if (isNaN(parseInt(parsed.content)) || parseInt(parsed.content) > 100 || parseInt(parsed.content) < 0) return message.channel.send('0 ~ 100 사이 정수를 입력해주세요.');
             dispatcher.setVolume(Math.max((parseInt(parsed.content) / 50)));
+            tempVolume = Math.max((parseInt(parsed.content) / 50));
             message.channel.send(`현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`);
         },
-        '스킵' : (message) => {
+        '현재볼륨' : (message) => {
+            message.channel.send(`현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`);
+        },
+        '스킵': (message) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
             if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
             message.channel.send('스킵했어요.').then(() => { dispatcher.end(); });
         },
-        /* '현재' : (message) => {
+        '현재': (message) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
             if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
-            const youtube = new Promise((resolve) => {
-                let options = {
-                    auth: config.googleApiKey,
-                    part: 'id, snippet',
-                    q: song.url,
-                    type: 'video'
-                };
-                resolve(options);
-            })
-                .then((options) => {
-                    return getSearch(options);
-                })
-                .then((result) => {
-                    let fomatted = [];
-                    let id = [];
-                    let typeCase = () => {
-                        return result[0].id.videoId;
+            if (tempUrlDiv == 'youtube') {
+                const youtube = new Promise((resolve) => {
+                    let options = {
+                        auth: config.googleApiKey,
+                        part: 'id, snippet',
+                        q: tempUrl,
+                        type: 'video'
                     };
-                    fomatted.push({
-                        name: parseInt(0) + '. ' + result[0].snippet.title,
-                        value: `아이디: ${typeCase()}`
-                    });
-                    id.push(typeCase());
-                    return [fomatted, id];
+                    resolve(options);
                 })
-                .then(([fields, id]) => {
-                    const videoInfo = getVideo(id[0]);
-                    let url = id[0];
-                    if (url == '' || url === undefined) return message.channel.send('검색 결과를 찾을 수 없습니다.');
-                    videoInfo.then((result) => {
-                        message.channel.send({
-                            embed: {
-                                author: {
-                                    name: client.user.username,
-                                    icon_url: client.user.avatarURL
-                                },
-                                title: result.snippet.title,
-                                thumbnail: {
-                                    url: result.snippet.thumbnails.high.url
-                                },
-                                fields: [
-                                    {
-                                        name: '추가자',
-                                        value: `${song.requester}`,
-                                        inline: true
-                                    },
-                                    {
-                                        name: '재생 시간',
-                                        value: `${getTime(dispatcher.time)} / ${convertTime(result.contentDetails.duration)}`,
-                                        inline: true
-                                    },
-                                ],
-                                color: '3447003',
-                                timestamp: new Date(),
-                                footer: {
-                                    icon_url: client.user.avatarURL,
-                                    text: '명령어 입력 시간'
-                                }
-                            }
-                        })
+                    .then((options) => {
+                        return getSearch(options);
                     })
-                        .catch((err) => message.channel.send('error: ' + err));
-                })
-                .catch((err) => {
-                    message.channel.send('error: ' + err);
+                    .then((result) => {
+                        let fomatted = [];
+                        let id = [];
+                        let typeCase = () => {
+                            return result[0].id.videoId;
+                        };
+                        fomatted.push({
+                            name: parseInt(0) + '. ' + result[0].snippet.title,
+                            value: `아이디: ${typeCase()}`
+                        });
+                        id.push(typeCase());
+                        return [fomatted, id];
+                    })
+                    .then(([fields, id]) => {
+                        const videoInfo = getVideo(id[0]);
+                        let url = id[0];
+                        if (url == '' || url === undefined) return message.channel.send('검색 결과를 찾을 수 없습니다.');
+                        videoInfo.then((result) => {
+                            message.channel.send({
+                                embed: {
+                                    author: {
+                                        name: client.user.username,
+                                        icon_url: client.user.avatarURL
+                                    },
+                                    title: result.snippet.title,
+                                    thumbnail: {
+                                        url: result.snippet.thumbnails.high.url
+                                    },
+                                    fields: [
+                                        {
+                                            name: '추가자',
+                                            value: `${tempPlayerName}`,
+                                            inline: true
+                                        },
+                                        {
+                                            name: '재생 시간',
+                                            value: `${getTime(dispatcher.time)} / ${convertTime(result.contentDetails.duration)}`,
+                                            inline: true
+                                        },
+                                    ],
+                                    color: '3447003',
+                                    timestamp: new Date(),
+                                    footer: {
+                                        icon_url: client.user.avatarURL,
+                                        text: '명령어 입력 시간'
+                                    }
+                                }
+                            })
+                        })
+                            .catch((err) => message.channel.send('error: ' + err));
+                    })
+                    .catch((err) => {
+                        message.channel.send('error: ' + err);
+                    });
+            } else if (tempUrlDiv =='shimamura'){
+                message.channel.send({
+                    embed: {
+                        author: {
+                            name: client.user.username,
+                            icon_url: client.user.avatarURL
+                        },
+                        title: tempTitle,
+                        fields: [
+                            {
+                                name: '추가자',
+                                value: `${tempPlayerName}`,
+                                inline: true
+                            },
+                            {
+                                name: '재생 시간',
+                                value: `${getTime(dispatcher.time)}`,
+                                inline: true
+                            },
+                        ],
+                        color: '3447003',
+                        timestamp: new Date(),
+                        footer: {
+                            icon_url: client.user.avatarURL,
+                            text: '명령어 입력 시간'
+                        }
+                    }
                 });
-        }, */
+            }
+        },
         '재생': (message) => {
             if (queue[message.guild.id] === undefined) return message.channel.send('곡을 추가해주세요.');
             if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
@@ -477,14 +511,23 @@ module.exports = (client) => {
                 });
                 if (!message.guild.voiceConnection) return dispatcher.end();
                 message.channel.send(`:musical_note:**현재 재생중** ${song.title}`);
-                dispatcher = message.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes: config.passes, bitrate: 320, fec: true });
+                if (song.inputType == "youtube") {
+                    dispatcher = message.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes: config.passes, bitrate: 320, fec: true });
+                    tempUrlDiv = "youtube";
+                    tempUrl = song.url;
+                    tempPlayerName = song.requester;
+                } else if (song.inputType == "shimamura") {
+                    dispatcher = message.guild.voiceConnection.playStream(song.url, { passes: config.passes, bitrate: 320, fec: true });
+                    tempUrlDiv = "shimamura"
+                    tempTitle = song.title;
+                    tempPlayerName = song.requester;
+                }
+                dispatcher.setVolume(tempVolume);
                 dispatcher.on('end', () => {
-                    collector.stop();
                     play(queue[message.guild.id].songs.shift());
                 });
                 dispatcher.on('error', (err) => {
                     return message.channel.send('error: ' + err).then(() => {
-                        collector.stop();
                         play(queue[message.guild.id].songs.shift());
                     });
                 });
@@ -497,134 +540,137 @@ module.exports = (client) => {
                 voiceChannel.join().then(connection => resolve(connection)).catch(err => reject(err));
             });
         },
-        '커스텀': (message) => {
-            let Attachment = (message.attachments).array();
-            new jsmediatags.Reader(`${Attachment[0].url}`)
-            .read({
-              onSuccess: (tag) => {
-                if (message.member.voiceChannel) {
-                    message.member.voiceChannel.join()
-                        .then(connection => {
-                            message.channel.send(`:musical_note:**현재 재생중** ${tag.tags.title} - ${tag.tags.artist}`);
-                            dispatcher = connection.playArbitraryInput(`${Attachment[0].url}`, { passes: config.passes, bitrate: 320, fec: true });
-                            dispatcher.on('end', () => {
-                                message.member.voiceChannel.leave();
-                            });
-                            dispatcher.on('error', (err) => {
-                                return message.channel.send('error: ' + err).then(() => {
-                                    message.member.voiceChannel.leave();
-                                });
-                            });
-                        }).catch((err) => message.channel.send('This is an error: ' + err));
-                } else {
-                    message.reply('이 명령어는 음성채널 안에서만 가능해요!');
-                }
-              },
-              onError: (error) => {
-                message.channel.send(`error : ${error}`);
-              }
-          });
-        },
+        // '커스텀': (message) => {
+        //     let Attachment = (message.attachments).array();
+        //     new jsmediatags.Reader(`${Attachment[0].url}`)
+        //         .read({
+        //             onSuccess: (tag) => {
+        //                 if (message.member.voiceChannel) {
+        //                     message.member.voiceChannel.join()
+        //                         .then(connection => {
+        //                             message.channel.send(`:musical_note:**현재 재생중** ${tag.tags.title} - ${tag.tags.artist}`);
+        //                             dispatcher = connection.playStream(`${Attachment[0].url}`, { passes: config.passes, bitrate: 320, fec: true });
+        //                             dispatcher.on('end', () => {
+        //                                 message.member.voiceChannel.leave();
+        //                             });
+        //                             dispatcher.on('error', (err) => {
+        //                                 return message.channel.send('error: ' + err).then(() => {
+        //                                     message.member.voiceChannel.leave();
+        //                                 });
+        //                             });
+        //                         }).catch((err) => message.channel.send('This is an error: ' + err));
+        //                 } else {
+        //                     message.reply('이 명령어는 음성채널 안에서만 가능해요!');
+        //                 }
+        //             },
+        //             onError: (error) => {
+        //                 message.channel.send(`error : ${error}`);
+        //             }
+        //         });
+        // },
         '추가': (message) => {
-            let url = message.content.split(' ')[1];
-            if (url == '' || url === undefined) return message.channel.send('유튜브 URL주소를 프리픽스+명령어 와 함께 입력해주세요.');
+            let Attachment = (message.attachments).array();
+            if (Attachment[0] == null) {
+                let url = message.content.split(' ')[1];
+                if (url == '' || url === undefined) return message.channel.send('유튜브 URL주소를 프리픽스+명령어 와 함께 입력해주세요.');
 
-            const parsedMessage = util.slice(message.content);
-            if (!(parsedMessage.command == '추가')) {
-                return;
-            }
-
-            const youtube = new Promise((resolve) => {
-                let options = {
-                    auth: config.googleApiKey,
-                    part: 'id, snippet',
-                    q: parsedMessage.content,
-                    type: 'video'
-                };
-                if (parsedMessage.param == 'p') {
-                    options.type = 'playlist';
+                const parsedMessage = util.slice(message.content);
+                if (!(parsedMessage.command == '추가')) {
+                    return;
                 }
-                resolve(options);
-            })
-                .then((options) => {
-                    return getSearch(options);
-                })
-                .then((result) => {
-                    let fomatted = [];
-                    let id = [];
-                    let typeCase = () => {
-                        if (parsedMessage.param == 'p') return result[0].id.playlistId;
-                        else return result[0].id.videoId;
+
+                const youtube = new Promise((resolve) => {
+                    let options = {
+                        auth: config.googleApiKey,
+                        part: 'id, snippet',
+                        q: parsedMessage.content,
+                        type: 'video'
                     };
-                    fomatted.push({
-                        name: parseInt(0) + '. ' + result[0].snippet.title,
-                        value: `아이디: ${typeCase()}`
-                    });
-                    id.push(typeCase());
-                    return [fomatted, id];
+                    if (parsedMessage.param == 'p') {
+                        options.type = 'playlist';
+                    }
+                    resolve(options);
                 })
-                .then(([fields, id]) => {
-                    const videoInfo = getVideo(id[0]);
-                    let url = id[0];
-                    if (url == '' || url === undefined) return message.channel.send('검색 결과를 찾을 수 없습니다.');
-                    yt.getInfo(url, (err, info) => {
-                        //if (err) return message.channel.send('올바르지 않은 링크입니다.: ' + err);
-                        if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
-                        queue[message.guild.id].songs.push({ url: url, title: info.title, requester: message.author.username });
-                        //message.channel.send(`:ballot_box_with_check:**${info.title}** 곡이 리스트에 추가되었습니다.`);
-                        if (!message.member.voiceChannel) return message.channel.send('곡을 재생하려면 음성채널에 먼저 들어가주세요.');
-                        else {
-                            if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
+                    .then((options) => {
+                        return getSearch(options);
+                    })
+                    .then((result) => {
+                        let fomatted = [];
+                        let id = [];
+                        let typeCase = () => {
+                            if (parsedMessage.param == 'p') return result[0].id.playlistId;
+                            else return result[0].id.videoId;
+                        };
+                        fomatted.push({
+                            name: parseInt(0) + '. ' + result[0].snippet.title,
+                            value: `아이디: ${typeCase()}`
+                        });
+                        id.push(typeCase());
+                        return [fomatted, id];
+                    })
+                    .then(([fields, id]) => {
+                        const videoInfo = getVideo(id[0]);
+                        let url = id[0];
+                        if (url == '' || url === undefined) return message.channel.send('검색 결과를 찾을 수 없습니다.');
+                        yt.getInfo(url, (err, info) => {
+                            //if (err) return message.channel.send('올바르지 않은 링크입니다.: ' + err);
+                            if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
+                            queue[message.guild.id].songs.push({ url: url, title: info.title, requester: message.author.username, inputType: 'youtube' });
+                            //message.channel.send(`:ballot_box_with_check:**${info.title}** 곡이 리스트에 추가되었습니다.`);
+                            if (!message.member.voiceChannel) return message.channel.send('곡을 재생하려면 음성채널에 먼저 들어가주세요.');
+                            else {
+                                if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
+                            }
+                        });
+                        videoInfo.then((result) => {
+                            message.channel.send({
+                                embed: {
+                                    author: {
+                                        name: client.user.username,
+                                        icon_url: client.user.avatarURL
+                                    },
+                                    title: `:ballot_box_with_check:곡이 추가되었어요.`,
+                                    description: result.snippet.title,
+                                    thumbnail: {
+                                        url: result.snippet.thumbnails.high.url
+                                    },
+                                    fields: [
+                                        {
+                                            name: '재생 시간',
+                                            value: convertTime(result.contentDetails.duration),
+                                            inline: true
+                                        },
+                                    ],
+                                    color: '3447003',
+                                    timestamp: new Date(),
+                                    footer: {
+                                        icon_url: client.user.avatarURL,
+                                        text: '명령어 입력 시간'
+                                    }
+                                }
+                            })
+                        })
+                            .catch((err) => message.channel.send('This is an error: ' + err));
+                    })
+                    .catch((err) => {
+                        message.channel.send('This is an error: ' + err);
+                    });
+            } else {
+                new jsmediatags.Reader(`${Attachment[0].url}`)
+                    .read({
+                        onSuccess: (tag) => {
+                            if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
+                            queue[message.guild.id].songs.push({ url: Attachment[0].url, title: tag.tags.title, requester: message.author.username, inputType: 'shimamura' });
+                            if (!message.member.voiceChannel) return message.channel.send('곡을 재생하려면 음성채널에 먼저 들어가주세요.');
+                            else {
+                                if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
+                            }
+                        },
+                        onError: (error) => {
+                            message.channel.send(`error : ${error}`);
                         }
                     });
-                    videoInfo.then((result) => {
-                        message.channel.send({
-                            embed: {
-                                author: {
-                                    name: client.user.username,
-                                    icon_url: client.user.avatarURL
-                                },
-                                title: `:ballot_box_with_check:곡이 추가되었어요.`,
-                                description: result.snippet.title,
-                                thumbnail: {
-                                    url: result.snippet.thumbnails.high.url
-                                },
-                                fields: [
-                                    /*                                     {
-                                                                            name: '추가자',
-                                                                            value: `${message.author.username}`,
-                                                                            inline: true
-                                                                        }, */
-                                    {
-                                        name: '재생 시간',
-                                        value: convertTime(result.contentDetails.duration),
-                                        inline: true
-                                    },
-                                    /*                                     {
-                                                                            name: '채널명',
-                                                                            value: result.snippet.channelTitle,
-                                                                            inline: true
-                                                                        },
-                                                                        {
-                                                                            name: '아이디',
-                                                                            value: id[0],
-                                                                            inline: true
-                                                                        } */
-                                ],
-                                color: '3447003',
-                                timestamp: new Date(),
-                                footer: {
-                                    icon_url: client.user.avatarURL,
-                                    text: '명령어 입력 시간'
-                                }
-                            }
-                        })
-                    })
-                        .catch((err) => message.channel.send('This is an error: ' + err));
-                })
-                .catch((err) => {
-                    message.channel.send('This is an error: ' + err);
-                });
+            }
         },
         '지정삭제': (message) => {
             if (queue[message.guild.id] === undefined) return message.channel.send('리스트에 .명령어 + 링크 를 통하여 곡을 추가하세요.');
@@ -785,7 +831,7 @@ module.exports = (client) => {
                                             yt.getInfo(url, (err, info) => {
                                                 if (err) return message.channel.send('올바르지 않은 링크입니다.: ' + err);
                                                 if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
-                                                queue[message.guild.id].songs.push({ url: url, title: info.title, requester: message.author.username });
+                                                queue[message.guild.id].songs.push({ url: url, title: info.title, requester: message.author.username , inputType: 'youtube' });
                                                 //message.channel.send(`:ballot_box_with_check:**${info.title}** 곡이 리스트에 추가되었습니다.`);
                                                 if (!message.member.voiceChannel) return message.channel.send('곡을 재생하려면 음성채널에 먼저 들어가주세요.');
                                                 else {
@@ -805,26 +851,11 @@ module.exports = (client) => {
                                                             url: result.snippet.thumbnails.high.url
                                                         },
                                                         fields: [
-                                                            /*                                                             {
-                                                                                                                            name: '추가자',
-                                                                                                                            value: `${message.author.username}`,
-                                                                                                                            inline: true
-                                                                                                                        }, */
                                                             {
                                                                 name: '재생 시간',
                                                                 value: convertTime(result.contentDetails.duration),
                                                                 inline: true
                                                             },
-                                                            /*                                                             {
-                                                                                                                            name: '채널명',
-                                                                                                                            value: result.snippet.channelTitle,
-                                                                                                                            inline: true
-                                                                                                                        },
-                                                                                                                        {
-                                                                                                                            name: '아이디',
-                                                                                                                            value: id[0],
-                                                                                                                            inline: true
-                                                                                                                        } */
                                                         ],
                                                         color: '3447003',
                                                         timestamp: new Date(),
