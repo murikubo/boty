@@ -17,10 +17,24 @@ const cautionChange = (cautionCode) => {
 }; //예보, 경보 교체함수
 
 const maskWear = (arr) => {
-    if((arr[0].CAISTEP == '나쁨' || arr[1].CAISTEP == '나쁨') || (arr[0].CAISTEP == '매우 나쁨' || arr[1].CAISTEP == '매우 나쁨')) return '필수';
+    if((arr[0].CAISTEP == '나쁨' || arr[1].CAISTEP == '나쁨') || (arr[0].CAISTEP == '매우나쁨' || arr[1].CAISTEP == '매우나쁨')) return '필수';
     else if(arr[0].CAISTEP == '보통' || arr[1].CAISTEP == '보통') return '권장';
-    else return '불필요 (써도 안 말림)';
+    else return '불필요';
 };
+
+const pollutionSeoul_1 = (arr) => {
+    if(arr[0].CAISTEP == '좋음') return '0~30㎍/㎥'
+    else if(arr[0].CAISTEP == '보통') return '31~80㎍/㎥'
+    else if(arr[0].CAISTEP == '나쁨') return '81~100㎍/㎥'
+    else if(arr[0].CAISTEP == '매우나쁨') return '151~㎍/㎥'
+}
+
+const pollutionSeoul_2 = (arr) => {
+    if(arr[1].CAISTEP == '좋음') return '0~15㎍/㎥'
+    else if(arr[1].CAISTEP == '보통') return '16~35㎍/㎥'
+    else if(arr[1].CAISTEP == '나쁨') return '36~75㎍/㎥'
+    else if(arr[1].CAISTEP == '매우나쁨') return '76~㎍/㎥'
+}
 
 module.exports = (client) => {
     client.on('message', message => {  
@@ -57,11 +71,11 @@ module.exports = (client) => {
                 let content = [
                     {
                         name: `미세먼지 **${cautionChange(requestResult[0].FA_ON)}** : ${requestResult[0].CAISTEP}`,
-                        value: `**${requestResult[0].POLLUTANT}** / ${requestResult[0].ALARM_CNDT} ${requestResult[0].CNDT1}`
+                        value: `**${pollutionSeoul_1(requestResult)}** ※ ${requestResult[0].ALARM_CNDT} ${requestResult[0].CNDT1}`
                     },
                     {
                         name: `초미세먼지 **${cautionChange(requestResult[1].FA_ON)}** : ${requestResult[1].CAISTEP}`,
-                        value: `**${requestResult[1].POLLUTANT}** / ${requestResult[1].ALARM_CNDT} ${requestResult[1].CNDT1}`
+                        value: `**${pollutionSeoul_2(requestResult)}** ※ ${requestResult[1].ALARM_CNDT} ${requestResult[1].CNDT1}`
                     },
                     {
                         name: `마스크 착용: **${maskWear(requestResult)}**`,
