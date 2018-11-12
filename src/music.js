@@ -517,7 +517,7 @@ module.exports = (client) => {
                     tempUrl = song.url;
                     tempPlayerName = song.requester;
                 } else if (song.inputType == "shimamura") {
-                    dispatcher = message.guild.voiceConnection.playStream(song.url, { passes: config.passes, bitrate: 160, fec: true });
+                    dispatcher = message.guild.voiceConnection.playStream(song.url, { passes: config.passes, bitrate: 320, fec: true });
                     tempUrlDiv = "shimamura"
                     tempTitle = song.title;
                     tempPlayerName = song.requester;
