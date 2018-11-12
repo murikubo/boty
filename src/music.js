@@ -517,7 +517,7 @@ module.exports = (client) => {
                     tempUrl = song.url;
                     tempPlayerName = song.requester;
                 } else if (song.inputType == "shimamura") {
-                    dispatcher = message.guild.voiceConnection.playStream(song.url, { passes: config.passes, bitrate: 320, fec: true });
+                    dispatcher = message.guild.voiceConnection.playStream(song.url, { passes: config.passes, bitrate: 160, fec: true });
                     tempUrlDiv = "shimamura"
                     tempTitle = song.title;
                     tempPlayerName = song.requester;
@@ -540,34 +540,6 @@ module.exports = (client) => {
                 voiceChannel.join().then(connection => resolve(connection)).catch(err => reject(err));
             });
         },
-        // '커스텀': (message) => {
-        //     let Attachment = (message.attachments).array();
-        //     new jsmediatags.Reader(`${Attachment[0].url}`)
-        //         .read({
-        //             onSuccess: (tag) => {
-        //                 if (message.member.voiceChannel) {
-        //                     message.member.voiceChannel.join()
-        //                         .then(connection => {
-        //                             message.channel.send(`:musical_note:**현재 재생중** ${tag.tags.title} - ${tag.tags.artist}`);
-        //                             dispatcher = connection.playStream(`${Attachment[0].url}`, { passes: config.passes, bitrate: 320, fec: true });
-        //                             dispatcher.on('end', () => {
-        //                                 message.member.voiceChannel.leave();
-        //                             });
-        //                             dispatcher.on('error', (err) => {
-        //                                 return message.channel.send('error: ' + err).then(() => {
-        //                                     message.member.voiceChannel.leave();
-        //                                 });
-        //                             });
-        //                         }).catch((err) => message.channel.send('This is an error: ' + err));
-        //                 } else {
-        //                     message.reply('이 명령어는 음성채널 안에서만 가능해요!');
-        //                 }
-        //             },
-        //             onError: (error) => {
-        //                 message.channel.send(`error : ${error}`);
-        //             }
-        //         });
-        // },
         '추가': (message) => {
             let Attachment = (message.attachments).array();
             if (Attachment[0] == null) {
@@ -661,6 +633,7 @@ module.exports = (client) => {
                         onSuccess: (tag) => {
                             if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
                             queue[message.guild.id].songs.push({ url: Attachment[0].url, title: tag.tags.title, requester: message.author.username, inputType: 'shimamura' });
+                            message.channel.send(`:ballot_box_with_check:**${tag.tags.title}** 곡이 리스트에 추가되었습니다.`);
                             if (!message.member.voiceChannel) return message.channel.send('곡을 재생하려면 음성채널에 먼저 들어가주세요.');
                             else {
                                 if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
