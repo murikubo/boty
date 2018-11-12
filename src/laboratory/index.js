@@ -29,16 +29,10 @@ const getWeekNo = (date) => {
 module.exports = (client) => {
     client.on('message', message => {
         let command = util.slice(message.content);
-
+        
 
         if (command.command == '탕수육' || command.command == '탕') {
             require('./tangsoo.js')(message);
-        }
-
-        if (command.command == '테스트') {
-            var array = command.content.split(',');
-            console.log(util.arrayCut(array));
-            message.channel.send(util.arrayCut(array));  
         }
 
         if (command.command == '엑셀') {
@@ -387,16 +381,6 @@ module.exports = (client) => {
                 message.channel.send('Error occured : `' + err + '`');
             });
         }
-
-        if (command.command == '시뮬' && command.content != '') {
-            for (let i = 1; i < 50000; i++) {
-                let gacha = Math.floor((Math.random() * 10000) + 1);
-                if (gacha <= Number(command.content)*100) {
-                    return message.channel.send(`총 **${i}번** 만에 떴어요`);
-                } else i++;
-            }
-        }
-
 
         if (command.command == '시차') {
             message.channel.send('http://www.korea2424.co.kr/time/worldmap_green.gif');
