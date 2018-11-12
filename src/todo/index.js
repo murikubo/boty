@@ -109,14 +109,21 @@ module.exports = (client) => {
             return;
         }
         if(parsed.param == '리스트' || !parsed.param) {
+            
+            if(parsed.content) {
+                if(isNaN(parsed.content) || todoObject[todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1]]) return;
+                message.channel.send(todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1]);
+                return;
+            }
             listup();
         }
         if(parsed.param == '삭제') {
             if(parsed.content) {
                 if(isNaN(parseInt(parsed.content)) || !todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1] ) return message.channel.send('올바르지 않은 입력값입니다.');
+                let delData = todoObject[todoObject.selectedFolder][parseInt(parsed.content)-1];
                 todoObject[todoObject.selectedFolder].splice(parseInt(parsed.content)-1,1);
                 fs.writeFileSync('./data/todo_data.json', JSON.stringify(todoData, null, '\t'));
-                message.channel.send(parsed.content + '번 할일이 삭제되었습니다.');
+                message.channel.send('`' + delData + '` 할일이 삭제되었습니다.');
             } else {
                 Promise.resolve(listup())
                     .then(() => {
