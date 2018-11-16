@@ -345,7 +345,7 @@ module.exports = (client) => {
 
         }
     });
-    const dispatcher;
+    let dispatcher;
     let tempUrl;
     let tempPlayerName;
     let tempUrlDiv;
