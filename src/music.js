@@ -7,10 +7,6 @@ const fs = require('fs');
 const _ = require('lodash');
 const jsmediatags = require('jsmediatags');
 
-const fumika = (sagisawa) => {
-
-} 
-
 const getTime = (s) => {
     // Pad to 2 or 3 digits, default is 2
     let pad = (n, z = 2) => ('00' + n).slice(-z);
@@ -175,26 +171,11 @@ module.exports = (client) => {
                                                         url: result.snippet.thumbnails.high.url
                                                     },
                                                     fields: [
-                                                        /*                                                         {
-                                                                                                                    name: '아이디',
-                                                                                                                    value: imshiId,
-                                                                                                                    inline: true
-                                                                                                                }, */
                                                         {
                                                             name: '재생 시간',
                                                             value: convertTime(result.contentDetails.duration),
                                                             inline: true
                                                         },
-                                                        /*                                                         {
-                                                                                                                    name: '채널명',
-                                                                                                                    value: result.snippet.channelTitle,
-                                                                                                                    inline: true
-                                                                                                                },
-                                                                                                                {
-                                                                                                                    name: '유튜브 바로가기',
-                                                                                                                    value: `[링크](https://youtu.be/${imshiId})`,
-                                                                                                                    inline: true
-                                                                                                                } */
                                                     ],
                                                     color: '3447003',
                                                     timestamp: new Date(),
@@ -207,7 +188,6 @@ module.exports = (client) => {
                                                 .then(() => collector.stop());
                                             if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
                                             queue[message.guild.id].songs.push({ url: `https://youtu.be/${imshiId}`, title: imshiTitle, requester: message.author.username });
-                                            //message.channel.send(`:ballot_box_with_check:**${imshiTitle}** 곡이 리스트에 추가되었습니다.`);
 
                                         })
                                             .catch((err) => message.channel.send('This is an error: ' + err));
@@ -517,7 +497,7 @@ module.exports = (client) => {
                     tempUrl = song.url;
                     tempPlayerName = song.requester;
                 } else if (song.inputType == "shimamura") {
-                    dispatcher = message.guild.voiceConnection.playStream(song.url, { passes: config.passes, bitrate: 160, fec: true });
+                    dispatcher = message.guild.voiceConnection.playStream(song.url, { passes: config.passes, bitrate: 320, fec: true });
                     tempUrlDiv = "shimamura"
                     tempTitle = song.title;
                     tempPlayerName = song.requester;
@@ -585,10 +565,8 @@ module.exports = (client) => {
                         let url = id[0];
                         if (url == '' || url === undefined) return message.channel.send('검색 결과를 찾을 수 없습니다.');
                         yt.getInfo(url, (err, info) => {
-                            //if (err) return message.channel.send('올바르지 않은 링크입니다.: ' + err);
                             if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
                             queue[message.guild.id].songs.push({ url: url, title: info.title, requester: message.author.username, inputType: 'youtube' });
-                            //message.channel.send(`:ballot_box_with_check:**${info.title}** 곡이 리스트에 추가되었습니다.`);
                             if (!message.member.voiceChannel) return message.channel.send('곡을 재생하려면 음성채널에 먼저 들어가주세요.');
                             else {
                                 if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
@@ -802,10 +780,8 @@ module.exports = (client) => {
                                             let url = id[i - 1];
                                             if (url == '' || url === undefined) return message.channel.send('검색 결과를 찾을 수 없습니다.');
                                             yt.getInfo(url, (err, info) => {
-                                                if (err) return message.channel.send('올바르지 않은 링크입니다.: ' + err);
                                                 if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
                                                 queue[message.guild.id].songs.push({ url: url, title: info.title, requester: message.author.username , inputType: 'youtube' });
-                                                //message.channel.send(`:ballot_box_with_check:**${info.title}** 곡이 리스트에 추가되었습니다.`);
                                                 if (!message.member.voiceChannel) return message.channel.send('곡을 재생하려면 음성채널에 먼저 들어가주세요.');
                                                 else {
                                                     if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
@@ -861,8 +837,8 @@ module.exports = (client) => {
                     },
                     title: '음악 명령어 일람',
                     fields: [{
-                        name: '추가 + 유튜브 링크/영상의 ID',
-                        value: '큐에 유튜브 링크를 총 15개까지 넣어둘 수 있어요.'
+                        name: '추가',
+                        value: '유튜브나 업로드 된 파일을 재생 큐에 추가할 수 있어요.'
                     },
                     {
                         name: '재생',
