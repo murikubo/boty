@@ -379,35 +379,45 @@ module.exports = (client) => {
             axios({
                 method: 'get',
                 url: 'http://api.urbandictionary.com/v0/define?term=' + encodeURI(parsed.content)
-            }).then(async (res) => {
-                let content = [];
-                for(let i in res.data.list) {
-                    i = parseInt(i);
-                    if(i >= 5) break;
-                    content.push({
-                        name: i+1 + '. ' + res.data.list[i].word,
-                        value: `**설명**: ${res.data.list[i].definition}`
-                    });
-                    if(content[i].value.length >= 800) {
-                        content[i].value = content[i+1].value.slice(0,800) + '...';
-                    }
-                    content[i].value += `\n**저자**: ${res.data.list[i].author} \n:+1:: ${res.data.list[i].thumbs_up} :-1:: ${res.data.list[i].thumbs_down}`;
+            }).then((res) => {
+                if(res.data.list.length == 0) {
+                    return message.channel.send(util.embedFormat(parsed.content + ' 검색 결과가 없습니다!'));
                 }
-                if(content.length < 1) {
-                    content.push({
-                        name: '검색결과가 없습니다!',
-                        value: '다른 검색어로 다시 시도해주세요.'
-                    });
-                }
-                return content;
-            }).then((content)=> {
+                const result = res.data.list[0];
+                let content = [{
+                    name: '설명',
+                    value: result.definition.slice(0,800),
+                },
+                {
+                    name: '예시',
+                    value: result.example,
+                },
+                {
+                    name: '저자',
+                    value: result.author,
+                    inline: 'True'
+                },
+                {
+                    name: ':+1:',
+                    value: result.thumbs_up,
+                    inline: 'True'
+                },
+                {
+                    name: ':-1:',
+                    value: result.thumbs_down,
+                    inline: 'True'
+                },
+
+                ];
+                
                 message.channel.send({
                     embed: {
                         author: {
                             name: client.user.username,
                             icon_url: client.user.avatarURL
                         },
-                        title: parsed.content + ' 검색 결과:',
+                        title: result.word,
+                        url: result.permalink,
                         color: '3447003',
                         fields: content,
                         timestamp: new Date(),
