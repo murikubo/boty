@@ -381,17 +381,6 @@ module.exports = (client) => {
                 url: 'http://api.urbandictionary.com/v0/define?term=' + encodeURI(parsed.content)
             }).then(async (res) => {
                 let content = [];
-                if(res.data.tags.length > 0) {
-                    content.push({
-                        name: '태그',
-                        value: res.data.tags.toString()
-                    });
-                } else {
-                    content.push({
-                        name: '태그',
-                        value: 'none'
-                    });
-                }
                 for(let i in res.data.list) {
                     i = parseInt(i);
                     if(i >= 5) break;
@@ -399,12 +388,12 @@ module.exports = (client) => {
                         name: i+1 + '. ' + res.data.list[i].word,
                         value: `**설명**: ${res.data.list[i].definition}`
                     });
-                    if(content[i+1].value.length >= 800) {
-                        content[i+1].value = content[i+1].value.slice(0,800) + '...';
+                    if(content[i].value.length >= 800) {
+                        content[i].value = content[i+1].value.slice(0,800) + '...';
                     }
-                    content[i+1].value += `\n**저자**: ${res.data.list[i].author} \n:+1:: ${res.data.list[i].thumbs_up} :-1:: ${res.data.list[i].thumbs_down}`;
+                    content[i].value += `\n**저자**: ${res.data.list[i].author} \n:+1:: ${res.data.list[i].thumbs_up} :-1:: ${res.data.list[i].thumbs_down}`;
                 }
-                if(content.length == 1) {
+                if(content.length < 1) {
                     content.push({
                         name: '검색결과가 없습니다!',
                         value: '다른 검색어로 다시 시도해주세요.'
