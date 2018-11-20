@@ -10,7 +10,6 @@ exports.embedFormat = (title = String, valObjArr = Array) => {
             },
             title: title,
             color: '3447003',
-            fields: valObjArr,
             timestamp: new Date(),
             footer: {
                 icon_url: botData.avatarURL,
@@ -18,6 +17,9 @@ exports.embedFormat = (title = String, valObjArr = Array) => {
             }
         }
     };
+    if(valObjArr) {
+        embed.fields = valObjArr;
+    }
     return embed;
 };
 // Cuts array 
