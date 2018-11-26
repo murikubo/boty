@@ -425,14 +425,18 @@ module.exports = (client) => {
         }
 
         if (command.command == '시뮬' && command.content != '' || command.command == '확률' && command.content != '') {
-            for (let i = 1; i < 50000; i++) {
-                let gacha = Math.floor((Math.random() * 10000) + 1);
-                if (gacha <= Number(command.content)*100) {
+            if(command.content.length>=7) return message.channel.send({embed: {
+                color: 3447003,
+                description: `소숫점 포함해서 7자리까지만 계산이 가능해요.`
+            }});
+            for (let i = 1; i < 5000000; i++) {
+                let gacha = Math.floor((Math.random() * 1000000) + 1);
+                if (gacha <= Number(command.content)*10000) {
                     return message.channel.send({embed: {
                         color: 3447003,
-                        description: `총 **${i}번** 만에 떴어요`
+                        description: `총 **${i.toLocaleString()}번** 만에 떴어요`
                     }});
-                } else i++;
+                }
             }
         }
 
