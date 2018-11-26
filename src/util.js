@@ -2,6 +2,10 @@ const config = require('../config.json');
 const botData = require('../data/offline_bot_data.json');
 
 exports.embedFormat = (title = String, valObjArr = Array) => {
+    let emptyCheck = (arr) => {
+        if(arr) return arr;
+        else return null;
+    };
     let embed = {
         embed: {
             author: {
@@ -9,6 +13,7 @@ exports.embedFormat = (title = String, valObjArr = Array) => {
                 icon_url: botData.avatarURL
             },
             title: title,
+            fields: emptyCheck(valObjArr),
             color: '3447003',
             timestamp: new Date(),
             footer: {
@@ -17,9 +22,6 @@ exports.embedFormat = (title = String, valObjArr = Array) => {
             }
         }
     };
-    if(valObjArr) {
-        embed.fields = valObjArr;
-    }
     return embed;
 };
 // Cuts array 
