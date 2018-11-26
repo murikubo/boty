@@ -5,7 +5,6 @@ let points = JSON.parse(fs.readFileSync('./data/level_data.json', 'utf8'));
 //let Jewel  = JSON.parse(fs.readFileSync('./data/Jewel_data.json', 'utf8'));
 const _ = require('lodash');
 const Jewel = require('../data/Jewel_data.json');
-//2018.04.20 기존 데이터와 안정적인 호환을 위해 Jewel_data.json파일 새로 생성
 
 module.exports = (client) => {
     client.on('message', message => {
@@ -60,7 +59,6 @@ module.exports = (client) => {
 
         if (message.content.startsWith(prefix + '레벨')) {
             let leftLevel = (userData.level+1)*(userData.level+1)-(userData.points);
-            //message.reply(`현재 레벨은 **__${userData.level}__**, 경험치는 **__${userData.points}__** 이에요.`);
             message.reply({
                 embed: {
                     color: 3447003,

@@ -424,11 +424,14 @@ module.exports = (client) => {
             message.reply(convert.convertConsonant(convert.convertEngToKor(command.content)));
         }
 
-        if (command.command == '시뮬' && command.content != '') {
+        if (command.command == '시뮬' && command.content != '' || command.command == '확률' && command.content != '') {
             for (let i = 1; i < 50000; i++) {
                 let gacha = Math.floor((Math.random() * 10000) + 1);
                 if (gacha <= Number(command.content)*100) {
-                    return message.channel.send(`총 **${i}번** 만에 떴어요`);
+                    return message.channel.send({embed: {
+                        color: 3447003,
+                        description: `총 **${i}번** 만에 떴어요`
+                    }});
                 } else i++;
             }
         }
