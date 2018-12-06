@@ -11,6 +11,7 @@ const config = require('./config.json');
 const ssrData = require('./data/ssr_data.json');
 const general = require('./data/general_data.json');
 const talkedRecently = new Set();
+const seoul_bike = require('./src/seoul_bike')(client);
 const lab2 = require('./src/lab2')(client);
 const lab3 = require('./src/lab3')(client);
 const util = require('./src/util.js');
