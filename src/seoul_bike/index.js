@@ -98,6 +98,7 @@ module.exports = (client) => {
                     }
                 });
             }).catch((err)=> {
+		console.error(err)
                 message.channel.send('Error occurred : `' + err + '`');
             });
         }
