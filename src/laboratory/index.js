@@ -440,6 +440,24 @@ module.exports = (client) => {
             }
         }
 
+        if (command.command == '찬반' && command.content != ''){
+            if(command.content.length>8) return message.channel.send('하지 마세요 과부하걸려요');
+            if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
+            let senkawa = 0;
+            let chihiro = 0;
+            for(let i = 0 ; i < Number(command.content); i++){
+                if(Math.floor((Math.random() * 2) + 1) == 1) {
+                    senkawa += 1;
+                } else {
+                    chihiro += 1;
+                }
+            }
+            message.channel.send({embed: {
+                color: 3447003,
+                description: `찬성 : **${senkawa.toLocaleString()}**\n반대 : **${chihiro.toLocaleString()}**\n찬성 총 : **${(senkawa/(Number(command.content))*100).toFixed(2)}**%`
+            }});
+        }
+
 
         if (command.command == '날짜') {
             if (!command.content || !(date.parse(command.content, 'YYMMDD') ^ date.parse(command.content, 'YYYYMMDD'))) return;
