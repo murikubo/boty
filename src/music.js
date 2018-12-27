@@ -567,6 +567,14 @@ module.exports = (client) => {
                         yt.getInfo(url, (err, info) => {
                             if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
                             queue[message.guild.id].songs.push({ url: url, title: info.title, requester: message.author.username, inputType: 'youtube' });
+/*                              console.log(queue[message.guild.id].songs.length);
+                            console.log(queue[message.guild.id].songs.length-1);
+                            console.log(queue[message.guild.id].songs[queue[message.guild.id].songs.length-1]); */
+                             if(queue[message.guild.id].songs.length != 1){
+                                if(queue[message.guild.id].songs[queue[message.guild.id].songs.length-1].requester == queue[message.guild.id].songs[queue[message.guild.id].songs.length-1].requester){
+                                    
+                                }
+                            } 
                             if (!message.member.voiceChannel) return message.channel.send('곡을 재생하려면 음성채널에 먼저 들어가주세요.');
                             else {
                                 if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));

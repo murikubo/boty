@@ -29,7 +29,7 @@ const getWeekNo = (date) => {
 module.exports = (client) => {
     client.on('message', message => {
         let command = util.slice(message.content);
-        
+
 
         if (command.command == '탕수육' || command.command == '탕') {
             require('./tangsoo.js')(message);
@@ -40,32 +40,32 @@ module.exports = (client) => {
             else {
                 const firstAlphabet = (fstAlp) => {
                     const fstAlpInfo = {
-                        'A': `${26*1}`,
-                        'B': `${26*2}`,
-                        'C': `${26*3}`,
-                        'D': `${26*4}`,
-                        'E': `${26*5}`,
-                        'F': `${26*6}`,
-                        'G': `${26*7}`,
-                        'H': `${26*8}`,
-                        'I': `${26*9}`,
-                        'J': `${26*10}`,
-                        'K': `${26*11}`,
-                        'L': `${26*12}`,
-                        'M': `${26*13}`,
-                        'N': `${26*14}`,
-                        'O': `${26*15}`,
-                        'P': `${26*16}`,
-                        'Q': `${26*17}`,
-                        'R': `${26*18}`,
-                        'S': `${26*19}`,
-                        'T': `${26*20}`,
-                        'U': `${26*21}`,
-                        'V': `${26*22}`,
-                        'W': `${26*23}`,
-                        'X': `${26*24}`,
-                        'Y': `${26*25}`,
-                        'Z': `${26*26}`
+                        'A': `${26 * 1}`,
+                        'B': `${26 * 2}`,
+                        'C': `${26 * 3}`,
+                        'D': `${26 * 4}`,
+                        'E': `${26 * 5}`,
+                        'F': `${26 * 6}`,
+                        'G': `${26 * 7}`,
+                        'H': `${26 * 8}`,
+                        'I': `${26 * 9}`,
+                        'J': `${26 * 10}`,
+                        'K': `${26 * 11}`,
+                        'L': `${26 * 12}`,
+                        'M': `${26 * 13}`,
+                        'N': `${26 * 14}`,
+                        'O': `${26 * 15}`,
+                        'P': `${26 * 16}`,
+                        'Q': `${26 * 17}`,
+                        'R': `${26 * 18}`,
+                        'S': `${26 * 19}`,
+                        'T': `${26 * 20}`,
+                        'U': `${26 * 21}`,
+                        'V': `${26 * 22}`,
+                        'W': `${26 * 23}`,
+                        'X': `${26 * 24}`,
+                        'Y': `${26 * 25}`,
+                        'Z': `${26 * 26}`
                     };
                     for (let i in fstAlpInfo) {
                         if (fstAlp == i) {
@@ -108,10 +108,12 @@ module.exports = (client) => {
                         }
                     }
                 };
-                message.channel.send({embed: {
-                    color: 3447003,
-                    description: `A부터 ${command.content}까지는 총 **${parseInt(firstAlphabet(command.content[0])) + parseInt(secondAlphabet(command.content[1]))}**칸이네요.`
-                }});
+                message.channel.send({
+                    embed: {
+                        color: 3447003,
+                        description: `A부터 ${command.content}까지는 총 **${parseInt(firstAlphabet(command.content[0])) + parseInt(secondAlphabet(command.content[1]))}**칸이네요.`
+                    }
+                });
             };
         }
 
@@ -163,9 +165,9 @@ module.exports = (client) => {
 
         if (command.command == '나누기') {
             let content = `명령어: ${command.command}, 파라미터: ${command.param}, 내용: ${command.content}`;
-            if(command.pparam) {
+            if (command.pparam) {
                 content += ', 플러스 파라미터: ';
-                for(let key in command.pparam) {
+                for (let key in command.pparam) {
                     content += `${key} - ${command.pparam[key]} `;
                 }
             }
@@ -219,6 +221,75 @@ module.exports = (client) => {
                 });
             });
         }
+
+        /* if (command.command == '금액' && command.content != '') {
+            if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
+            const cahngeKorean = (senkawa) => {
+                const chihiro = {
+                    '0': '',
+                    '1': '일',
+                    '2': '이',
+                    '3': '삼',
+                    '4': '사',
+                    '5': '오',
+                    '6': '육',
+                    '7': '칠',
+                    '8': '팔',
+                    '9': '구'
+                };
+                for (let i in chihiro) {
+                    if (senkawa == i) {
+                        return chihiro[i];
+                    }
+                }
+            };
+
+            const cahngeKorean2 = (sagisawa) => {
+                const fumika = {
+                    0 : '',
+                    1 : '십',
+                    2 : '백',
+                    3 : '천',
+                    4 : '만',
+                    5 : '십',
+                    6 : '백',
+                    7 : '천',
+                    8 : '억',
+                    9 : '십',
+                    10: '백',
+                    11: '천',
+                    12: '조',
+                    13: '십',
+                    14: '백',
+                    15: '천'
+                };
+                for (let i in fumika) {
+                    if (sagisawa == i) {
+                        return fumika[i];
+                    }
+                }
+            };
+
+            let shimamura = '';
+            let uzuki = 0;
+            for(let i= Number(command.content.length)-1;i>=0; i--){
+                console.log("i===>" + i);
+                console.log("uzuki===>" + uzuki);
+                if(command.content.charAt(uzuki) != "0"){
+                    shimamura += cahngeKorean(command.content.charAt(uzuki)) + cahngeKorean2(i);
+                } else {
+                    shimamura += cahngeKorean(command.content.charAt(uzuki));
+                }
+                console.log(shimamura);
+                uzuki++;
+            }
+            message.channel.send({
+                embed: {
+                    color: `3447003`,
+                    description: `${shimamura}`
+                }
+            });
+        } */
 
         if (command.command == '색') {
             let randomColor = _.random(1, 16777214);
@@ -291,29 +362,29 @@ module.exports = (client) => {
         }
 
         if (command.command == '영어') {
-            const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+            const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
             if (!isNaN(parseInt(command.param)) && parseInt(command.param) <= 2000) {
                 let content = '';
                 for (let i = 1; i <= parseInt(command.param); i++) {
-                    content += alphabet[_.random(0,alphabet.length-1)];
+                    content += alphabet[_.random(0, alphabet.length - 1)];
                 }
                 message.channel.send(content);
                 return;
             }
-            message.channel.send(alphabet[_.random(0,alphabet.length-1)]);
+            message.channel.send(alphabet[_.random(0, alphabet.length - 1)]);
         }
-        
+
         if (command.command == '일본어') {
             const hiragana = ['あ', 'い', 'う', 'え', 'お', 'か', 'き', 'く', 'け', 'こ', 'さ', 'し', 'す', 'せ', 'そ', 'た', 'ち', 'つ', 'て', 'と', 'な', 'に', 'ぬ', 'ひ', 'ふ', 'へ', 'ほ', 'ま', 'み', 'む', 'め', 'も', 'や', 'ゆ', 'よ', 'ら', 'り', 'る', 'れ', 'ろ', 'わ', 'ゐ', 'を', 'ん'];
             if (!isNaN(parseInt(command.param)) && parseInt(command.param) <= 2000) {
                 let content = '';
                 for (let i = 1; i <= parseInt(command.param); i++) {
-                    content += hiragana[_.random(0,hiragana.length-1)];
+                    content += hiragana[_.random(0, hiragana.length - 1)];
                 }
                 message.channel.send(content);
                 return;
             }
-            message.channel.send(hiragana[_.random(0,hiragana.length-1)]);
+            message.channel.send(hiragana[_.random(0, hiragana.length - 1)]);
         }
 
         if (command.command == '선택') {
@@ -425,37 +496,43 @@ module.exports = (client) => {
         }
 
         if (command.command == '시뮬' && command.content != '' || command.command == '확률' && command.content != '') {
-            if(command.content.length>=7) return message.channel.send({embed: {
-                color: 3447003,
-                description: `소숫점 포함해서 7자리까지만 계산이 가능해요.`
-            }});
+            if (command.content.length >= 7) return message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: `소숫점 포함해서 7자리까지만 계산이 가능해요.`
+                }
+            });
             for (let i = 1; i < 5000000; i++) {
                 let gacha = Math.floor((Math.random() * 1000000) + 1);
-                if (gacha <= Number(command.content)*10000) {
-                    return message.channel.send({embed: {
-                        color: 3447003,
-                        description: `총 **${i.toLocaleString()}번** 만에 떴어요`
-                    }});
+                if (gacha <= Number(command.content) * 10000) {
+                    return message.channel.send({
+                        embed: {
+                            color: 3447003,
+                            description: `총 **${i.toLocaleString()}번** 만에 떴어요`
+                        }
+                    });
                 }
             }
         }
 
-        if (command.command == '찬반' && command.content != ''){
-            if(command.content.length>8) return message.channel.send('하지 마세요 과부하걸려요');
+        if (command.command == '찬반' && command.content != '') {
+            if (command.content.length > 8) return message.channel.send('하지 마세요 과부하걸려요');
             if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
             let senkawa = 0;
             let chihiro = 0;
-            for(let i = 0 ; i < Number(command.content); i++){
-                if(Math.floor((Math.random() * 2) + 1) == 1) {
+            for (let i = 0; i < Number(command.content); i++) {
+                if (Math.floor((Math.random() * 2) + 1) == 1) {
                     senkawa += 1;
                 } else {
                     chihiro += 1;
                 }
             }
-            message.channel.send({embed: {
-                color: 3447003,
-                description: `찬성 : **${senkawa.toLocaleString()}**\n반대 : **${chihiro.toLocaleString()}**\n찬성 총 : **${(senkawa/(Number(command.content))*100).toFixed(2)}**%`
-            }});
+            message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: `찬성 : **${senkawa.toLocaleString()}**\n반대 : **${chihiro.toLocaleString()}**\n찬성 총 : **${(senkawa / (Number(command.content)) * 100).toFixed(2)}**%`
+                }
+            });
         }
 
 
@@ -484,9 +561,9 @@ module.exports = (client) => {
         }
 
         if (command.command == 'cut' || command.command == '유자') {
-            let messageCont = command.content.slice(command.content.search('=')+1,command.content.search('&')) + '\n `' + command.content.slice(0,command.content.search('&')) + '`';
-            if(command.content.search('&') == -1) {
-                messageCont = command.content.slice(command.content.search('=')+1) + '\n `' + command.content.slice(0) + '`';
+            let messageCont = command.content.slice(command.content.search('=') + 1, command.content.search('&')) + '\n `' + command.content.slice(0, command.content.search('&')) + '`';
+            if (command.content.search('&') == -1) {
+                messageCont = command.content.slice(command.content.search('=') + 1) + '\n `' + command.content.slice(0) + '`';
             }
 
             message.channel.send(messageCont);
@@ -502,7 +579,6 @@ module.exports = (client) => {
         if (command.command === "핑") {
             const awaitMessage = await message.channel.send("계산중!");
             awaitMessage.edit(`:ping_pong: 퐁!! 후미카씨 서버와의 지연속도는 **${awaitMessage.createdTimestamp - message.createdTimestamp}ms**에요. API자체의 지연속도는 **${Math.round(client.ping)}ms**에요.`);
-
         }
     });
 };
