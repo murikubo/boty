@@ -21,7 +21,7 @@ module.exports = (client) => {
                 //console.log(count);
                 //console.log(res.data.data.cards[count])
                 let correctCard = res.data.data.cards[count].card_name;
-                //console.log(res.data.data.cards[count].card_name);
+/*                 console.log(res.data.data.cards[count].card_name); */
                 let cardText = res.data.data.cards[count].skill_disc;
                 let cardCost = res.data.data.cards[count].cost;
                 let cardATKLIFE = res.data.data.cards[count].atk + '/' + res.data.data.cards[count].life;
@@ -54,7 +54,7 @@ module.exports = (client) => {
                         errors: ['time'],
                     })
                         .then((collected) => {
-                            if (collected.first().content == correctCard) {
+                            if (collected.first().content.replace(/\s/gi, ``) == correctCard.replace(/\s/gi, ``)) {
                                 message.channel.send('정답이에요');
                             } else {
                                 message.channel.send(`땡! 정답은 **${correctCard}**이었어요.`);
