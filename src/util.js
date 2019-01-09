@@ -1,7 +1,7 @@
 const config = require('../config.json');
 const botData = require('../data/offline_bot_data.json');
 
-exports.embedFormat = (title = String, valObjArr = Array) => {
+exports.embedFormat = (title = String, valObjArr = Array, description = String) => {
     let emptyCheck = (arr) => {
         if(arr) return arr;
         else return null;
@@ -13,6 +13,7 @@ exports.embedFormat = (title = String, valObjArr = Array) => {
                 icon_url: botData.avatarURL
             },
             title: title,
+            description: description,
             fields: emptyCheck(valObjArr),
             color: '3447003',
             timestamp: new Date(),
