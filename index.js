@@ -29,6 +29,7 @@ const voiceQuiz = require('./src/voice_quize')(client);
 const seoulDust = require('./src/seoul_dust')(client);
 const youtube = require('./src/youtube')(client);
 const todo = require('./src/todo')(client);
+const crawling = require('./src/crawling')(client);
 const monsterHunter = require('./src/mhdb')(client);
 const weather = require('./src/weather')(client);
 //const setMod = require('./src/mod')(client);
