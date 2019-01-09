@@ -11,6 +11,7 @@ const config = require('./config.json');
 const ssrData = require('./data/ssr_data.json');
 const general = require('./data/general_data.json');
 const talkedRecently = new Set();
+const seoul_bike = require('./src/seoul_bike')(client);
 const lab2 = require('./src/lab2')(client);
 const lab3 = require('./src/lab3')(client);
 const util = require('./src/util.js');
@@ -61,16 +62,12 @@ client.on('message', message => {
     let result1 = [];
     result1[0] = song[Math.floor(Math.random() * song.length)];
     const parsed = util.slice(message.content);
-    /* if (parsed.command == '도움말') {
+    if (parsed.command == '도움말') {
         const parsedMessage = util.slice(message.content);
         if (parsedMessage.param == '시간') {
             message.channel.send({
                 embed: {
                     color: 3447003,
-                    author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
                     title: '지하철 시간 명령어 도움말',
                     fields: [{
                         name: '.시간 역 코드 -(상행/내선)/(하행/외선)',
@@ -83,10 +80,24 @@ client.on('message', message => {
                     }
                 }
             });
-        } else if (parsedMessage.param == '명령어') {
-
+        } else if (parsedMessage.param == '쥬얼') {
+            message.channel.send({
+                embed: {
+                    color: 3447003,
+                    title: '쥬얼 관련 도움말',
+                    fields: [{
+                        name: '각종 명령어로 쥬얼을 벌 수 있어요',
+                        value: '`쥬얼슬롯`'
+                    }],
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: '명령어 입력 시간 '
+                    }
+                }
+            });
         }
-    } */
+    }
 
     if (parsed.command == '명령어') {
         message.channel.send({

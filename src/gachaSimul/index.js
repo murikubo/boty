@@ -23,6 +23,43 @@ result_RARE[0] = RARE[Math.floor(Math.random() * RARE.length)];
 module.exports = (client) => {
     client.on('message', message => {
         let command = util.slice(message.content);
+
+
+        if(command.command == "쥬얼슬롯"){
+            const Jewel = require('../../data/Jewel_data.json');
+            let JewelData =Jewel[message.author.id];
+            const result = [':star:', ':comet:', ':crescent_moon:', ':snowflake:', ':cherry_blossom:', ':hibiscus:'];
+            const result1 = _.random(0, result.length - 1);
+            const result2 = _.random(0, result.length - 1);
+            const result3 = _.random(0, result.length - 1);
+            message.reply(`${result[result1]}   ${result[result2]}   ${result[result3]}`);
+
+            if(result[result1] == result[result2] && result[result1] == result[result3]){
+                JewelData.Jewel += 7000;
+                message.channel.send({
+                    embed: {
+                        color: 3447003,
+                        description: `**__*승리!*__**\n게임에서 승리하여 **7,000**개의 쥬얼을 획득했어요.\n현재 쥬얼 : **${JewelData.Jewel.toLocaleString()}**개`
+                    }
+                });
+            } else if(result[result1] == result[result2] || result[result1] == result[result3] || result[result2] == result[result3]){
+                message.channel.send({
+                    embed: {
+                        color: 3447003,
+                        description: `**__*아깝네요.*__**\n그러나 자비롭게 본전만은 돌려받아 **250**개의 쥬얼을 획득했어요.\n현재 쥬얼 : **${JewelData.Jewel.toLocaleString()}**개`
+                    }
+                });
+            } else {
+                JewelData.Jewel -= 250;
+                message.channel.send({
+                    embed: {
+                        color: 3447003,
+                        description: `**__*패배!*__**\n인생이 뭐 그렇죠. **250**개의 쥬얼을 잃었어요.\n현재 쥬얼 : **${JewelData.Jewel.toLocaleString()}**개`
+                    }
+                });
+            }
+        }
+
 /*         if (command.command == "쥬우얼") {
             message.channel.send(`현재 쥬얼은 **__${Jewel[message.author.id].Jewel.toLocaleString()}__**개 있어요.`);
         } */
