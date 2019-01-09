@@ -19,7 +19,7 @@ module.exports = (client) => {
         let parsed = util.slice(message.content);
         if(parsed.command == '북새통') {
             if(parsed.param) {
-                message.channel.send(util.embedFormat('북새통 명령어 사용법',[], '북새통의 신간을 확인할 수 있는 명령어입니다. \n내용에 `YYYY-MM-DD`를 입력하여 해당 날짜의 신간이 나옵니다.. \n내용에 `내일`을 입력하면 내일의 신간이 나옵니다. \n내용이 없거나 날짜 형태가 아니라면 오늘의 신간이 나옵니다.'));
+                message.channel.send(util.embedFormat('북새통 명령어 사용법',[], '`북새통`명령어만 입력하면 오늘의 신간이 나옵니다. \n내용에 `내일`을 입력하면 내일의 신간이 나옵니다. \n내용에 `YYYY-MM-DD`를 입력하면 해당 날짜의 신간이 나옵니다.'));
                 return;
             }
             let now = new Date();
