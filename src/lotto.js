@@ -40,7 +40,7 @@ module.exports = (client) => {
 
         const parsed = util.slice(message.content);
 
-        if (parsed.command == '로또시뮬') {
+        /* if (parsed.command == '로또시뮬') {
             let randomLotto = {};
             let Vdata = [];
             let tempRandomLotto;
@@ -108,7 +108,7 @@ module.exports = (client) => {
                         });
                     });
                 }); 
-            }
+            } */
             /* console.log(content);
             message.channel.send({
                 embed: {
@@ -121,10 +121,10 @@ module.exports = (client) => {
                         text: '명령어 입력 시간'
                     }
                 }
-            }); */
-        }
+            }); 
+        }  */
 
-        if (parsed.command == '로또') {
+        /* if (parsed.command == '로또') {
             const lottoHandle = Promise.resolve();
             lottoHandle.then(() => {
                 return lottoDataUpdate();
@@ -256,7 +256,7 @@ module.exports = (client) => {
                     message.channel.send('Error occurred : `' + err + '`');
                 });
             }
-        }
+        } */
 
         if (parsed.command == '로또로또') {
             let lottoNumber = parsed.content.split('/', 5);
