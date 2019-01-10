@@ -196,6 +196,15 @@ client.on('message', message => {
         message.channel.send('계정 생성 시간 : ' + message.author.createdTimestamp + '\n' + '가입시 입력 한 이름 : ' + message.author.username + '\n' + '현재 계정 상태 : ' + message.author.presence.status + '\n' + '계정 tag : ' + message.author.tag, { code: 'true' });
     }
 
+    if (parsed.command == '초대') {
+        const embed = new discord.RichEmbed()
+            .setAuthor(`${client.user.username}`)
+            .setColor(3447003)
+            .setDescription(`[초대 링크](https://discordapp.com/oauth2/authorize?&client_id=415681577033400320&scope=bot&permissions=8)
+            \n [명령어 일람](https://murikubo.github.io/shimushu/fumikasan.html)`)
+            .setThumbnail(client.user.avatarURL)
+        message.channel.send({ embed });
+    }
 
     if (parsed.command == '정보') {
         const embed = new discord.RichEmbed()
