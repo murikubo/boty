@@ -3,16 +3,6 @@ const date = require('date-and-time');
 const iconv = require('iconv-lite');
 const axios = require('axios');
 
-
-axios.interceptors.response.use(function (response) {
-    var ctype = response.headers['content-type'];
-    response.data = ctype.includes('charset=euc-kr') ?
-        iconv.decode(response.data, 'euc-kr') :
-        iconv.decode(response.data, 'utf-8');
-    return response;
-})
-
-
 module.exports = (client) => {
     
     client.on('message', message => {

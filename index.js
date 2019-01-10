@@ -32,6 +32,7 @@ const todo = require('./src/todo')(client);
 const crawling = require('./src/crawling')(client);
 const monsterHunter = require('./src/mhdb')(client);
 const weather = require('./src/weather')(client);
+const moduleConf = require('./module_conf');
 //const setMod = require('./src/mod')(client);
 let mod = JSON.parse(fs.readFileSync("./data/mod_data.json", "utf8"));
 
