@@ -54,7 +54,7 @@ module.exports = (client) => {
                             const filter = (reaction, user) => reaction.emoji.name === '\u27A1' && user.id === message.author.id;
                             const collector = sentMessage.createReactionCollector(filter, { time: 30000 });
                             collector.on('collect', reaction => {
-                                if(cutArr.length>=index+1)index++;
+                                if(cutArr.length>index+1)index++;
                                 
                                 embed = [{ name: `${index+1} 페이지`, value: cutArr[index].toString().replace(/,/g,'\n')}];
                                 sentMessage.edit(util.embedFormat(todoObject.selectedFolder + ' 폴더의 할 일 리스트',embed));
