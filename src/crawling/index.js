@@ -55,8 +55,7 @@ module.exports = (client) => {
                 }
                 let index = 0;
                 content = util.arrayCut(content);
-
-                message.channel.send({
+                let embedObj = {
                     embed: {
                         author: {
                             name: index+1 + ' 페이지',
@@ -71,56 +70,29 @@ module.exports = (client) => {
                             text: '명령어 입력 시간'
                         }
                     }
-                })
+                };
+
+                message.channel.send(embedObj)
                     .then(async (sentMessage) => {
                         await sentMessage.react('\u2B05')
                             .then(() => {
-                                const filter = (reaction, user) => reaction.emoji.name === '\u2B05' && user.id === message.author.id;
-                                const collector = sentMessage.createReactionCollector(filter);
+                                const collector = sentMessage.createReactionCollector((reaction, user) => reaction.emoji.name === '\u2B05' && user.id === message.author.id);
                                 collector.on('collect', () => {
                                     if(index!=0)index--;
-                                    
-                                    sentMessage.edit({
-                                        embed: {
-                                            author: {
-                                                name: index+1 + ' 페이지',
-                                            },
-                                            title: day + ' 의 신간',
-                                            url: 'http://booksaetong.co.kr/shop/list.php?ca_id=90&gdate=' + day,
-                                            color: '3447003',
-                                            fields: content[index],
-                                            timestamp: new Date(),
-                                            footer: {
-                                                icon_url: client.user.avatarURL,
-                                                text: '명령어 입력 시간'
-                                            }
-                                        }
-                                    });
+                                    embedObj.embed.author.name = index+1 + ' 페이지';
+                                    embedObj.embed.fields = content[index];
+                                    sentMessage.edit(embedObj);
                                 });
                             });
                         await sentMessage.react('\u27A1')
                             .then(() => {
-                                const filter = (reaction, user) => reaction.emoji.name === '\u27A1' && user.id === message.author.id;
-                                const collector = sentMessage.createReactionCollector(filter, { time: 30000 });
+                                const collector = sentMessage.createReactionCollector((reaction, user) => reaction.emoji.name === '\u27A1' && user.id === message.author.id, { time: 30000 });
                                 collector.on('collect', () => {
                                     if(content.length-1>index)index++;
+                                    embedObj.embed.author.name = index+1 + ' 페이지';
+                                    embedObj.embed.fields = content[index];
                                     
-                                    sentMessage.edit({
-                                        embed: {
-                                            author: {
-                                                name: index+1 + ' 페이지',
-                                            },
-                                            title: day + ' 의 신간',
-                                            url: 'http://booksaetong.co.kr/shop/list.php?ca_id=90&gdate=' + day,
-                                            color: '3447003',
-                                            fields: content[index],
-                                            timestamp: new Date(),
-                                            footer: {
-                                                icon_url: client.user.avatarURL,
-                                                text: '명령어 입력 시간'
-                                            }
-                                        }
-                                    });
+                                    sentMessage.edit(embedObj);
                                 });
                                 collector.on('end', () => sentMessage.clearReactions());
                             });
