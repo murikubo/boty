@@ -71,9 +71,17 @@ module.exports = (client) => {
                         }
                     }
                 };
-
+                if(content.length == 0) {
+                    embedObj.embed.fields = [{
+                        name: "신간 페이지가 존재하지 않습니다.",
+                        value: "아직 정보가 갱신되지 않았거나 해당 날짜의 신간이 존재하지 않습니다."
+                    }];
+                }
                 message.channel.send(embedObj)
                     .then(async (sentMessage) => {
+                        if(content.length <= 1 ) {
+                            return;
+                        }
                         await sentMessage.react('\u2B05')
                             .then(() => {
                                 const collector = sentMessage.createReactionCollector((reaction, user) => reaction.emoji.name === '\u2B05' && user.id === message.author.id);
