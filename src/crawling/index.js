@@ -33,7 +33,7 @@ module.exports = (client) => {
                 
             }).then((bookarr) => {
                 let bookobj = [];
-                for(let i = 0; i <= bookarr.length-1; i++) {
+                for(let i = 0; i < bookarr.length; i++) {
                     bookobj[i] = {
                         name: `${bookarr[i].slice(bookarr[i].search("\'>")+2, bookarr[i].search('</a>'))}`,
                         id: `${bookarr[i].slice(0,bookarr[i].search("\'>"))}`,
@@ -44,7 +44,7 @@ module.exports = (client) => {
                 return bookobj;
             }).then((bookobj) => {
                 let content = [];
-                for(let i = 0; i < bookobj.length-1; i++) {
+                for(let i = 0; i < bookobj.length; i++) {
                     content[i] = {
                         name: bookobj[i].name,
                         value: `정가: ${bookobj[i].realprice}
