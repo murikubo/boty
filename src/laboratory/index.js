@@ -126,7 +126,7 @@ module.exports = (client) => {
                 });
         }
         if (command.command == '퇴근') {
-            message.channel.send('https://1drv.ms/u/s!AgvJToMk58PVhPQSpMJuOt7gDn6zAg');
+            message.channel.send({files: ['./data/toegeun.jpg']});
         }
         if (command.command == '크롱') {
             const http = require('https'); // https모듈과 http모듈이 호환될까?? 궁금하긴 한데 해보진 않았다.
