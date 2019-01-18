@@ -349,7 +349,6 @@ module.exports = (client) => {
     let tempUrl;
     let tempPlayerName;
     let tempUrlDiv;
-    let tempVolume = 0.6;
     const commands = {
         '일시정지': (message) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
@@ -363,15 +362,29 @@ module.exports = (client) => {
         },
         '볼륨': (message) => {
             let parsed = util.slice(message.content);
+            if (!musicData[message.guild.id]) musicData[message.guild.id] = 0.6;
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
             if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
             if (isNaN(parseInt(parsed.content)) || parseInt(parsed.content) > 100 || parseInt(parsed.content) < 0) return message.channel.send('0 ~ 100 사이 정수를 입력해주세요.');
+            musicData[message.guild.id] = Math.max((parseInt(parsed.content) / 50));
+            fs.writeFileSync('./data/music_data.json', JSON.stringify(musicData, null, '\t'));
             dispatcher.setVolume(Math.max((parseInt(parsed.content) / 50)));
-            tempVolume = Math.max((parseInt(parsed.content) / 50));
-            message.channel.send(`현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`);
+            message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: `현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`
+                }
+            });
         },
         '현재볼륨' : (message) => {
-            message.channel.send(`현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`);
+            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
+            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
+            message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: `현재 볼륨: ${Math.round(dispatcher.volume * 50)}%`
+                }
+            });
         },
         '스킵': (message) => {
             if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
@@ -502,7 +515,11 @@ module.exports = (client) => {
                     tempTitle = song.title;
                     tempPlayerName = song.requester;
                 }
-                dispatcher.setVolume(tempVolume);
+                if (!musicData[message.guild.id]){
+                    musicData[message.guild.id] = 0.6;
+                    fs.writeFileSync('./data/music_data.json', JSON.stringify(musicData, null, '\t'));
+                }
+                dispatcher.setVolume(musicData[message.guild.id]);
                 dispatcher.on('end', () => {
                     play(queue[message.guild.id].songs.shift());
                 });
@@ -567,14 +584,6 @@ module.exports = (client) => {
                         yt.getInfo(url, (err, info) => {
                             if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
                             queue[message.guild.id].songs.push({ url: url, title: info.title, requester: message.author.username, inputType: 'youtube' });
-/*                              console.log(queue[message.guild.id].songs.length);
-                            console.log(queue[message.guild.id].songs.length-1);
-                            console.log(queue[message.guild.id].songs[queue[message.guild.id].songs.length-1]); */
-                             if(queue[message.guild.id].songs.length != 1){
-                                if(queue[message.guild.id].songs[queue[message.guild.id].songs.length-1].requester == queue[message.guild.id].songs[queue[message.guild.id].songs.length-1].requester){
-                                    
-                                }
-                            } 
                             if (!message.member.voiceChannel) return message.channel.send('곡을 재생하려면 음성채널에 먼저 들어가주세요.');
                             else {
                                 if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
@@ -698,26 +707,39 @@ module.exports = (client) => {
             if (queue[message.guild.id] === undefined) return message.channel.send('리스트에 .명령어 + 링크 를 통하여 곡을 추가하세요.');
             let tosend = [];
             queue[message.guild.id].songs.forEach((song, i) => { tosend.push(`${i + 1}. ${song.title}`); });
-            message.channel.send({
-                embed: {
-                    color: 3447003,
-                    author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
-                    title: `현재 리스트에 **${tosend.length}** 개의 곡이 있습니다. ${(tosend.length > 15 ? '*[제한인 15개를 초과하였습니다.]*' : '')}\n`,
-                    fields: [{
-                        name: '곡 리스트',
-                        value: `${tosend.slice(0, 15).join('\n')}`
-                    }
-                    ],
-                    timestamp: new Date(),
-                    footer: {
-                        icon_url: client.user.avatarURL,
-                        text: '명령어 입력 시간 '
-                    }
-                }
-            });
+            let cutArr = util.arrayCut(queue[message.guild.id].songs);
+            let index = 0;
+            console.log(cutArr.length);
+            let embed = [{ name: `${index+1} 페이지`, value: `${tosend.slice(10*index, (index+1)*10).join('\n')}`}];
+            message.channel.send(util.embedFormat('곡 리스트',embed))
+                .then(async (sentMessage) => {
+                    await sentMessage.react('\u2B05')
+                        .then(() => {
+                            const filter = (reaction, user) => reaction.emoji.name === '\u2B05' && user.id === message.author.id;
+                            const collector = sentMessage.createReactionCollector(filter);
+                            collector.on('collect', reaction => {
+                                if(index!=0)index--;
+                                
+                                embed = [{ name: `${index+1} 페이지`, value: `${tosend.slice(10*index, (index+1)*10).join('\n')}`}];
+                                sentMessage.edit('곡 리스트',embed);
+                            });
+                        });
+                    await sentMessage.react('\u27A1')
+                        .then(() => {
+                            const filter = (reaction, user) => reaction.emoji.name === '\u27A1' && user.id === message.author.id;
+                            const collector = sentMessage.createReactionCollector(filter, { time: 30000 });
+                            collector.on('collect', reaction => {
+                                if(cutArr.length>index+1)index++;
+/*                                 console.log("===>"+cutArr.length);
+                                console.log("===>"+index);
+                                console.log("계산1===>" + 10*index);
+                                console.log("계산2===>" + (index+1)*10); */
+                                embed = [{ name: `${index+1} 페이지`, value: `${tosend.slice(10*index, (index+1)*10).join('\n')}`}];
+                                sentMessage.edit('곡 리스트',embed);
+                            });
+                            collector.on('end', () => sentMessage.clearReactions());
+                        });
+                });
         },
         '검색': (message) => {
             const parsedMessage = util.slice(message.content);
