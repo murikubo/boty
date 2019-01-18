@@ -47,6 +47,7 @@ module.exports = (client) => {
                                 
                                 embed = [{ name: `${index+1} 페이지`, value: cutArr[index].toString().replace(/,/g,'\n')}];
                                 sentMessage.edit(util.embedFormat(todoObject.selectedFolder + ' 폴더의 할 일 리스트',embed));
+                                reaction.remove(message.author.id);
                             });
                         });
                     await sentMessage.react('\u27A1')
@@ -58,6 +59,7 @@ module.exports = (client) => {
                                 
                                 embed = [{ name: `${index+1} 페이지`, value: cutArr[index].toString().replace(/,/g,'\n')}];
                                 sentMessage.edit(util.embedFormat(todoObject.selectedFolder + ' 폴더의 할 일 리스트',embed));
+                                reaction.remove(message.author.id);
                             });
                             collector.on('end', () => sentMessage.clearReactions());
                         });
