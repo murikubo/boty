@@ -707,9 +707,8 @@ module.exports = (client) => {
             if (queue[message.guild.id] === undefined) return message.channel.send('리스트에 .명령어 + 링크 를 통하여 곡을 추가하세요.');
             let tosend = [];
             queue[message.guild.id].songs.forEach((song, i) => { tosend.push(`${i + 1}. ${song.title}`); });
-            let cutArr = util.arrayCut(queue[message.guild.id].songs);
+            let page = Math.ceil(queue[message.guild.id].songs.length) / 10;
             let index = 0;
-            console.log(cutArr.length);
             let embed = [{ name: `${index+1} 페이지`, value: `${tosend.slice(10*index, (index+1)*10).join('\n')}`}];
             message.channel.send(util.embedFormat('곡 리스트',embed))
                 .then(async (sentMessage) => {
@@ -721,7 +720,7 @@ module.exports = (client) => {
                                 if(index!=0)index--;
                                 
                                 embed = [{ name: `${index+1} 페이지`, value: `${tosend.slice(10*index, (index+1)*10).join('\n')}`}];
-                                sentMessage.edit('곡 리스트',embed);
+                                sentMessage.edit(util.embedFormat('곡 리스트',embed));
                             });
                         });
                     await sentMessage.react('\u27A1')
@@ -729,13 +728,9 @@ module.exports = (client) => {
                             const filter = (reaction, user) => reaction.emoji.name === '\u27A1' && user.id === message.author.id;
                             const collector = sentMessage.createReactionCollector(filter, { time: 30000 });
                             collector.on('collect', reaction => {
-                                if(cutArr.length>index+1)index++;
-/*                                 console.log("===>"+cutArr.length);
-                                console.log("===>"+index);
-                                console.log("계산1===>" + 10*index);
-                                console.log("계산2===>" + (index+1)*10); */
+                                if(page>index+1)index++;
                                 embed = [{ name: `${index+1} 페이지`, value: `${tosend.slice(10*index, (index+1)*10).join('\n')}`}];
-                                sentMessage.edit('곡 리스트',embed);
+                                sentMessage.edit(util.embedFormat('곡 리스트',embed));
                             });
                             collector.on('end', () => sentMessage.clearReactions());
                         });
