@@ -351,20 +351,20 @@ module.exports = (client) => {
     let tempUrlDiv;
     const commands = {
         '일시정지': (message) => {
-            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
-            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
+            if (!message.member.voiceChannel) return message.channel.send(':exclamation: 음성채널에 들어간 상태여야해요.');
+            if (!dispatcher) return message.channel.send(':exclamation: 현재 재생중인 목록이 없어요.');
             message.channel.send('일시정지했어요.').then(() => { dispatcher.pause(); });
         },
         '계속': (message) => {
-            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
-            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
+            if (!message.member.voiceChannel) return message.channel.send(':exclamation: 음성채널에 들어간 상태여야해요.');
+            if (!dispatcher) return message.channel.send(':exclamation: 현재 재생중인 목록이 없어요.');
             message.channel.send('계속할게요.').then(() => { dispatcher.resume(); });
         },
         '볼륨': (message) => {
             let parsed = util.slice(message.content);
             if (!musicData[message.guild.id]) musicData[message.guild.id] = 0.6;
-            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
-            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
+            if (!message.member.voiceChannel) return message.channel.send(':exclamation: 음성채널에 들어간 상태여야해요.');
+            if (!dispatcher) return message.channel.send(':exclamation: 현재 재생중인 목록이 없어요.');
             if (isNaN(parseInt(parsed.content)) || parseInt(parsed.content) > 100 || parseInt(parsed.content) < 0) return message.channel.send('0 ~ 100 사이 정수를 입력해주세요.');
             musicData[message.guild.id] = Math.max((parseInt(parsed.content) / 50));
             fs.writeFileSync('./data/music_data.json', JSON.stringify(musicData, null, '\t'));
@@ -377,8 +377,8 @@ module.exports = (client) => {
             });
         },
         '현재볼륨' : (message) => {
-            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
-            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
+            if (!message.member.voiceChannel) return message.channel.send(':exclamation: 음성채널에 들어간 상태여야해요.');
+            if (!dispatcher) return message.channel.send(':exclamation: 현재 재생중인 목록이 없어요.');
             message.channel.send({
                 embed: {
                     color: 3447003,
@@ -387,13 +387,13 @@ module.exports = (client) => {
             });
         },
         '스킵': (message) => {
-            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
-            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
+            if (!message.member.voiceChannel) return message.channel.send(':exclamation: 음성채널에 들어간 상태여야해요.');
+            if (!dispatcher) return message.channel.send(':exclamation: 현재 재생중인 목록이 없어요.');
             message.channel.send('스킵했어요.').then(() => { dispatcher.end(); });
         },
         '현재': (message) => {
-            if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
-            if (!dispatcher) return message.channel.send('현재 재생중인 목록이 없어요.');
+            if (!message.member.voiceChannel) return message.channel.send(':exclamation: 음성채널에 들어간 상태여야해요.');
+            if (!dispatcher) return message.channel.send(':exclamation: 현재 재생중인 목록이 없어요.');
             if (tempUrlDiv == 'youtube') {
                 const youtube = new Promise((resolve) => {
                     let options = {
@@ -423,7 +423,7 @@ module.exports = (client) => {
                     .then(([fields, id]) => {
                         const videoInfo = getVideo(id[0]);
                         let url = id[0];
-                        if (url == '' || url === undefined) return message.channel.send('검색 결과를 찾을 수 없습니다.');
+                        if (url == '' || url === undefined) return message.channel.send(':exclamation: 검색 결과를 찾을 수 없습니다.');
                         videoInfo.then((result) => {
                             message.channel.send({
                                 embed: {
@@ -492,9 +492,9 @@ module.exports = (client) => {
             }
         },
         '재생': (message) => {
-            if (queue[message.guild.id] === undefined) return message.channel.send('곡을 추가해주세요.');
+            if (queue[message.guild.id] === undefined) return message.channel.send(':exclamation: 곡을 추가해주세요.');
             if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
-            if (queue[message.guild.id].playing) return message.channel.send('이미 재생중이에요.');
+            if (queue[message.guild.id].playing) return message.channel.send(':exclamation: 이미 재생중이에요.');
             queue[message.guild.id].playing = true;
 
             (function play(song) {
@@ -541,7 +541,7 @@ module.exports = (client) => {
             let Attachment = (message.attachments).array();
             if (Attachment[0] == null) {
                 let url = message.content.split(' ')[1];
-                if (url == '' || url === undefined) return message.channel.send('유튜브 URL주소를 프리픽스+명령어 와 함께 입력해주세요.');
+                if (url == '' || url === undefined) return message.channel.send(':exclamation: 명령어 사용에 필요한 인수가 없어요.');
 
                 const parsedMessage = util.slice(message.content);
                 if (!(parsedMessage.command == '추가')) {
@@ -640,55 +640,12 @@ module.exports = (client) => {
                     });
             }
         },
-        '지정삭제': (message) => {
-            if (queue[message.guild.id] === undefined) return message.channel.send('리스트에 .명령어 + 링크 를 통하여 곡을 추가하세요.');
-            let tosend = [];
-            queue[message.guild.id].songs.forEach((song, i) => { tosend.push(`${i + 1}. ${song.title} - 재생자: ${song.requester}`); });
-            message.channel.send({
-                embed: {
-                    color: 3447003,
-                    author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
-                    title: `삭제할 곡을 선택해주세요.`,
-                    fields: [{
-                        name: '곡 리스트',
-                        value: `${tosend.slice(0, 15).join('\n')}`
-                    }
-                    ],
-                    timestamp: new Date(),
-                    footer: {
-                        icon_url: client.user.avatarURL,
-                        text: '명령어 입력 시간 '
-                    }
-                }
-            })
-                .then(() => {
-                    const filter = m => m.author.id === message.author.id;
-                    message.channel.awaitMessages(filter, {
-                        max: 1,
-                        time: 30000,
-                        errors: ['time'],
-                    })
-                        .then((collected) => {
-                            if (collected.first().content == '나가기') throw new Error('취소했어요.');
-                            if (isNaN(parseInt(collected.first().content)) || !queue[message.guild.id].songs[parseInt(collected.first().content) - 1]) throw new Error('올바르지 않은 입력값입니다.');
-                            message.channel.send(`**${queue[message.guild.id].songs[parseInt(collected.first().content) - 1].title}**\n:ballot_box_with_check:해당 곡이 삭제되었습니다.`);
-                            queue[message.guild.id].songs.splice(parseInt(collected.first().content) - 1, 1);
-                        })
-                        .catch((err) => {
-                            if (!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
-                            else message.channel.send(err.message);
-                        });
-                });
-        },
         '삭제': (message) => {
             const parsedMessage = util.slice(message.content);
             if (!parsedMessage.command == '삭제' || parsedMessage.content == '') {
                 return;
             }
-            if (queue[message.guild.id] === undefined) return message.channel.send('리스트에 .명령어 + 링크 를 통하여 곡을 추가하세요.');
+            if (queue[message.guild.id] === undefined) return message.channel.send(':exclamation: 리스트에 곡이 없어요.');
             let tosend = [];
             queue[message.guild.id].songs.forEach((song, i) => { tosend.push(`${i + 1}. ${song.title} - 재생자: ${song.requester}`); });
             if (isNaN(parseInt(parsedMessage.content)) || !queue[message.guild.id].songs[parseInt(parsedMessage.content) - 1]) return message.channel.send('올바르지 않은 입력값입니다.');
@@ -697,14 +654,14 @@ module.exports = (client) => {
         },
         '일괄삭제': (message) => {
             const parsedMessage = util.slice(message.content);
-            if (queue[message.guild.id] === undefined) return message.channel.send('리스트에 .명령어 + 링크 를 통하여 곡을 추가하세요.');
+            if (queue[message.guild.id] === undefined) return message.channel.send(':exclamation: 리스트에 곡이 없어요.');
             let tosend = [];
             queue[message.guild.id].songs.forEach((song, i) => { tosend.push(`${i + 1}. ${song.title} - 재생자: ${song.requester}`); });
             queue = {};
             message.channel.send(':ballot_box_with_check:리스트에 있는 곡을 일괄삭제했어요.');
         },
         '리스트': (message) => {
-            if (queue[message.guild.id] === undefined) return message.channel.send('리스트에 .명령어 + 링크 를 통하여 곡을 추가하세요.');
+            if (queue[message.guild.id] === undefined) return message.channel.send(':exclamation: 리스트에 곡이 없어요.');
             let tosend = [];
             queue[message.guild.id].songs.forEach((song, i) => { tosend.push(`${i + 1}. ${song.title}`); });
             let page = Math.ceil(queue[message.guild.id].songs.length) / 10;
@@ -878,12 +835,8 @@ module.exports = (client) => {
                         value: '말 안 해도 아실거라 믿어요.'
                     },
                     {
-                        name: '재생시간',
-                        value: '현재 재생하고 있는 영상이 얼마만큼 흘렀는지 알려줍니다.'
-                    },
-                    {
-                        name: '크게+/작게-',
-                        value: '크게는 `+`기호 하나당 2%씩 소리를 늘리고 작게는 `-`기호 하나당 소리를 2%씩 소리를 줄입니다.'
+                        name: '현재',
+                        value: '현재 재생하고 있는 곡의 정보를 표출합니다.'
                     },
                     {
                         name: '볼륨 + 정수',
@@ -894,7 +847,7 @@ module.exports = (client) => {
                         value: '강제로 들어오거나 나가게 합니다. 강제로 나가게 할 경우 재생 기능이 중지됩니다.'
                     },
                     {
-                        name: '삭제 + 번호/지정삭제',
+                        name: '삭제 + 번호',
                         value: '리스트의 해당 곡을 삭제합니다.'
                     }],
                     timestamp: new Date(),
@@ -908,7 +861,6 @@ module.exports = (client) => {
         '나가': (message) => {
             if (message.member.voiceChannel) {
                 message.member.voiceChannel.leave();
-                message.channel.send('네 나갈게요...');
             } else {
                 return;
             }
