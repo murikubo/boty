@@ -230,24 +230,6 @@ module.exports = (client) => {
             });
         }
         
-        if (parsed.command == '나무위키' || parsed.command == '나뮈키') {
-            axios({
-                method: 'post',
-                url: 'https://openapi.naver.com/v1/util/shorturl',
-                params: {
-                    'url': encodeURI(`https://namu.wiki/w/${parsed.content}`),
-                },
-                headers: {
-                    'X-Naver-Client-Id': config.transId,
-                    'X-Naver-Client-Secret': config.transSecret
-                }
-            }).then((res) => {
-                message.channel.send(res.data.result.url);
-            }).catch((err)=> {
-                message.channel.send('Error occurred : `' + err + '`');
-            });
-        }
-
         if(parsed.command == '지역' && parsed.content != '') {
             axios({
                 method: 'get',

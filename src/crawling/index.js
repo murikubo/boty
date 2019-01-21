@@ -1,7 +1,9 @@
 const util = require('../util.js');
 const date = require('date-and-time');
-const iconv = require('iconv-lite');
 const axios = require('axios');
+const Crawler = require('crawler');
+
+const namuCommand = ['나무위키', '나뮈키', '나무']
 
 module.exports = (client) => {
     
@@ -35,8 +37,8 @@ module.exports = (client) => {
                 let bookobj = [];
                 for(let i = 0; i < bookarr.length; i++) {
                     bookobj[i] = {
-                        name: `${bookarr[i].slice(bookarr[i].search("\'>")+2, bookarr[i].search('</a>'))}`,
-                        id: `${bookarr[i].slice(0,bookarr[i].search("\'>"))}`,
+                        name: `${bookarr[i].slice(bookarr[i].search(/'>/)+2, bookarr[i].search('</a>'))}`,
+                        id: `${bookarr[i].slice(0,bookarr[i].search(/'>/))}`,
                         realprice: `${bookarr[i].slice(bookarr[i].search('<strike>')+8, bookarr[i].search('</strike>'))}`,
                         saleprice: `${bookarr[i].slice(bookarr[i].search('<span class=amount>')+19, bookarr[i].search('</span>'))}`
                     };
@@ -73,8 +75,8 @@ module.exports = (client) => {
                 };
                 if(content.length == 0) {
                     embedObj.embed.fields = [{
-                        name: "신간 페이지가 존재하지 않습니다.",
-                        value: "아직 정보가 갱신되지 않았거나 해당 날짜의 신간이 존재하지 않습니다."
+                        name: '신간 페이지가 존재하지 않습니다.',
+                        value: '아직 정보가 갱신되지 않았거나 해당 날짜의 신간이 존재하지 않습니다.'
                     }];
                 }
                 message.channel.send(embedObj)
@@ -109,6 +111,146 @@ module.exports = (client) => {
                 console.error(err);
                 message.channel.send('에러 또는 이 날에 신간이 없습니다. 혹시 모르니까 에러 메세지: ' + err);
             });
+        }
+        if(namuCommand.includes(parsed.command)) {
+            let helpcommand = ['help', '도움말', '가이드', 'h']
+            if(helpcommand.includes(parsed.param)) {
+                message.channel.send(util.embedFormat('나무위키 명령어 사용법',[], '`나무위키` 혹은 `나뮈키` 혹은 `나무`와 `내용`을 입력하여 나무위키에서 찾습니다. \n만약 `내용`의 문서가 존재한다면 다이렉트 링크를 출력합니다. \n`내용`과 같은 문서가 없다면 검색 결과를 출력합니다. \n 다이렉트를 무시하고 검색만 하려면 `-검색`을 내용 전에 추가해야합니다.' ));
+                return;
+            }
+            if(!parsed.content) return;
+            let searchUrl = 'https://namu.wiki/search/'+encodeURI(parsed.content);
+            let directUrl = 'https://namu.wiki/w/'+encodeURI(parsed.content);
+            let namu = new Crawler({
+                maxConnections: 1,
+                retries: 0
+            }); 
+            let search = {
+                uri: searchUrl,
+
+                callback: (error,res,done) => {
+                    if(error) {
+                        message.channel.send('Error message from request: ' + error.message);
+                        throw error;
+                    } else {
+                        Promise.resolve()
+                            .then(() => {
+                                const $ = res.$;
+                                let item = $('.search-item');
+                                if(!item.length) {
+                                    message.channel.send({
+                                        embed: {
+                                            author: {
+                                                name: client.user.username,
+                                                icon_url: client.user.avatarURL
+                                            },
+                                            title: parsed.content + ' 검색 결과',
+                                            description: '검색 결과가 없습니다.',
+                                            url: searchUrl,
+                                            color: '3447003',
+                                            timestamp: new Date(),
+                                            footer: {
+                                                icon_url: client.user.avatarURL,
+                                                text: '명령어 입력 시간'
+                                            }
+                                        }
+                                    });
+                                    throw new Error('no result');
+                                    
+                                }
+                                let crawldata = [];
+                                for(let i = 0; i < 5; i++){
+                                    crawldata[i] = {};
+                                    crawldata[i].name = item[i].children[0].next.children[1].children[2].data;
+                                    crawldata[i].hyperlink = 'https://namu.wiki' + item[i].children[0].next.children[1].attribs.href;
+                                    crawldata[i].hyperlink = crawldata[i].hyperlink.replace(/\(/g, '%28');
+                                    crawldata[i].hyperlink = crawldata[i].hyperlink.replace(/\)/g, '%29');
+                                    let description = '';
+                                    let contentarr = item[i].children[0].next.next.next.children;
+                                    for(let j = 0; j < contentarr.length; j++) {
+                                        if(crawldata[i].name.search('파일:') != -1) {
+                                            description = '[여기에 파일 설명을 입력].';
+                                            break;
+                                        }
+                                        else if(!contentarr[j].data) description += contentarr[j].children[0].data;
+                                        else description += contentarr[j].data;
+                                    }
+                                    crawldata[i].description = description;
+                                }
+                                return crawldata;
+                            })
+                            .then((crawldata) => {
+                                let fields = [];
+                                for(let i =0; i < crawldata.length; i++) {
+                                    fields.push({
+                                        name: crawldata[i].name,
+                                        value: '[바로가기]('+crawldata[i].hyperlink+')\n' + crawldata[i].description
+                                    });
+                                }
+                                return fields;
+                            })
+                            .then((fields) => {
+                                let embedObj = {
+                                    embed: {
+                                        author: {
+                                            name: client.user.username,
+                                            icon_url: client.user.avatarURL
+                                        },
+                                        title: parsed.content + ' 검색 결과',
+                                        url: searchUrl,
+                                        color: '3447003',
+                                        fields: fields,
+                                        timestamp: new Date(),
+                                        footer: {
+                                            icon_url: client.user.avatarURL,
+                                            text: '명령어 입력 시간'
+                                        }
+                                    }
+                                };
+                                message.channel.send(embedObj);
+                                done();
+                            })
+                            .catch((err) => {
+                                if(err.message == 'no result') return; 
+                                console.error(err.message);
+                                done();
+                            });
+                    }
+                }
+            };
+            if(parsed.param == '검색') namu.queue(search);
+            else {
+                Promise.resolve()
+                    .then(async () => {
+                        await namu.queue({
+                            uri: directUrl,
+                            callback: (error,res, done) => {
+                                let $ = res.$;
+                                if( $('.wiki-inner-content').children('p').text().search('해당 문서를 찾을 수 없습니다.') == -1 ) {
+                                    message.channel.send({
+                                        embed: {
+                                            author: {
+                                                name: client.user.username,
+                                                icon_url: client.user.avatarURL
+                                            },
+                                            title: parsed.content + '문서 바로가기',
+                                            url: directUrl,
+                                            color: '3447003',
+                                            timestamp: new Date(),
+                                            footer: {
+                                                icon_url: client.user.avatarURL,
+                                                text: '명령어 입력 시간'
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    namu.queue(search);
+                                }
+                                done();
+                            }
+                        });
+                    });
+            }
         }
     });
 
