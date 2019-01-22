@@ -283,7 +283,7 @@ module.exports = (client) => {
             message.channel.send('획득한 SR : ' + SR_RESULT);
         }
 
-        if (message.content.startsWith(prefix + '가챠')) {
+        if (command.command ==  '가챠') {
             /* let JewelData = Jewel[message.author.id];
             if (JewelData.Jewel < 2500) {
                 message.reply('쥬얼이 부족해요.');
