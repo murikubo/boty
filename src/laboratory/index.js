@@ -223,6 +223,41 @@ module.exports = (client) => {
                 });
             });
         }
+        if(command.command == '홀짝') {
+            let rng = _.random(1000000000);
+            if(command.content) {
+                let answer = command.content;
+                if(answer == '홀' || answer == '1') answer = 1;
+                else answer = 0;
+                if(rng%2 == answer) message.channel.send('정답이야요 : ' + rng );
+                else message.channel.send('틀렸대요~~~~ ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ : ' + rng);
+            }
+            else {
+                message.channel.send('홀? 짝?')
+                    .then(() => {
+                        const filter = m => m.author.id === message.author.id;
+                        message.channel.awaitMessages(filter, {
+                            max: 1,
+                            time: 1020,
+                            errors: ['time'],
+                        }).then((collected) => {
+                            let answer = collected.first().content;
+                            if(answer == '홀' || answer == '1') answer = 1;
+                            else answer = 0;
+                            return answer;
+                        }).then((answer) => {
+                            if(rng%2 == answer) message.channel.send('정답이야요 : ' + rng );
+                            else message.channel.send('틀렸대요~~~~ ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ : ' + rng);
+                        }).catch((err) => {
+                            console.error(err);
+                            message.channel.send('Error: ' + err)
+                        })
+                    }).catch((err) => {
+                        console.error(err);
+                        message.channel.send('Error: ' + err)
+                    })
+            }
+        }
 
         /* if (command.command == '금액' && command.content != '') {
             if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
