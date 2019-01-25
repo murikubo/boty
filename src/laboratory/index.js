@@ -238,7 +238,7 @@ module.exports = (client) => {
                         const filter = m => m.author.id === message.author.id;
                         message.channel.awaitMessages(filter, {
                             max: 1,
-                            time: 1020,
+                            time: 30000,
                             errors: ['time'],
                         }).then((collected) => {
                             let answer = collected.first().content;
@@ -248,14 +248,10 @@ module.exports = (client) => {
                         }).then((answer) => {
                             if(rng%2 == answer) message.channel.send('맞았어요 : ' + {files: ['./data/correct.jpg']} );
                             else message.channel.send('틀렸어요 : ' + {files: ['./data/incorrect.jpg']});
-                        }).catch((err) => {
-                            console.error(err);
-                            message.channel.send('Error: ' + err);
+                        }).catch(() => {
+                            message.channel.send('제한시간 초과!');
                         });
-                    }).catch((err) => {
-                        console.error(err);
-                        message.channel.send('Error: ' + err);
-                    });
+                    })
             }
         }
 
