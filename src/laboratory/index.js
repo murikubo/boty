@@ -246,8 +246,8 @@ module.exports = (client) => {
                             else answer = 0;
                             return answer;
                         }).then((answer) => {
-                            if(rng%2 == answer) message.channel.send('맞았어요 : ' + {files: ['./data/correct.jpg']} );
-                            else message.channel.send('틀렸어요 : ' + {files: ['./data/incorrect.jpg']});
+                            if(rng%2 == answer) message.channel.send('맞았어요 : ' + rng, {files: ['./data/correct.jpg']} );
+                            else message.channel.send('틀렸어요 : ' + rng, {files: ['./data/incorrect.jpg']});
                         }).catch((err) => {
                             console.error(err);
                             message.channel.send('Error: ' + err);
