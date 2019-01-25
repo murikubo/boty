@@ -164,27 +164,30 @@ module.exports = (client) => {
             const result1 = _.random(0, result.length - 1);
             const result2 = _.random(0, result.length - 1);
             const result3 = _.random(0, result.length - 1);
-            message.reply(`${result[result1]}   ${result[result2]}   ${result[result3]}`);
 
             if (result[result1] == result[result2] && result[result1] == result[result3]) {
                 JewelData.Jewel += 7000;
                 message.channel.send({
                     embed: {
+                        title: `${result[result1]}   ${result[result2]}   ${result[result3]}`,
                         color: 3447003,
                         description: `**__*승리!*__**\n게임에서 승리하여 **7,000**개의 쥬얼을 획득했어요.\n현재 쥬얼 : **${JewelData.Jewel.toLocaleString()}**개`
                     }
                 });
             } else if (result[result1] == result[result2] || result[result1] == result[result3] || result[result2] == result[result3]) {
-                message.channel.send({
+                
+                message.reply({
                     embed: {
+                        title: `${result[result1]}   ${result[result2]}   ${result[result3]}`,
                         color: 3447003,
                         description: `**__*아깝네요.*__**\n그러나 자비롭게 본전만은 돌려받아 **250**개의 쥬얼을 획득했어요.\n현재 쥬얼 : **${JewelData.Jewel.toLocaleString()}**개`
                     }
                 });
             } else {
                 JewelData.Jewel -= 250;
-                message.channel.send({
+                message.reply({
                     embed: {
+                        title: `${result[result1]}   ${result[result2]}   ${result[result3]}`,
                         color: 3447003,
                         description: `**__*패배!*__**\n인생이 뭐 그렇죠. **250**개의 쥬얼을 잃었어요.\n현재 쥬얼 : **${JewelData.Jewel.toLocaleString()}**개`
                     }
