@@ -229,8 +229,8 @@ module.exports = (client) => {
                 let answer = command.content;
                 if(answer == '홀' || answer == '1') answer = 1;
                 else answer = 0;
-                if(rng%2 == answer) message.channel.send('정답이야요 : ' + rng );
-                else message.channel.send('틀렸대요~~~~ ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ : ' + rng);
+                if(rng%2 == answer) message.channel.send('맞았어요 :' + rng, {files: ['./data/correct.jpg']});
+                else message.channel.send('틀렸어요 : ' + rng, {files: ['./data/incorrect.jpg']});
             }
             else {
                 message.channel.send('홀? 짝?')
@@ -246,16 +246,16 @@ module.exports = (client) => {
                             else answer = 0;
                             return answer;
                         }).then((answer) => {
-                            if(rng%2 == answer) message.channel.send('정답이야요 : ' + rng );
-                            else message.channel.send('틀렸대요~~~~ ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ : ' + rng);
+                            if(rng%2 == answer) message.channel.send('맞았어요 : ' + {files: ['./data/correct.jpg']} );
+                            else message.channel.send('틀렸어요 : ' + {files: ['./data/incorrect.jpg']});
                         }).catch((err) => {
                             console.error(err);
-                            message.channel.send('Error: ' + err)
-                        })
+                            message.channel.send('Error: ' + err);
+                        });
                     }).catch((err) => {
                         console.error(err);
-                        message.channel.send('Error: ' + err)
-                    })
+                        message.channel.send('Error: ' + err);
+                    });
             }
         }
 
