@@ -44,7 +44,7 @@ const getTime = (s) => {
 
 client.on('ready', () => {
     console.info(config.version);
-    client.user.setActivity('Halloween♥Code', { type: 'LISTENING' });
+    client.user.setActivity('Trinity Field', { type: 'LISTENING' });
 });
 const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
