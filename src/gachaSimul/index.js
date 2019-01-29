@@ -264,7 +264,7 @@ module.exports = (client) => {
                 userSSR[message.author.id].cardData.splice(parseInt(command.content)-1,1);
                 fs.writeFileSync('./data/user_ssr_data.json', JSON.stringify(userSSR, null, '\t'));
                 JewelData = Jewel[message.author.id];
-                JewelData.Jewel += 1000;
+                //JewelData.Jewel += 1000;
                 message.channel.send({
                     embed: {
                         title: `바이바이 ${delData.idolName}!`,
@@ -288,7 +288,7 @@ module.exports = (client) => {
                                 userSSR[message.author.id].cardData.splice(parseInt(collected.first().content)-1,1);
                                 fs.writeFileSync('./data/user_ssr_data.json', JSON.stringify(userSSR, null, '\t'));
                                 JewelData = Jewel[message.author.id];
-                                JewelData.Jewel += 1000;
+                                //JewelData.Jewel += 1000;
                                 message.channel.send({
                                     embed: {
                                         title: `바이바이 ${delData.idolName}!`,
