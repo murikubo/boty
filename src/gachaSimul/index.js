@@ -8,7 +8,6 @@ let SR_RESULT = 0;
 let RARE_RESULT = 0;
 const fs = require('fs');
 let SR_COUNT = '0'; //10연챠시 SR확정 구현을 위한 카운트
-let mod = JSON.parse(fs.readFileSync("./data/mod_data.json", "utf8"));
 const Jewel = require('../../data/Jewel_data.json');
 const userSSR = require('../../data/user_ssr_data.json');
 let JewelData;
@@ -64,6 +63,42 @@ const typecalc = (type1, type2) => {
 module.exports = (client) => {
     client.on('message', message => {
         let command = util.slice(message.content);
+
+        const cardListUp = () => {
+            const userSSR = require('../../data/user_ssr_data.json');
+            let tosend = [];
+            userSSR[message.author.id].cardData.forEach((cardList, i) => { tosend.push(`${i + 1}. ${cardList.cardName}`); });
+            let page = Math.ceil(userSSR[message.author.id].cardData.length) / 10;
+            let index = 0;
+            let embed = [{ name: `${index + 1} 페이지`, value: `${tosend.slice(10 * index, (index + 1) * 10).join('\n')}` }];
+            message.channel.send(util.embedFormat(`획득 쓰알 리스트 **총${userSSR[message.author.id].cardData.length}**장`, embed))
+                .then(async (sentMessage) => {
+                    await sentMessage.react('\u2B05')
+                        .then(() => {
+                            const filter = (reaction, user) => reaction.emoji.name === '\u2B05' && user.id === message.author.id;
+                            const collector = sentMessage.createReactionCollector(filter);
+                            collector.on('collect', reaction => {
+                                if (index != 0) index--;
+
+                                embed = [{ name: `${index + 1} 페이지`, value: `${tosend.slice(10 * index, (index + 1) * 10).join('\n')}` }];
+                                sentMessage.edit(util.embedFormat(`획득 쓰알 리스트 **총${userSSR[message.author.id].cardData.length}**장`, embed));
+                                reaction.remove(message.author.id);
+                            });
+                        });
+                    await sentMessage.react('\u27A1')
+                        .then(() => {
+                            const filter = (reaction, user) => reaction.emoji.name === '\u27A1' && user.id === message.author.id;
+                            const collector = sentMessage.createReactionCollector(filter, { time: 30000 });
+                            collector.on('collect', reaction => {
+                                if (page > index + 1) index++;
+                                embed = [{ name: `${index + 1} 페이지`, value: `${tosend.slice(10 * index, (index + 1) * 10).join('\n')}` }];
+                                sentMessage.edit(util.embedFormat(`획득 쓰알 리스트 **총${userSSR[message.author.id].cardData.length}**장`, embed));
+                                reaction.remove(message.author.id);
+                            });
+                            collector.on('end', () => sentMessage.clearReactions());
+                        });
+                });
+        }
 
         const memberLiset = () => {
             let tosend = [];
@@ -216,41 +251,109 @@ module.exports = (client) => {
             message.channel.send(`현재 쥬얼은 **__${Jewel[message.author.id].Jewel.toLocaleString()}__**개 있어요.`);
         }
 
-        if (command.command == '카드') {
+        if (command.command == '카드' && !command.param) {
             if(userSSR[message.author.id] == null) return message.channel.send({ embed: { color: 3447003, description: `획득한 쓰알이 없네요.` } });
+            cardListUp();
+        }
 
-            let tosend = [];
-            userSSR[message.author.id].cardData.forEach((cardList, i) => { tosend.push(`${i + 1}. ${cardList.cardName}`); });
-            let page = Math.ceil(userSSR[message.author.id].cardData.length) / 10;
-            let index = 0;
-            let embed = [{ name: `${index + 1} 페이지`, value: `${tosend.slice(10 * index, (index + 1) * 10).join('\n')}` }];
-            message.channel.send(util.embedFormat(`획득 쓰알 리스트 **총 ${userSSR[message.author.id].cardData.length}**장`, embed))
-                .then(async (sentMessage) => {
-                    await sentMessage.react('\u2B05')
-                        .then(() => {
-                            const filter = (reaction, user) => reaction.emoji.name === '\u2B05' && user.id === message.author.id;
-                            const collector = sentMessage.createReactionCollector(filter);
-                            collector.on('collect', reaction => {
-                                if (index != 0) index--;
-
-                                embed = [{ name: `${index + 1} 페이지`, value: `${tosend.slice(10 * index, (index + 1) * 10).join('\n')}` }];
-                                sentMessage.edit(util.embedFormat(`획득 쓰알 리스트 **총 ${userSSR[message.author.id].cardData.length}**장`, embed));
-                                reaction.remove(message.author.id);
-                            });
-                        });
-                    await sentMessage.react('\u27A1')
-                        .then(() => {
-                            const filter = (reaction, user) => reaction.emoji.name === '\u27A1' && user.id === message.author.id;
-                            const collector = sentMessage.createReactionCollector(filter, { time: 30000 });
-                            collector.on('collect', reaction => {
-                                if (page > index + 1) index++;
-                                embed = [{ name: `${index + 1} 페이지`, value: `${tosend.slice(10 * index, (index + 1) * 10).join('\n')}` }];
-                                sentMessage.edit(util.embedFormat(`획득 쓰알 리스트 **총${userSSR[message.author.id].cardData.cardListlength}**장`, embed));
-                                reaction.remove(message.author.id);
-                            });
-                            collector.on('end', () => sentMessage.clearReactions());
-                        });
+        if(command.command == '카드' && command.param == '이적') {
+            if(userSSR[message.author.id] == null) return message.channel.send({ embed: { color: 3447003, description: `획득한 쓰알이 없네요.` } });
+            if(command.content) {
+                if(isNaN(parseInt(command.content)) || !userSSR[message.author.id].cardData[parseInt(command.content)-1] ) return message.channel.send('올바르지 않은 입력값입니다.');
+                let delData = userSSR[message.author.id].cardData[parseInt(command.content)-1];
+                userSSR[message.author.id].cardData.splice(parseInt(command.content)-1,1);
+                fs.writeFileSync('./data/user_ssr_data.json', JSON.stringify(userSSR, null, '\t'));
+                JewelData = Jewel[message.author.id];
+                JewelData.Jewel += 1000;
+                message.channel.send({
+                    embed: {
+                        title: `바이바이 ${delData.idolName}!`,
+                        color: 3447003,
+                        description: `아이돌을 이적시켜 **1,000**쥬얼을 얻었어요.\n현재 쥬얼 : **${JewelData.Jewel.toLocaleString()}**개`
+                    }
                 });
+            } else {
+                Promise.resolve(cardListUp())
+                    .then(() => {
+                        const filter = m => m.author.id === message.author.id;
+                        message.channel.awaitMessages(filter, {
+                            max: 1,
+                            time: 30000,
+                            errors: ['time'],
+                        })
+                            .then((collected) => {
+                                if(collected.first().content == '취소') throw new Error('취소했습니다.');
+                                if(isNaN(parseInt(collected.first().content)) || !userSSR[message.author.id].cardData[parseInt(collected.first().content)-1] ) throw new Error('올바르지 않은 입력값입니다.');
+                                let delData = userSSR[message.author.id].cardData[parseInt(collected.first().content)-1];
+                                userSSR[message.author.id].cardData.splice(parseInt(collected.first().content)-1,1);
+                                fs.writeFileSync('./data/user_ssr_data.json', JSON.stringify(userSSR, null, '\t'));
+                                JewelData = Jewel[message.author.id];
+                                JewelData.Jewel += 1000;
+                                message.channel.send({
+                                    embed: {
+                                        title: `바이바이 ${delData.idolName}!`,
+                                        color: 3447003,
+                                        description: `아이돌을 이적시켜 **1,000**쥬얼을 얻었어요.\n현재 쥬얼 : **${JewelData.Jewel.toLocaleString()}**개`
+                                    }
+                                });
+                            })
+                            .catch((err) => {
+                                if(!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
+                                else message.channel.send(err.message);
+                            });
+                    });
+            }
+        }
+
+        if(command.command == '카드' && command.param == '상세정보') {
+            if(userSSR[message.author.id] == null) return message.channel.send({ embed: { color: 3447003, description: `획득한 쓰알이 없네요.` } });
+            if(command.content) {
+                if(isNaN(parseInt(command.content)) || !userSSR[message.author.id].cardData[parseInt(command.content)-1] ) return message.channel.send('올바르지 않은 입력값입니다.');
+                let detailData = userSSR[message.author.id].cardData[parseInt(command.content)-1];
+                let tempSort = [Number(detailData.vocal), Number(detailData.dance), Number(detailData.visual)];
+                tempSort.sort(function(a,b){
+                    return b - a;
+                });
+                let cardATK = (tempSort[0] /3 + tempSort[1] /4 + tempSort[2] / 5) / 8;
+                message.channel.send({
+                    embed: {
+                        title: `${detailData.cardName}의 상세정보`,
+                        color: 3447003,
+                        description: `**이름** : ${detailData.idolName}\n**타입** : ${detailData.cardType}\n**유형** : ${detailData.gentei}\n**보컬수치** : ${detailData.vocal}\n**댄스수치** : ${detailData.dance}\n**비쥬얼수치** : ${detailData.visual}\n**총 합** : ${detailData.sum}\n**공격력** : ${cardATK.toFixed(0)}\n`
+                    }
+                });
+            } else {
+                Promise.resolve(cardListUp())
+                    .then(() => {
+                        const filter = m => m.author.id === message.author.id;
+                        message.channel.awaitMessages(filter, {
+                            max: 1,
+                            time: 30000,
+                            errors: ['time'],
+                        })
+                            .then((collected) => {
+                                if(collected.first().content == '취소') throw new Error('취소했습니다.');
+                                if(isNaN(parseInt(collected.first().content)) || !userSSR[message.author.id].cardData[parseInt(collected.first().content)-1] ) throw new Error('올바르지 않은 입력값입니다.');
+                                let detailData = userSSR[message.author.id].cardData[parseInt(collected.first().content)-1];
+                                let tempSort = [Number(detailData.vocal), Number(detailData.dance), Number(detailData.visual)];
+                                tempSort.sort(function(a,b){
+                                    return b - a;
+                                });
+                                let cardATK = (tempSort[0] /3 + tempSort[1] /4 + tempSort[2] / 5) / 8;
+                                message.channel.send({
+                                    embed: {
+                                        title: `${detailData.cardName}의 상세정보`,
+                                        color: 3447003,
+                                        description: `**이름** : ${detailData.idolName}\n**타입** : ${detailData.cardType}\n**유형** : ${detailData.gentei}\n**보컬수치** : ${detailData.vocal}\n**댄스수치** : ${detailData.dance}\n**비쥬얼수치** : ${detailData.visual}\n**총 합** : ${detailData.sum}\n**공격력** : ${cardATK.toFixed(0)}\n`
+                                    }
+                                });
+                            })
+                            .catch((err) => {
+                                if(!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
+                                else message.channel.send(err.message);
+                            });
+                    });
+            }
         }
 
         if (command.command == "가챠") {
@@ -284,7 +387,7 @@ module.exports = (client) => {
                     }
                     const result = userSSR[message.author.id].cardData.find(senkawa => senkawa.cardName === gachaResult.title + gachaResult.name);
                     if(!result == true){
-                        userSSR[message.author.id].cardData.push({ cardName: gachaResult.title + gachaResult.name, cardType: gachaResult.type, gentei: gachaResult.gacha_type, vocal:gachaResult.vocal, dance:gachaResult.dance, visual:gachaResult.visual, sum:gachaResult.sum});
+                        userSSR[message.author.id].cardData.push({ idolName:gachaResult.name ,cardName: gachaResult.title + gachaResult.name, cardType: gachaResult.type, gentei: gachaResult.gacha_type, vocal:gachaResult.vocal, dance:gachaResult.dance, visual:gachaResult.visual, sum:gachaResult.sum});
                         fs.writeFileSync('./data/user_ssr_data.json', JSON.stringify(userSSR, null, '\t'));
                     } else {
                         JewelData = Jewel[message.author.id];
