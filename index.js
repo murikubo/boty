@@ -44,25 +44,19 @@ const getTime = (s) => {
 
 client.on('ready', () => {
     console.info(config.version);
-    client.user.setActivity('Halloween♥Code', { type: 'LISTENING' });
+    client.user.setActivity('Trinity Field', { type: 'LISTENING' });
 });
 const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 client.on('message', message => {
     //if (!message.content.startsWith(prefix)) return; //프리픽스로 시작되지 않는 명령어들은 비활성화.    
 
-    let word1 = ['아니요', '아닐걸요?', '꼭 그래야만 하나요?', '글쎄요', '그럴까요?', '진짜요?', '진심이세요?', '아마도요.', '그렇나봐요.', '저는 잘 모르죠.', '별로요.', '어떻게 그럴 수 있나요'];//'제가 이런 말 잘 안 하는데 이번만 말씀드릴게요.'+'\n'+'\n'+'네 그래요!'
-    let word2 = ['아니예요', '아닐걸요? 인거예요', '하와와 꼭 그래야만 하나요?', '하와와...글쎄요', '호에에 그럴까요?', '호에에~ 진짜요?', '호게겟 진심이세요??', '아마도 인 것 같아예요.', '그렇나봐요 인거예요', '하와와 저는 잘 모르죠.', '호에에 별로에요.', '하와와..어떻게 그럴 수 있나요??']
+    let word1 = ['아니요', '아닐걸요?', '꼭 그래야만 하나요?', '글쎄요', '그럴까요?', '진짜요?', '진심이세요?', '아마도요.', '그렇나봐요.', '저는 잘 모르죠.', '별로요.', '어떻게 그럴 수 있나요'];
     let word3 = ['어쩌라고요', '싫은데요?', '꺼져요 좀', '아 그래서 뭐요', '제가 왜 그래야하죠?', '쥐보다 못 한 주제에 자꾸 그러지 마세요', '엄청 띠껍네요', '본인 이야기인가요?', '그러시던가요.', '쫄았어요?', '그러고 싶으세요?', '사람이란게 컴퓨터한테 그러고 싶어요?']
     let result = [];
-    let result2 = [];
     let result3 = [];
     result[0] = word1[Math.floor(Math.random() * word1.length)];
-    result2[0] = word2[Math.floor(Math.random() * word2.length)];
     result3[0] = word3[Math.floor(Math.random() * word3.length)];
-    let song = require('./data/general_data.json').song;
-    let result1 = [];
-    result1[0] = song[Math.floor(Math.random() * song.length)];
     const parsed = util.slice(message.content);
     if (parsed.command == '도움말') {
         const parsedMessage = util.slice(message.content);
@@ -131,17 +125,6 @@ client.on('message', message => {
     }
     */
 
-    if (parsed.command === '박수') {
-        if (!message.member.voiceChannel) return message.channel.send('음성채널에 들어간 상태여야해요.');
-        else {
-            message.member.voiceChannel.join()
-                .then(connection => {
-                    connection.playArbitraryInput('https://cdn.discordapp.com/attachments/415419742648795141/459239726872788993/-_9.mp3');
-                    setTimeout(function () { message.member.voiceChannel.leave() }, 9000)
-                });
-        }
-    }
-
     if (parsed.command == '범죄계수') {
         if (message.author.id == 415681577033400320) return message.channel.send('범죄계수 0');
         let Sibyl_System = Math.floor((Math.random() * 999));
@@ -176,11 +159,7 @@ client.on('message', message => {
     }
 
     if (parsed.command == '야' && parsed.content != '') {
-        if (mod.mod.jkJK == '1') {
-            message.channel.send(result2[0]);
-        } else if (mod.mod.jk == '0') {
-            message.channel.send(result[0]);
-        }
+        message.channel.send(result[0]);
     }
 
     if (parsed.command == '야야' && parsed.content != '') {
@@ -222,48 +201,6 @@ client.on('message', message => {
     }
 
     if (!message.guild) return;
-
-    if (parsed.command == '퀴이즈') {
-        const embed = new discord.RichEmbed()
-            .setTitle("문제!")
-            .setAuthor(client.user.username, client.user.avatarURL)
-            .setColor(3447003)
-            .setDescription("**__문제 상세 설명 자리.__**")
-            .setFooter("명령어 입력 시간", client.user.avatarURL) //하단 아바타 이미지
-            //.setImage("") //하단 이미지
-            //.setThumbnail(usrAvatar) //썸네일 이미지
-            .setTimestamp()
-            //.setURL("") //타이틀에 URL
-            .addField("1번",
-                "문제가 나올 곳", true)
-            .addField("2번",
-                "문제가 나올 곳", true)
-            .addField("3번",
-                "문제가 나올 곳", true)
-            .addField("4번",
-                "문제가 나올 곳", true)
-        //.addField("", "", true) //인라인필드
-        /*
-         * 빈 칸 만들어주는 필드
-         */
-        //.addBlankField(true)
-        //.addField("필드3", "필드 25개까지.", true);
-
-        message.channel.send({ embed })
-            .then(() => {
-                message.channel.awaitMessages(response => response.content === '사기사와 후미카', {
-                    max: 1,
-                    time: 10000,
-                    errors: ['time'],
-                })
-                    .then((collected) => {
-                        message.channel.send(`맞아요 정답이에요.`);
-                    })
-                    .catch(() => {
-                        message.channel.send('시간 내에 입력을 못 했어요!');
-                    });
-            });
-    }
 });
 
 client.on('guildMemberAdd', member => {
