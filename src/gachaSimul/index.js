@@ -26,7 +26,7 @@ const battle = (myType, aiteType, myHp, aiteHp, myATK, aiteATK) => {
     let battleCount = 1;
     while (hp2 > 0 && hp1 > 0) {
         hp2 = hp2 - myATK * typecalc(myType, aiteType) * _.random(3, 7);
-        hp1 = hp1 - aiteATK * typecalc(aiteType, myType) * _.random(3, 8);
+        hp1 = hp1 - aiteATK * typecalc(aiteType, myType) * _.random(3, 7);
         content.push({
             name: `${battleCount}페이즈`,
             value: `나 HP:**${hp1.toFixed(0)}** vs 상대 HP:**${hp2.toFixed(0)}**`
