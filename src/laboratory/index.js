@@ -255,6 +255,11 @@ module.exports = (client) => {
             }
         }
 
+        if(command.command == '복권') {
+            let lottoCount = [1,2,2,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,6];
+            message.channel.send(`||${lottoCount[_.random(0,lottoCount.length-1)]}등!||`);
+        }
+
         /* if (command.command == '금액' && command.content != '') {
             if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
             const cahngeKorean = (senkawa) => {
