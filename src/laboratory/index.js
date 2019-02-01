@@ -611,7 +611,7 @@ module.exports = (client) => {
         let command = util.slice(message.content);
         if (command.command === "핑") {
             const awaitMessage = await message.channel.send("계산중!");
-            awaitMessage.edit(`:ping_pong: 퐁!! 후미카씨 서버와의 지연속도는 **${awaitMessage.createdTimestamp - message.createdTimestamp}ms**에요. API자체의 지연속도는 **${Math.round(client.ping)}ms**에요.`);
+            awaitMessage.edit(`:ping_pong: 퐁!! 후미카씨 서버와의 지연속도는 **${awaitMessage.createdTimestamp - message.createdTimestamp}ms**에요. \nAPI자체의 지연속도는 **${Math.round(client.ping)}ms**에요.`);
         }
     });
 };

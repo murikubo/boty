@@ -49,14 +49,14 @@ const battle = (myType, aiteType, myHp, aiteHp, myATK, aiteATK) => {
 }
 
 const typecalc = (type1, type2) => {
-    if (type1 == 'cute' && type2 == 'cool') return 1.2;
-    if (type1 == 'cute' && type2 == 'passion') return 0.8;
+    if (type1 == 'cute' && type2 == 'cool') return 1.1;
+    if (type1 == 'cute' && type2 == 'passion') return 0.9;
     if (type1 == 'cute' && type2 == 'cute') return 1;
-    if (type1 == 'cool' && type2 == 'passion') return 1.2;
+    if (type1 == 'cool' && type2 == 'passion') return 1.1;
     if (type1 == 'cool' && type2 == 'cool') return 1;
-    if (type1 == 'cool' && type2 == 'cute') return 0.8;
-    if (type1 == 'passion' && type2 == 'cute') return 1.2;
-    if (type1 == 'passion' && type2 == 'cool') return 0.8;
+    if (type1 == 'cool' && type2 == 'cute') return 0.9;
+    if (type1 == 'passion' && type2 == 'cute') return 1.1;
+    if (type1 == 'passion' && type2 == 'cool') return 0.9;
     if (type1 == 'passion' && type2 == 'passion') return 1;
 }
 
