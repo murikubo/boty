@@ -260,6 +260,11 @@ module.exports = (client) => {
             message.channel.send(`||${lottoCount[_.random(0,lottoCount.length-1)]}등!||`);
         }
 
+        if(command.command == 'base64') {
+            if(command.param == 'd') message.channel.send(Buffer.from(command.content, 'base64').toString('utf8'));
+            else message.channel.send(Buffer.from(command.content).toString('base64'));
+        }
+
         /* if (command.command == '금액' && command.content != '') {
             if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
             const cahngeKorean = (senkawa) => {
