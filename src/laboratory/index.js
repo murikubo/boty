@@ -560,6 +560,39 @@ module.exports = (client) => {
             }
         }
 
+        if (command.command == '강화' && command.content != '') {
+            if(isNaN(parseInt(command.content))) return message.channel.send('올바르지 않은 입력값이에요.');
+            if(command.param != null && isNaN(parseInt(command.param))) return message.channel.send('올바르지 않은 입력값이에요.');
+            if (command.content.length >= 7) return message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: `소숫점 포함해서 7자리까지만 시뮬이 가능해요.`
+                }
+            });
+            let tempParam = 0; 
+            if(command.param != null) tempParam = parseInt(command.param);
+            for (let i = 1; i < 5000000; i++) {
+                let gacha = Math.floor((Math.random() * 1000000) + 1);
+                if (gacha <= Number(command.content) * 10000 + (tempParam * 10000 * (i-1))) {
+                    return message.channel.send({
+                        embed: {
+                            color: 3447003,
+                            title: '강화 성공!',
+                            fields: [{
+                                name: `총 **${i.toLocaleString()}번** 만에 성공했어요.`,
+                                value: `강화할 때 마다 **${tempParam}%**의 확률이 올라 최종적으로 **${parseInt(command.content)+parseInt(tempParam*(i-1))}%** 확률로 성공했어요.`
+                            }],
+                            timestamp: new Date(),
+                            footer: {
+                                icon_url: client.user.avatarURL,
+                                text: '명령어 입력 시간 '
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
         if (command.command == '찬반' && command.content != '') {
             if (command.content.length > 8) return message.channel.send('하지 마세요 과부하걸려요');
             if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
