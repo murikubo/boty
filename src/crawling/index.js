@@ -3,7 +3,7 @@ const date = require('date-and-time');
 const axios = require('axios');
 const Crawler = require('crawler');
 
-const namuCommand = ['나무위키', '나뮈키', '나무']
+const namuCommand = ['나무위키', '나뮈키', '나무'];
 
 module.exports = (client) => {
     
@@ -11,14 +11,16 @@ module.exports = (client) => {
         let parsed = util.slice(message.content);
         if(parsed.command == '북새통') {
             if(parsed.param) {
-                message.channel.send(util.embedFormat('북새통 명령어 사용법',[], '`북새통`명령어만 입력하면 오늘의 신간이 나옵니다. \n내용에 `내일`을 입력하면 내일의 신간이 나옵니다. \n내용에 `YYYY-MM-DD`를 입력하면 해당 날짜의 신간이 나옵니다.'));
+                message.channel.send(util.embedFormat('북새통 명령어 사용법',[], '`북새통`명령어만 입력하면 오늘의 신간이 나옵니다. \n내용에 `어제`를 입력하면 어제의 신간이 나옵니다. \n내용에 `내일`을 입력하면 내일의 신간이 나옵니다. \n내용에 `YYYY-MM-DD`를 입력하면 해당 날짜의 신간이 나옵니다.'));
                 return;
             }
             let now = new Date();
             let day;
             if(!parsed.content) day = date.format(now, 'YYYY-MM-DD');
+            else if (parsed.content == '어제') day = date.format(date.addDays(now,-1), 'YYYY-MM-DD');
             else if (parsed.content == '내일') day = date.format(date.addDays(now,1), 'YYYY-MM-DD');
             else if (parsed.content && date.parse(parsed.content, 'YYYY-MM-DD')) day = parsed.content;
+            else if (date.parse(parsed.content, 'YYMMDD')) day = date.format(date.parse(parsed.content, 'YYMMDD'), 'YYYY-MM-DD');
             else day = date.format(now, 'YYYY-MM-DD');
             axios({
                 url: 'http://booksaetong.co.kr/shop/list.php?ca_id=90&gdate=' + day,
@@ -87,22 +89,24 @@ module.exports = (client) => {
                         await sentMessage.react('\u2B05')
                             .then(() => {
                                 const collector = sentMessage.createReactionCollector((reaction, user) => reaction.emoji.name === '\u2B05' && user.id === message.author.id);
-                                collector.on('collect', () => {
+                                collector.on('collect', (reaction) => {
                                     if(index!=0)index--;
                                     embedObj.embed.author.name = index+1 + ' 페이지';
                                     embedObj.embed.fields = content[index];
                                     sentMessage.edit(embedObj);
+                                    reaction.remove(message.author.id);
                                 });
                             });
                         await sentMessage.react('\u27A1')
                             .then(() => {
                                 const collector = sentMessage.createReactionCollector((reaction, user) => reaction.emoji.name === '\u27A1' && user.id === message.author.id, { time: 30000 });
-                                collector.on('collect', () => {
+                                collector.on('collect', (reaction) => {
                                     if(content.length-1>index)index++;
                                     embedObj.embed.author.name = index+1 + ' 페이지';
                                     embedObj.embed.fields = content[index];
                                     
                                     sentMessage.edit(embedObj);
+                                    reaction.remove(message.author.id);
                                 });
                                 collector.on('end', () => sentMessage.clearReactions());
                             });
