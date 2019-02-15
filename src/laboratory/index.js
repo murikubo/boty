@@ -566,11 +566,11 @@ module.exports = (client) => {
             if (command.content.length >= 7) return message.channel.send({
                 embed: {
                     color: 3447003,
-                    description: `소숫점 포함해서 7자리까지만 시뮬이 가능해요.`
+                    description: '소숫점 포함해서 7자리까지만 강화 시뮬이 가능해요.'
                 }
             });
             let tempParam = 0; 
-            if(command.param != null) tempParam = parseInt(command.param);
+            if(command.param) tempParam = parseInt(command.param);
             for (let i = 1; i < 5000000; i++) {
                 let gacha = Math.floor((Math.random() * 1000000) + 1);
                 if (gacha <= Number(command.content) * 10000 + (tempParam * 10000 * (i-1))) {
