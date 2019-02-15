@@ -94,16 +94,16 @@ module.exports = (client) => {
             new Promise((resolve) => {
                 resolve();
             }).then(async () => {
-                if(parsed.param == 'kj'){
+                if(parsed.param == 'kj' || parsed.param == 'wy'){
                     if(parsed.content != '' && !isNaN(parseInt(parsed.content))) return await any('KRW', 'JPY', parsed.content);
                     return await any('KRW', 'JPY', '1000');
-                } else if(parsed.param == 'jk' || !parsed.param) {
+                } else if(parsed.param == 'jk' || parsed.param == 'yw' || !parsed.param) {
                     if(parsed.content != '' && !isNaN(parseInt(parsed.content)) ) return await any('JPY', 'KRW', parsed.content);
                     return await any();
-                }else if(parsed.param == 'uk') {
+                }else if(parsed.param == 'uk' || parsed.param == 'dw') {
                     if(parsed.content != '' && !isNaN(parseInt(parsed.content)) ) return await any('USD', 'KRW', parsed.content);
                     return await any('USD', 'KRW', '1');
-                } else if(parsed.param == 'ku') {
+                } else if(parsed.param == 'ku' || parsed.param == 'wd') {
                     if(parsed.content != '' && !isNaN(parseInt(parsed.content)) ) return await any('KRW', 'USD', parsed.content);
                     return await any('KRW', 'USD', '1000');
                 } else if(parsed.param == 'help' || parsed.param == 'h') {
