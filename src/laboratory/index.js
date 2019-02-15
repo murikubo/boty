@@ -126,7 +126,7 @@ module.exports = (client) => {
                 });
         }
         if (command.command == '퇴근') {
-            message.channel.send({files: ['./data/toegeun.jpg']});
+            message.channel.send({ files: ['./data/toegeun.jpg'] });
         }
         if (command.command == '크롱') {
             const http = require('https'); // https모듈과 http모듈이 호환될까?? 궁금하긴 한데 해보진 않았다.
@@ -197,7 +197,9 @@ module.exports = (client) => {
 
         if (command.command == '소비세' && command.content != '') {
             if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
-            let amt = Number(command.content) + Number(Number(command.content) / 100 * 8);
+            let tax = 8;
+            if (command.param == '10') tax = 10;
+            let amt = Number(command.content) + Number(Number(command.content) / 100 * tax);
             axios({
                 method: 'get',
                 url: `http://api.manana.kr/exchange/rate/KRW/JPY.json`
@@ -212,7 +214,7 @@ module.exports = (client) => {
                         title: '소비세 계산',
                         fields: [{
                             name: `총 금액 : **${Math.floor(amt)}**엔 \n ${res.data[0].date} 기준 ${parseFloat(eval(res.data[0].rate * amt).toFixed(2)).toLocaleString()}원`,
-                            value: `원금**${command.content}**엔의 소비세는 **${Math.floor(Number(command.content) / 100 * 8)}**엔 입니다.`
+                            value: `원금**${command.content}**엔의 소비세는 **${Math.floor(Number(command.content) / 100 * tax)}**엔 입니다.`
                         }],
                         timestamp: new Date(),
                         footer: {
@@ -223,14 +225,14 @@ module.exports = (client) => {
                 });
             });
         }
-        if(command.command == '홀짝') {
+        if (command.command == '홀짝') {
             let rng = _.random(1000000000);
-            if(command.content) {
+            if (command.content) {
                 let answer = command.content;
-                if(answer == '홀' || answer == '1') answer = 1;
+                if (answer == '홀' || answer == '1') answer = 1;
                 else answer = 0;
-                if(rng%2 == answer) message.channel.send('맞았어요 :' + rng, {files: ['./data/correct.jpg']});
-                else message.channel.send('틀렸어요 : ' + rng, {files: ['./data/incorrect.jpg']});
+                if (rng % 2 == answer) message.channel.send('맞았어요 :' + rng, { files: ['./data/correct.jpg'] });
+                else message.channel.send('틀렸어요 : ' + rng, { files: ['./data/incorrect.jpg'] });
             }
             else {
                 message.channel.send('홀? 짝?')
@@ -242,12 +244,12 @@ module.exports = (client) => {
                             errors: ['time'],
                         }).then((collected) => {
                             let answer = collected.first().content;
-                            if(answer == '홀' || answer == '1') answer = 1;
+                            if (answer == '홀' || answer == '1') answer = 1;
                             else answer = 0;
                             return answer;
                         }).then((answer) => {
-                            if(rng%2 == answer) message.channel.send('맞았어요 : ' + rng, {files: ['./data/correct.jpg']} );
-                            else message.channel.send('틀렸어요 : ' + rng, {files: ['./data/incorrect.jpg']});
+                            if (rng % 2 == answer) message.channel.send('맞았어요 : ' + rng, { files: ['./data/correct.jpg'] });
+                            else message.channel.send('틀렸어요 : ' + rng, { files: ['./data/incorrect.jpg'] });
                         }).catch(() => {
                             message.channel.send('제한시간 초과!');
                         });
@@ -255,13 +257,13 @@ module.exports = (client) => {
             }
         }
 
-        if(command.command == '복권') {
-            let lottoCount = [1,2,2,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,6];
-            message.channel.send(`||${lottoCount[_.random(0,lottoCount.length-1)]}등!||`);
+        if (command.command == '복권') {
+            let lottoCount = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6];
+            message.channel.send(`||${lottoCount[_.random(0, lottoCount.length - 1)]}등!||`);
         }
 
-        if(command.command == 'base64') {
-            if(command.param == 'd') message.channel.send(Buffer.from(command.content, 'base64').toString('utf8'));
+        if (command.command == 'base64') {
+            if (command.param == 'd') message.channel.send(Buffer.from(command.content, 'base64').toString('utf8'));
             else message.channel.send(Buffer.from(command.content).toString('base64'));
         }
 
@@ -552,6 +554,39 @@ module.exports = (client) => {
                         embed: {
                             color: 3447003,
                             description: `총 **${i.toLocaleString()}번** 만에 떴어요`
+                        }
+                    });
+                }
+            }
+        }
+
+        if (command.command == '강화' && command.content != '') {
+            if(isNaN(parseInt(command.content))) return message.channel.send('올바르지 않은 입력값이에요.');
+            if(command.param != null && isNaN(parseInt(command.param))) return message.channel.send('올바르지 않은 입력값이에요.');
+            if (command.content.length >= 7) return message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: `소숫점 포함해서 7자리까지만 시뮬이 가능해요.`
+                }
+            });
+            let tempParam = 0; 
+            if(command.param != null) tempParam = parseInt(command.param);
+            for (let i = 1; i < 5000000; i++) {
+                let gacha = Math.floor((Math.random() * 1000000) + 1);
+                if (gacha <= Number(command.content) * 10000 + (tempParam * 10000 * (i-1))) {
+                    return message.channel.send({
+                        embed: {
+                            color: 3447003,
+                            title: '강화 성공!',
+                            fields: [{
+                                name: `총 **${i.toLocaleString()}번** 만에 성공했어요.`,
+                                value: `강화할 때 마다 **${tempParam}%**의 확률이 올라 최종적으로 **${parseInt(command.content)+parseInt(tempParam*(i-1))}%** 확률로 성공했어요.`
+                            }],
+                            timestamp: new Date(),
+                            footer: {
+                                icon_url: client.user.avatarURL,
+                                text: '명령어 입력 시간 '
+                            }
                         }
                     });
                 }
