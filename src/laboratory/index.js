@@ -604,7 +604,8 @@ module.exports = (client) => {
         }
 
         if (command.command == 'cut' || command.command == '유자') {
-            let messageCont = command.content.slice(command.content.search('=') + 1, command.content.search('&')) + '\n `' + command.content.slice(0, command.content.search('&')) + '`';
+            let messageCont = command.content.slice(command.content.search('=') + 1, command.content.search('&')) + '\n`' + command.content.slice(command.content.search('https://'), command.content.search('&')) + '`';
+            messageCont = messageCont.replace('music.', 'www.');
             if (command.content.search('&') == -1) {
                 messageCont = command.content.slice(command.content.search('=') + 1) + '\n `' + command.content.slice(0) + '`';
             }
