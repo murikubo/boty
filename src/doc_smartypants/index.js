@@ -434,5 +434,37 @@ module.exports = (client) => {
                 console.error(err);
             });
         }
+
+        if(parsed.command == 'ip') {
+            axios({
+                method: 'get',
+                url: 'https://ipinfo.io/' + encodeURI(parsed.content),
+                params: {
+                    'token': config.ipApiKey
+                }
+            }).then((res) => {
+                let content = {embed: {
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    fields: [],
+                    title: parsed.content + ' IP 검색 결과',
+                    url: 'https://ipinfo.io/' + encodeURI(parsed.content),
+                    color: '3447003',
+                    timestamp: new Date(),
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: '명령어 입력 시간'
+                    }
+                }};
+                let resType = [{type:'ip',name:'아이피'},{type:'city',name:'도시'},{type:'region',name:'지역'},{type:'country',name:'국가'},{type:'loc',name:'좌표'},{type:'org',name:'회사명'},{type:'hostname',name:'호스트명'},{type:'postal',name:'우편주소'}];
+                
+                for(let i = 0; i<resType.length;i++) {
+                    if (res.data[resType[i].type]) content.embed.fields.push({name: resType[i].name, value: res.data[resType[i].type], inline: true});
+                }
+                message.channel.send(content);
+            }).catch(err => message.channel.send('error occurred :'+ err));
+        }
     });    
 };
