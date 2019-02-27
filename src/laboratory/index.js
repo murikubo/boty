@@ -35,6 +35,25 @@ module.exports = (client) => {
             require('./tangsoo.js')(message);
         }
 
+        if (command.command == '화상통화' || command.command == '화면공유') {
+            if(!message.member.voiceChannel) {
+                message.channel.send('음성 채널에 들어가서 입력해주세요!');
+                return;
+            }
+            message.channel.send(
+                {
+                    embed:{
+                        color: 3447003,
+                        title: '음성 채널을 화상통화 채널로 변환해주는 링크입니다.',
+                        fields: [{
+                            name: '화상채팅을 나가도 링크를 다시 클릭하면 재접속됩니다.',
+                            value: `[접속 링크](https://canary.discordapp.com/channels/${message.channel.id}/${message.member.voiceChannel.id})`
+                        }]
+
+                    }});            
+        }
+
+
         if (command.command == '엑셀') {
             if (command.content.length < 2) return message.channel.send('그런건 직접 세어보세요.');
             else {
