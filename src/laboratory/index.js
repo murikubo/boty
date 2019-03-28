@@ -37,17 +37,17 @@ module.exports = (client) => {
 
         if (command.command == '화상통화' || command.command == '화면공유') {
             if(!message.member.voiceChannel) {
-                message.channel.send('음성 채널에 들어가서 입력해주세요!');
+                message.channel.send('음성 채널에 들어가 있지 않습니다. 음성 채널에 들어가서 입력해주세요!');
                 return;
             }
             message.channel.send(
                 {
                     embed:{
                         color: 3447003,
-                        title: '음성 채널을 화상통화 채널로 변환해주는 링크입니다.',
+                        title: '음성채널을 화상채널로 접속할 수 있는 링크입니다.\n화상채널을 나가도 링크를 통해 재접속할 수 있습니다',
                         fields: [{
-                            name: '화상채팅을 나가도 링크를 다시 클릭하면 재접속됩니다.',
-                            value: `[접속 링크](https://canary.discordapp.com/channels/${message.channel.id}/${message.member.voiceChannel.id})`
+                            name: message.member.voiceChannel.name,
+                            value: `[화상채널 접속 링크](https://canary.discordapp.com/channels/${message.channel.id}/${message.member.voiceChannel.id})`
                         }]
 
                     }});            
