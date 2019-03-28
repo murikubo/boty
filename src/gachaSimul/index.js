@@ -1,8 +1,8 @@
 const config = require('../../config.json');
 const data = require('../../data/ssr_data.json');
+const Pdata = require('../../data/P_ssr_data.json');
 const discord = require('discord.js');
 const util = require('../util.js');
-const prefix = config.prefix;
 const _ = require('lodash');
 let SR_RESULT = 0;
 let RARE_RESULT = 0;
@@ -17,6 +17,7 @@ let result_SR = [];
 let result_RARE = [];
 let content = [];
 let footer;
+const gachaParam = ['프리커네', 'p', '프린세스커넥트리다이브'];
 result_SR[0] = SR[Math.floor(Math.random() * SR.length)];
 result_RARE[0] = RARE[Math.floor(Math.random() * RARE.length)];
 
@@ -38,13 +39,13 @@ const battle = (myType, aiteType, myHp, aiteHp, myATK, aiteATK) => {
             name: `승리!`,
             value: `배틀에서 승리해 **250**쥬얼을 획득했어요.`
         });
-        footer = `내 공격력 : ${myATK}\n상대 공격력 : ${aiteATK}\n타입 보너스 : ${typecalc(myType,aiteType)}배\n`;
+        footer = `내 공격력 : ${myATK}\n상대 공격력 : ${aiteATK}\n타입 보너스 : ${typecalc(myType, aiteType)}배\n`;
     } else {
         content.push({
             name: `패배`,
             value: `배틀에서 패배했어요.`
         });
-        footer = `내 공격력 : ${myATK}\n상대 공격력 : ${aiteATK}\n타입 보너스 : ${typecalc(myType,aiteType)}배\n`;
+        footer = `내 공격력 : ${myATK}\n상대 공격력 : ${aiteATK}\n타입 보너스 : ${typecalc(myType, aiteType)}배\n`;
     }
 }
 
@@ -177,15 +178,15 @@ module.exports = (client) => {
                                 value: `${userSSR[message.author.id].cardData[sagisawa].cardName} vs ${userSSR[memberArray[message.guild.id].memberList[selectedList].userId].cardData[fumika].cardName}`
                             });
                             let tempSort = [Number(userSSR[message.author.id].cardData[sagisawa].vocal), Number(userSSR[message.author.id].cardData[sagisawa].dance), Number(userSSR[message.author.id].cardData[sagisawa].visual)];
-                            tempSort.sort(function(a,b){
+                            tempSort.sort(function (a, b) {
                                 return b - a;
                             });
                             let tempSort2 = [Number(userSSR[memberArray[message.guild.id].memberList[selectedList].userId].cardData[fumika].vocal), Number(userSSR[memberArray[message.guild.id].memberList[selectedList].userId].cardData[fumika].dance), Number(userSSR[memberArray[message.guild.id].memberList[selectedList].userId].cardData[fumika].visual)];
-                            tempSort2.sort(function(a,b){
+                            tempSort2.sort(function (a, b) {
                                 return b - a;
                             });
-                            let myATK = (tempSort[0] /3 + tempSort[1] /4 + tempSort[2] / 5) / 8;
-                            let aiteATK = (tempSort2[0] /3 + tempSort2[1] /4 + tempSort2[2] / 5) / 8;
+                            let myATK = (tempSort[0] / 3 + tempSort[1] / 4 + tempSort[2] / 5) / 8;
+                            let aiteATK = (tempSort2[0] / 3 + tempSort2[1] / 4 + tempSort2[2] / 5) / 8;
                             battle(userSSR[message.author.id].cardData[sagisawa].cardType, userSSR[memberArray[message.guild.id].memberList[selectedList].userId].cardData[fumika].cardType, userSSR[message.author.id].cardData[sagisawa].sum, userSSR[memberArray[message.guild.id].memberList[selectedList].userId].cardData[fumika].sum, myATK.toFixed(0), aiteATK.toFixed(0));
                             message.channel.send({
                                 embed: {
@@ -210,7 +211,7 @@ module.exports = (client) => {
 
         if (command.command == "쥬얼슬롯") {
             const Jewel = require('../../data/Jewel_data.json');
-            if (!Jewel[message.author.id]) Jewel[message.author.id] = {Jewel: 0};
+            if (!Jewel[message.author.id]) Jewel[message.author.id] = { Jewel: 0 };
             JewelData = Jewel[message.author.id];
             const result = [':star:', ':comet:', ':crescent_moon:', ':snowflake:', ':cherry_blossom:', ':hibiscus:'];
             const result1 = _.random(0, result.length - 1);
@@ -252,16 +253,16 @@ module.exports = (client) => {
         }
 
         if (command.command == '카드' && !command.param) {
-            if(userSSR[message.author.id] == null) return message.channel.send({ embed: { color: 3447003, description: `획득한 쓰알이 없네요.` } });
+            if (userSSR[message.author.id] == null) return message.channel.send({ embed: { color: 3447003, description: `획득한 쓰알이 없네요.` } });
             cardListUp();
         }
 
-        if(command.command == '카드' && command.param == '이적') {
-            if(userSSR[message.author.id] == null) return message.channel.send({ embed: { color: 3447003, description: `획득한 쓰알이 없네요.` } });
-            if(command.content) {
-                if(isNaN(parseInt(command.content)) || !userSSR[message.author.id].cardData[parseInt(command.content)-1] ) return message.channel.send('올바르지 않은 입력값입니다.');
-                let delData = userSSR[message.author.id].cardData[parseInt(command.content)-1];
-                userSSR[message.author.id].cardData.splice(parseInt(command.content)-1,1);
+        if (command.command == '카드' && command.param == '이적') {
+            if (userSSR[message.author.id] == null) return message.channel.send({ embed: { color: 3447003, description: `획득한 쓰알이 없네요.` } });
+            if (command.content) {
+                if (isNaN(parseInt(command.content)) || !userSSR[message.author.id].cardData[parseInt(command.content) - 1]) return message.channel.send('올바르지 않은 입력값입니다.');
+                let delData = userSSR[message.author.id].cardData[parseInt(command.content) - 1];
+                userSSR[message.author.id].cardData.splice(parseInt(command.content) - 1, 1);
                 fs.writeFileSync('./data/user_ssr_data.json', JSON.stringify(userSSR, null, '\t'));
                 JewelData = Jewel[message.author.id];
                 //JewelData.Jewel += 1000;
@@ -282,10 +283,10 @@ module.exports = (client) => {
                             errors: ['time'],
                         })
                             .then((collected) => {
-                                if(collected.first().content == '취소') throw new Error('취소했습니다.');
-                                if(isNaN(parseInt(collected.first().content)) || !userSSR[message.author.id].cardData[parseInt(collected.first().content)-1] ) throw new Error('올바르지 않은 입력값입니다.');
-                                let delData = userSSR[message.author.id].cardData[parseInt(collected.first().content)-1];
-                                userSSR[message.author.id].cardData.splice(parseInt(collected.first().content)-1,1);
+                                if (collected.first().content == '취소') throw new Error('취소했습니다.');
+                                if (isNaN(parseInt(collected.first().content)) || !userSSR[message.author.id].cardData[parseInt(collected.first().content) - 1]) throw new Error('올바르지 않은 입력값입니다.');
+                                let delData = userSSR[message.author.id].cardData[parseInt(collected.first().content) - 1];
+                                userSSR[message.author.id].cardData.splice(parseInt(collected.first().content) - 1, 1);
                                 fs.writeFileSync('./data/user_ssr_data.json', JSON.stringify(userSSR, null, '\t'));
                                 JewelData = Jewel[message.author.id];
                                 //JewelData.Jewel += 1000;
@@ -298,23 +299,23 @@ module.exports = (client) => {
                                 });
                             })
                             .catch((err) => {
-                                if(!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
+                                if (!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
                                 else message.channel.send(err.message);
                             });
                     });
             }
         }
 
-        if(command.command == '카드' && command.param == '상세정보') {
-            if(userSSR[message.author.id] == null) return message.channel.send({ embed: { color: 3447003, description: `획득한 쓰알이 없네요.` } });
-            if(command.content) {
-                if(isNaN(parseInt(command.content)) || !userSSR[message.author.id].cardData[parseInt(command.content)-1] ) return message.channel.send('올바르지 않은 입력값입니다.');
-                let detailData = userSSR[message.author.id].cardData[parseInt(command.content)-1];
+        if (command.command == '카드' && command.param == '상세정보') {
+            if (userSSR[message.author.id] == null) return message.channel.send({ embed: { color: 3447003, description: `획득한 쓰알이 없네요.` } });
+            if (command.content) {
+                if (isNaN(parseInt(command.content)) || !userSSR[message.author.id].cardData[parseInt(command.content) - 1]) return message.channel.send('올바르지 않은 입력값입니다.');
+                let detailData = userSSR[message.author.id].cardData[parseInt(command.content) - 1];
                 let tempSort = [Number(detailData.vocal), Number(detailData.dance), Number(detailData.visual)];
-                tempSort.sort(function(a,b){
+                tempSort.sort(function (a, b) {
                     return b - a;
                 });
-                let cardATK = (tempSort[0] /3 + tempSort[1] /4 + tempSort[2] / 5) / 8;
+                let cardATK = (tempSort[0] / 3 + tempSort[1] / 4 + tempSort[2] / 5) / 8;
                 message.channel.send({
                     embed: {
                         title: `${detailData.cardName}의 상세정보`,
@@ -332,14 +333,14 @@ module.exports = (client) => {
                             errors: ['time'],
                         })
                             .then((collected) => {
-                                if(collected.first().content == '취소') throw new Error('취소했습니다.');
-                                if(isNaN(parseInt(collected.first().content)) || !userSSR[message.author.id].cardData[parseInt(collected.first().content)-1] ) throw new Error('올바르지 않은 입력값입니다.');
-                                let detailData = userSSR[message.author.id].cardData[parseInt(collected.first().content)-1];
+                                if (collected.first().content == '취소') throw new Error('취소했습니다.');
+                                if (isNaN(parseInt(collected.first().content)) || !userSSR[message.author.id].cardData[parseInt(collected.first().content) - 1]) throw new Error('올바르지 않은 입력값입니다.');
+                                let detailData = userSSR[message.author.id].cardData[parseInt(collected.first().content) - 1];
                                 let tempSort = [Number(detailData.vocal), Number(detailData.dance), Number(detailData.visual)];
-                                tempSort.sort(function(a,b){
+                                tempSort.sort(function (a, b) {
                                     return b - a;
                                 });
-                                let cardATK = (tempSort[0] /3 + tempSort[1] /4 + tempSort[2] / 5) / 8;
+                                let cardATK = (tempSort[0] / 3 + tempSort[1] / 4 + tempSort[2] / 5) / 8;
                                 message.channel.send({
                                     embed: {
                                         title: `${detailData.cardName}의 상세정보`,
@@ -349,7 +350,7 @@ module.exports = (client) => {
                                 });
                             })
                             .catch((err) => {
-                                if(!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
+                                if (!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
                                 else message.channel.send(err.message);
                             });
                     });
@@ -357,6 +358,64 @@ module.exports = (client) => {
         }
 
         if (command.command == "가챠") {
+            if (gachaParam.includes(command.param)) {
+                let content = [];
+                let SR_COUNT = 0;
+                for (let i = 0; i < 10; i++) {
+                    let gacha = Math.floor((Math.random() * 100) + 1);
+                    if (SR_COUNT == 9) {
+                        if (gacha <= '2') {
+                            let objectCount = Object.keys(Pdata.three_star).length;
+                            let gachaResult = Pdata.three_star[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                            content.push({
+                                name: `★★★__${gachaResult.name}__`,
+                                value: `[${gachaResult.type}] ${gachaResult.gacha_type}`, inline: true
+                            });
+                        } else if (gacha >= '3') {
+                            let objectCount = Object.keys(Pdata.two_star).length;
+                            let gachaResult = Pdata.two_star[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                            content.push({
+                                name: `★★${gachaResult.name}`,
+                                value: `[${gachaResult.type}] ${gachaResult.gacha_type}`, inline: true
+                            });
+                        }
+                    } else if (gacha <= '2') {
+                        let objectCount = Object.keys(Pdata.three_star).length;
+                        let gachaResult = Pdata.three_star[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                        content.push({
+                            name: `★★★__${gachaResult.name}__`,
+                            value: `[${gachaResult.type}] ${gachaResult.gacha_type}`, inline: true
+                        });
+                    } else if ('3' <= gacha && gacha <= '20') {
+                        let objectCount = Object.keys(Pdata.two_star).length;
+                        let gachaResult = Pdata.two_star[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                        content.push({
+                            name: `★★${gachaResult.name}`,
+                            value: `[${gachaResult.type}] ${gachaResult.gacha_type}`, inline: true
+                        });
+                    } else if (gacha >= '21') {
+                        let objectCount = Object.keys(Pdata.one_star).length;
+                        let gachaResult = Pdata.one_star[objectCount - Math.floor((Math.random() * objectCount) + 1)];
+                        content.push({
+                            name: `★${gachaResult.name}`,
+                            value: `[${gachaResult.type}] ${gachaResult.gacha_type}`, inline: true
+                        });
+                        SR_COUNT++
+                    }
+                }
+                return message.channel.send({
+                    embed: {
+                        title: `가챠 결과`,
+                        color: 3447003,
+                        fields: content,
+                        timestamp: new Date(),
+                        footer: {
+                            icon_url: client.user.avatarURL,
+                            text: '명령어 입력 시간'
+                        }
+                    }
+                });
+            }
             SR_RESULT = 0;
             RARE_RESULT = 0;
             SR_COUNT = 0;
@@ -386,8 +445,8 @@ module.exports = (client) => {
                         fs.writeFileSync('./data/user_ssr_data.json', JSON.stringify(userSSR, null, '\t'));
                     }
                     const result = userSSR[message.author.id].cardData.find(senkawa => senkawa.cardName === gachaResult.title + gachaResult.name);
-                    if(!result == true){
-                        userSSR[message.author.id].cardData.push({ idolName:gachaResult.name ,cardName: gachaResult.title + gachaResult.name, cardType: gachaResult.type, gentei: gachaResult.gacha_type, vocal:gachaResult.vocal, dance:gachaResult.dance, visual:gachaResult.visual, sum:gachaResult.sum});
+                    if (!result == true) {
+                        userSSR[message.author.id].cardData.push({ idolName: gachaResult.name, cardName: gachaResult.title + gachaResult.name, cardType: gachaResult.type, gentei: gachaResult.gacha_type, vocal: gachaResult.vocal, dance: gachaResult.dance, visual: gachaResult.visual, sum: gachaResult.sum });
                         fs.writeFileSync('./data/user_ssr_data.json', JSON.stringify(userSSR, null, '\t'));
                     } else {
                         JewelData = Jewel[message.author.id];
@@ -408,18 +467,18 @@ module.exports = (client) => {
             } message.channel.send(`획득한 RARE : ${RARE_RESULT} \n획득한 SR : ${SR_RESULT}`);
         }
 
-            /* let JewelData = Jewel[message.author.id];
-            if (JewelData.Jewel < 2500) {
-                message.reply('쥬얼이 부족해요.');
-            } else {
-                JewelData.Jewel = JewelData.Jewel - 2500;
-                message.channel.send({
-                    embed: {
-                        color: 3447003,
-                        description: `쥬얼을 소모하여 10연챠를 합니다. 현재 남은 쥬얼 **${JewelData.Jewel.toLocaleString()}**`
-                    }
-                });
-                fs.writeFileSync('./data/Jewel_data.json', JSON.stringify(Jewel)); */
+        /* let JewelData = Jewel[message.author.id];
+        if (JewelData.Jewel < 2500) {
+            message.reply('쥬얼이 부족해요.');
+        } else {
+            JewelData.Jewel = JewelData.Jewel - 2500;
+            message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: `쥬얼을 소모하여 10연챠를 합니다. 현재 남은 쥬얼 **${JewelData.Jewel.toLocaleString()}**`
+                }
+            });
+            fs.writeFileSync('./data/Jewel_data.json', JSON.stringify(Jewel)); */
 
         /* if (command.command ==  '가챠') {
             SR_COUNT = '0';
