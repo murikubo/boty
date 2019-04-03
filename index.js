@@ -46,8 +46,6 @@ client.on('ready', () => {
     console.info(config.version);
     client.user.setActivity('Trinity Field', { type: 'LISTENING' });
 });
-const ytdl = require('ytdl-core');
-const streamOptions = { seek: 0, volume: 1 };
 client.on('message', message => {
     //if (!message.content.startsWith(prefix)) return; //프리픽스로 시작되지 않는 명령어들은 비활성화.    
 
