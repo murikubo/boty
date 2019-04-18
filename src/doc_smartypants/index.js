@@ -466,5 +466,14 @@ module.exports = (client) => {
                 message.channel.send(content);
             }).catch(err => message.channel.send('error occurred :'+ err));
         }
+
+        if(parsed.command == 'ipconfig' || parsed.command == 'ifconfig') {
+            axios({
+                method: 'get',
+                url: 'https://api.ipify.org?format=json'
+            }).then((res) => {
+                message.channel.send('당신의 IPv4는 `' + res.data.ip + '` 입니다.' );
+            });
+        }
     });    
 };
