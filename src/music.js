@@ -427,10 +427,6 @@ module.exports = (client) => {
                         videoInfo.then((result) => {
                             message.channel.send({
                                 embed: {
-                                    author: {
-                                        name: client.user.username,
-                                        icon_url: client.user.avatarURL
-                                    },
                                     title: result.snippet.title,
                                     thumbnail: {
                                         url: result.snippet.thumbnails.high.url
@@ -464,10 +460,6 @@ module.exports = (client) => {
             } else if (tempUrlDiv =='shimamura'){
                 message.channel.send({
                     embed: {
-                        author: {
-                            name: client.user.username,
-                            icon_url: client.user.avatarURL
-                        },
                         title: tempTitle,
                         fields: [
                             {
@@ -592,10 +584,6 @@ module.exports = (client) => {
                         videoInfo.then((result) => {
                             message.channel.send({
                                 embed: {
-                                    author: {
-                                        name: client.user.username,
-                                        icon_url: client.user.avatarURL
-                                    },
                                     title: `:ballot_box_with_check:곡이 추가되었어요.`,
                                     description: result.snippet.title,
                                     thumbnail: {
@@ -624,6 +612,7 @@ module.exports = (client) => {
                     });
             } else {
                 new jsmediatags.Reader(`${Attachment[0].url}`)
+                .setTagsToRead(["title"])
                     .read({
                         onSuccess: (tag) => {
                             if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
@@ -733,10 +722,6 @@ module.exports = (client) => {
                 .then(([fields, id]) => {
                     message.channel.send({
                         embed: {
-                            author: {
-                                name: client.user.username,
-                                icon_url: client.user.avatarURL
-                            },
                             title: parsedMessage.content + ' 검색 결과:',
                             color: '3447003',
                             fields: fields,
@@ -772,10 +757,6 @@ module.exports = (client) => {
                                             videoInfo.then((result) => {
                                                 sentMessage.edit({
                                                     embed: {
-                                                        author: {
-                                                            name: client.user.username,
-                                                            icon_url: client.user.avatarURL
-                                                        },
                                                         title: `:ballot_box_with_check:곡이 추가되었어요.`,
                                                         description: result.snippet.title,
                                                         thumbnail: {
@@ -813,10 +794,6 @@ module.exports = (client) => {
             message.channel.send({
                 embed: {
                     color: 3447003,
-                    author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
-                    },
                     title: '음악 명령어 일람',
                     fields: [{
                         name: '추가',

@@ -24,25 +24,25 @@
   "homepage": "https://github.com/jinjeok/j-bot#readme",
   "dependencies": {
     "axios": "^0.18.0",
-    "date-and-time": "^0.6.2",
-    "discord.js": "^11.3.2",
+    "date-and-time": "^0.6.3",
+    "discord.js": "^11.4.2",
     "ffmpeg": "0.0.4",
     "ffmpeg-binaries": "^3.2.2",
     "googleapis": "^27.0.0",
-    "hepburn": "^1.0.0",
+    "hepburn": "^1.1.1",
+    "iconv-lite": "^0.4.24",
     "jsmediatags": "^3.8.1",
-    "lodash": "^4.17.5",
-    "node-opus": "^0.2.7",
+    "lodash": "^4.17.11",
+    "node-opus": "^0.2.9",
     "opusscript": "0.0.6",
     "xml2js": "^0.4.19",
-    "ytdl-core": "^0.20.2",
-    "iconv-lite": "^0.4.24"
+    "ytdl-core": "^0.20.4"
   },
   "devDependencies": {
-    "crawler": "^1.2.0",
-    "eslint": "^4.18.2",
-    "moment": "^2.22.1",
-    "nodemon": "^1.18.9",
+    "crawler": "^1.2.1",
+    "eslint": "^4.19.1",
+    "moment": "^2.24.0",
+    "nodemon": "^1.18.11",
     "utf8": "^3.0.0"
   }
 }
