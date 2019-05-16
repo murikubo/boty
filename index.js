@@ -106,6 +106,10 @@ client.on('message', message => {
                 fields: [{
                     name: "명령어 안내 페이지",
                     value: "모든 명령어를 일람할 수 있는 안내 페이지입니다."
+                },
+                {
+                    name: "은하도서관",
+                    value: "https://murikubo.github.io/shimushu/libraryofGalaxy.html"
                 }
                 ],
                 timestamp: new Date(),
