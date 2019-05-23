@@ -31,18 +31,19 @@ module.exports = (client) => {
         let command = util.slice(message.content);
 
 
+
         if (command.command == '탕수육' || command.command == '탕') {
             require('./tangsoo.js')(message);
         }
 
         if (command.command == '화상통화' || command.command == '화면공유') {
-            if(!message.member.voiceChannel) {
+            if (!message.member.voiceChannel) {
                 message.channel.send('음성 채널에 들어가 있지 않습니다. 음성 채널에 들어가서 입력해주세요!');
                 return;
             }
             message.channel.send(
                 {
-                    embed:{
+                    embed: {
                         color: 3447003,
                         title: '음성채널을 화상채널로 접속할 수 있는 링크입니다.\n화상채널을 나가도 링크를 통해 재접속할 수 있습니다',
                         fields: [{
@@ -50,7 +51,8 @@ module.exports = (client) => {
                             value: `[화상채널 접속 링크](https://canary.discordapp.com/channels/${message.channel.id}/${message.member.voiceChannel.id})`
                         }]
 
-                    }});            
+                    }
+                });
         }
 
 
@@ -474,6 +476,29 @@ module.exports = (client) => {
             message.channel.send(result[luckyNum]);
         }
 
+        if(command.command == "메시지삭제" && command.content != '' || command.command == "메삭" && command.content != ''){
+            if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
+            message.channel.bulkDelete(Number(command.content)).then(() => {
+                message.channel.send({
+                    embed: {
+                        color: 3447003,
+                        description: `${Number(command.content)}개의 메시지만큼 삭제했어요.`
+                    }
+                });
+              });
+        }
+
+        // if (command.command == "봇메시지삭제") {
+        //     message.channel.fetchMessages().then(messages => {
+        //         const botMessages = messages.filter(message => message.author.bot);
+        //         message.channel.bulkDelete(botMessages);
+        //         messagesDeleted = botMessages.array().length;
+        //         message.channel.send(`총 ${messagesDeleted}개의 메시지가 삭제되었습니다.`);
+        //     }).catch(err => {
+        //         console.log(err);
+        //     });
+        // }
+
         if (command.command == '랜덤') {
             message.channel.send(numberRandom(command.content.split(',', 2)));
         }
@@ -580,26 +605,26 @@ module.exports = (client) => {
         }
 
         if (command.command == '강화' && command.content != '') {
-            if(isNaN(parseInt(command.content))) return message.channel.send('올바르지 않은 입력값이에요.');
-            if(command.param != null && isNaN(parseInt(command.param))) return message.channel.send('올바르지 않은 입력값이에요.');
+            if (isNaN(parseInt(command.content))) return message.channel.send('올바르지 않은 입력값이에요.');
+            if (command.param != null && isNaN(parseInt(command.param))) return message.channel.send('올바르지 않은 입력값이에요.');
             if (command.content.length >= 7) return message.channel.send({
                 embed: {
                     color: 3447003,
                     description: '소숫점 포함해서 7자리까지만 강화 시뮬이 가능해요.'
                 }
             });
-            let tempParam = 0; 
-            if(command.param) tempParam = parseInt(command.param);
+            let tempParam = 0;
+            if (command.param) tempParam = parseInt(command.param);
             for (let i = 1; i < 5000000; i++) {
                 let gacha = Math.floor((Math.random() * 1000000) + 1);
-                if (gacha <= Number(command.content) * 10000 + (tempParam * 10000 * (i-1))) {
+                if (gacha <= Number(command.content) * 10000 + (tempParam * 10000 * (i - 1))) {
                     return message.channel.send({
                         embed: {
                             color: 3447003,
                             title: '강화 성공!',
                             fields: [{
                                 name: `총 **${i.toLocaleString()}번** 만에 성공했어요.`,
-                                value: `강화할 때 마다 **${tempParam}%**의 확률이 올라 최종적으로 **${parseInt(command.content)+parseInt(tempParam*(i-1))}%** 확률로 성공했어요.`
+                                value: `강화할 때 마다 **${tempParam}%**의 확률이 올라 최종적으로 **${parseInt(command.content) + parseInt(tempParam * (i - 1))}%** 확률로 성공했어요.`
                             }],
                             timestamp: new Date(),
                             footer: {
