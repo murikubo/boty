@@ -250,7 +250,7 @@ module.exports = (client) => {
                                                                     message.channel.send({
                                                                         embed: {
                                                                             color: 3447003,
-                                                                            description: `해당 노선의 상/하행은 기지 입출고행입니다. \n 다시 선택해주세요.`
+                                                                            description: `현재 운행중인 열차가 없거나 해당 노선의 상/하행은 기지 입출고행입니다. \n 다시 선택해주세요.`
                                                                         }
                                                                     });
                                                                 })
