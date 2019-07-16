@@ -205,12 +205,6 @@ client.on('message', message => {
     if (!message.guild) return;
 });
 
-client.on('guildMemberAdd', member => {
-    const channel = member.guild.channels.find('name', 'member-log');
-    if (!channel) return;
-    channel.send(`어서와요!, ${member}`);
-});
-
 client.login(config.token);
 
 client.on('error', console.error);
