@@ -108,8 +108,8 @@ client.on('message', message => {
                     value: "모든 명령어를 일람할 수 있는 안내 페이지입니다."
                 },
                 {
-                    name: "은하도서관",
-                    value: "https://murikubo.github.io/shimushu/libraryofGalaxy.html"
+                    name: "업데이트 로그",
+                    value: "https://murikubo.github.io/shimushu/update.html"
                 }
                 ],
                 timestamp: new Date(),
