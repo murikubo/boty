@@ -120,6 +120,35 @@ client.on('message', message => {
             }
         });
     }
+
+    if (parsed.command == '공지') {
+        message.channel.send({
+            embed: {
+                color: 3447003,
+                author: {
+                    name: client.user.username,
+                    icon_url: client.user.avatarURL
+                },
+                title: '공지',
+                description: "https://murikubo.github.io/shimushu/notice.html",
+                fields: [{
+                    name: "현재 공지",
+                    value: "현재 음악 재생 오류에 관하여(2019-07-22 확인)"
+                },
+                {
+                    name: "업데이트 로그",
+                    value: "https://murikubo.github.io/shimushu/update.html"
+                }
+                ],
+                timestamp: new Date(),
+                footer: {
+                    icon_url: client.user.avatarURL,
+                    text: '명령어 입력 시간 '
+                }
+            }
+        });
+    }
+
     /*
        TTS참고용 주석
     if (parsed.command == '집') {

@@ -485,7 +485,14 @@ module.exports = (client) => {
                         description: `${Number(command.content)}개의 메시지만큼 삭제했어요.`
                     }
                 });
-              });
+              }).catch((err) => {
+                message.channel.send({
+                    embed: {
+                        color: 3447003,
+                        description: `후미카씨에 **메시지를 삭제할 권한**이 없어요. \n 기능을 이용하시려면 서버 관리자에게 메시지 삭제 권한에 대해 문의하여 권한을 부여해주세요.`
+                    }
+                });
+            });
         }
 
         // if (command.command == "봇메시지삭제") {
