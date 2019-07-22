@@ -34,7 +34,7 @@ const monsterHunter = require('./src/mhdb')(client);
 const weather = require('./src/weather')(client);
 const moduleConf = require('./module_conf');
 //const setMod = require('./src/mod')(client);
-let mod = JSON.parse(fs.readFileSync("./data/mod_data.json", "utf8"));
+// let mod = JSON.parse(fs.readFileSync("./data/mod_data.json", "utf8"));
 
 const getTime = (s) => {
     // Pad to 2 or 3 digits, default is 2
