@@ -2,6 +2,8 @@ const util = require('../util.js');
 const todoData = require('../../data/todo_data.json');
 const fs = require('fs');
 const _ = require('lodash');
+const find = require('arraysearch').Finder;
+
 
 function move(arr, oldIndex, newIndex) {
     if (newIndex >= arr.length) {
@@ -109,6 +111,13 @@ module.exports = (client) => {
         } else if (!todoObject || todoObject.length == 0 || todoObject[todoObject.selectedFolder].length == 0) {
             message.channel.send('리스트가 없습니다. `할일 -추가`로 추가해주세요.');
             return;
+        }
+        if(parsed.content != '' && parsed.param == 's') {
+            if(find.one.in(todoObject[todoObject.selectedFolder]).with(parsed.content)) {
+                message.channel.send(find.one.in(todoObject[todoObject.selectedFolder]).with(parsed.content));
+            } else {
+                message.channel.send('`' + parsed.content + '` 검색결과가 없습니다.');
+            }
         }
         if(parsed.param == '리스트' || !parsed.param) {
             

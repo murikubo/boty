@@ -34,7 +34,7 @@ const monsterHunter = require('./src/mhdb')(client);
 const weather = require('./src/weather')(client);
 const moduleConf = require('./module_conf');
 //const setMod = require('./src/mod')(client);
-let mod = JSON.parse(fs.readFileSync("./data/mod_data.json", "utf8"));
+// let mod = JSON.parse(fs.readFileSync("./data/mod_data.json", "utf8"));
 
 const getTime = (s) => {
     // Pad to 2 or 3 digits, default is 2
@@ -43,8 +43,8 @@ const getTime = (s) => {
 };
 
 client.on('ready', () => {
-    console.info(config.version);
-    client.user.setActivity('Trinity Field', { type: 'LISTENING' });
+    console.info(config.version + '(' + config.codename + ')');
+    client.user.setActivity(config.codename, { type: 'LISTENING' });
 });
 client.on('message', message => {
     //if (!message.content.startsWith(prefix)) return; //프리픽스로 시작되지 않는 명령어들은 비활성화.    
@@ -108,8 +108,8 @@ client.on('message', message => {
                     value: "모든 명령어를 일람할 수 있는 안내 페이지입니다."
                 },
                 {
-                    name: "은하도서관",
-                    value: "https://murikubo.github.io/shimushu/libraryofGalaxy.html"
+                    name: "업데이트 로그",
+                    value: "https://murikubo.github.io/shimushu/update.html"
                 }
                 ],
                 timestamp: new Date(),
@@ -120,6 +120,35 @@ client.on('message', message => {
             }
         });
     }
+
+    if (parsed.command == '공지') {
+        message.channel.send({
+            embed: {
+                color: 3447003,
+                author: {
+                    name: client.user.username,
+                    icon_url: client.user.avatarURL
+                },
+                title: '공지',
+                description: "https://murikubo.github.io/shimushu/notice.html",
+                fields: [{
+                    name: "현재 공지",
+                    value: "현재 음악 재생 오류에 관하여(2019-07-22 확인)"
+                },
+                {
+                    name: "업데이트 로그",
+                    value: "https://murikubo.github.io/shimushu/update.html"
+                }
+                ],
+                timestamp: new Date(),
+                footer: {
+                    icon_url: client.user.avatarURL,
+                    text: '명령어 입력 시간 '
+                }
+            }
+        });
+    }
+
     /*
        TTS참고용 주석
     if (parsed.command == '집') {
@@ -197,7 +226,7 @@ client.on('message', message => {
             .addField("소속 서버 수", client.guilds.size, true)
             .addField("현재 재생중", client.voiceConnections.size, true)
             .addField("기동시간", getTime(client.uptime), true)
-            .addField("버전", config.version, true)
+            .addField("버전", config.version + '(' + config.codename + ')' , true)
 
         message.channel.send({ embed });
     }
