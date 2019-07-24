@@ -128,7 +128,7 @@ module.exports = (client) => {
             for(let i = 0; i < result.length; i++) {
                 content += todoObject[todoObject.selectedFolder][result[i]] + '\n';
             }
-            message.channel.send(content);
+            message.channel.send(content.slice(0,1999));
             
         }
         if(parsed.param == '리스트' || !parsed.param) {
