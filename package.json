@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/jinjeok/j-bot#readme",
   "dependencies": {
+    "arraysearch": "^1.2.0",
     "axios": "^0.18.0",
     "date-and-time": "^0.6.3",
     "discord.js": "^11.4.2",
