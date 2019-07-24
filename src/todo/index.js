@@ -118,7 +118,7 @@ module.exports = (client) => {
             message.channel.send('리스트가 없습니다. `할일 -추가`로 추가해주세요.');
             return;
         }
-        if(parsed.content != '' && parsed.param == 's') {
+        if(parsed.content != '' && (parsed.param == 's' || parsed.param == '검색')) {
             let search = new Fuse(todoObject[todoObject.selectedFolder],FuseOption);
             let result = search.search(parsed.content);
             if(!result.length) {
