@@ -2,8 +2,14 @@ const util = require('../util.js');
 const todoData = require('../../data/todo_data.json');
 const fs = require('fs');
 const _ = require('lodash');
-const find = require('arraysearch').Finder;
-
+const Fuse = require('fuse.js');
+const FuseOption =  {
+    threshold: 0.6,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1
+};
 
 function move(arr, oldIndex, newIndex) {
     if (newIndex >= arr.length) {
@@ -113,11 +119,17 @@ module.exports = (client) => {
             return;
         }
         if(parsed.content != '' && parsed.param == 's') {
-            if(find.one.in(todoObject[todoObject.selectedFolder]).with(parsed.content)) {
-                message.channel.send(find.one.in(todoObject[todoObject.selectedFolder]).with(parsed.content));
-            } else {
-                message.channel.send('`' + parsed.content + '` 검색결과가 없습니다.');
+            let search = new Fuse(todoObject[todoObject.selectedFolder],FuseOption);
+            let result = search.search(parsed.content);
+            if(!result.length) {
+                return message.channel.send('`' + parsed.content + '` 검색 결과가 없습니다.')
             }
+            let content = '';
+            for(let i = 0; i < result.length; i++) {
+                content += todoObject[todoObject.selectedFolder][result[i]] + '\n';
+            }
+            message.channel.send(content);
+            
         }
         if(parsed.param == '리스트' || !parsed.param) {
             
