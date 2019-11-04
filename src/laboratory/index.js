@@ -218,9 +218,10 @@ module.exports = (client) => {
 
         if (command.command == '소비세' && command.content != '') {
             if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
-            let tax = 8;
-            if (command.param == '10') tax = 10;
-            let amt = Number(command.content) + Number(Number(command.content) / 100 * tax);
+/*             let tax = 10;
+            if (command.param == '8') tax = 8; */
+            let amt1 = Number(command.content) + Number(Number(command.content) / 100 * 10);
+            let amt2 = Number(command.content) + Number(Number(command.content) / 100 * 8);
             axios({
                 method: 'get',
                 url: `http://api.manana.kr/exchange/rate/KRW/JPY.json`
@@ -228,14 +229,14 @@ module.exports = (client) => {
                 message.channel.send({
                     embed: {
                         color: 3447003,
-                        author: {
-                            name: client.user.username,
-                            icon_url: client.user.avatarURL
-                        },
                         title: '소비세 계산',
                         fields: [{
-                            name: `총 금액 : **${Math.floor(amt)}**엔 \n ${res.data[0].date} 기준 ${parseFloat(eval(res.data[0].rate * amt).toFixed(2)).toLocaleString()}원`,
-                            value: `원금**${command.content}**엔의 소비세는 **${Math.floor(Number(command.content) / 100 * tax)}**엔 입니다.`
+                            name: `**10%** **:** 총 금액 : **${Math.floor(amt1)}**엔 \n ${res.data[0].date} 기준 ${parseFloat(eval(res.data[0].rate * amt1).toFixed(2)).toLocaleString()}원`,
+                            value: `**10%** **:** 원금**${command.content}**엔의 소비세는 **${Math.floor(Number(command.content) / 100 * 10)}**엔 입니다.`
+                        },
+                        {
+                            name: `**8%** **:** 총 금액 : **${Math.floor(amt2)}**엔 \n ${res.data[0].date} 기준 ${parseFloat(eval(res.data[0].rate * amt2).toFixed(2)).toLocaleString()}원`,
+                            value: `**8%** **:** 원금**${command.content}**엔의 소비세는 **${Math.floor(Number(command.content) / 100 * 8)}**엔 입니다.`
                         }],
                         timestamp: new Date(),
                         footer: {

@@ -41,7 +41,6 @@ module.exports = (client) => {
                     bookobj[i] = {
                         name: `${bookarr[i].slice(bookarr[i].search(/'>/)+2, bookarr[i].search('</a>'))}`,
                         id: `${bookarr[i].slice(0,bookarr[i].search(/'>/))}`,
-                        realprice: `${bookarr[i].slice(bookarr[i].search('<strike>')+8, bookarr[i].search('</strike>'))}`,
                         saleprice: `${bookarr[i].slice(bookarr[i].search('<span class=amount>')+19, bookarr[i].search('</span>'))}`
                     };
                 }
@@ -51,8 +50,7 @@ module.exports = (client) => {
                 for(let i = 0; i < bookobj.length; i++) {
                     content[i] = {
                         name: bookobj[i].name,
-                        value: `정가: ${bookobj[i].realprice}
-                        판매가: ${bookobj[i].saleprice}
+                        value: `판매가: ${bookobj[i].saleprice}
                         [제품상세페이지](http://booksaetong.co.kr/shop/item.php?it_id=${bookobj[i].id})`,
                         inline: true
                     };
@@ -62,7 +60,7 @@ module.exports = (client) => {
                 let embedObj = {
                     embed: {
                         author: {
-                            name: index+1 + ' 페이지',
+                            name: index+1 + '/' + content.length + ' 페이지',
                         },
                         title: day + ' 의 신간',
                         url: 'http://booksaetong.co.kr/shop/list.php?ca_id=90&gdate=' + day,
@@ -91,7 +89,7 @@ module.exports = (client) => {
                                 const collector = sentMessage.createReactionCollector((reaction, user) => reaction.emoji.name === '\u2B05' && user.id === message.author.id);
                                 collector.on('collect', (reaction) => {
                                     if(index!=0)index--;
-                                    embedObj.embed.author.name = index+1 + ' 페이지';
+                                    embedObj.embed.author.name = index+1 + '/' + content.length + ' 페이지';
                                     embedObj.embed.fields = content[index];
                                     sentMessage.edit(embedObj);
                                     reaction.remove(message.author.id);
@@ -102,7 +100,7 @@ module.exports = (client) => {
                                 const collector = sentMessage.createReactionCollector((reaction, user) => reaction.emoji.name === '\u27A1' && user.id === message.author.id, { time: 30000 });
                                 collector.on('collect', (reaction) => {
                                     if(content.length-1>index)index++;
-                                    embedObj.embed.author.name = index+1 + ' 페이지';
+                                    embedObj.embed.author.name = index+1 + '/' + content.length + ' 페이지';
                                     embedObj.embed.fields = content[index];
                                     
                                     sentMessage.edit(embedObj);
