@@ -570,19 +570,20 @@ module.exports = (client) => {
                         return [fomatted, id];
                     })
                     .then(([fields, id]) => {
-                        const videoInfo = getVideo(id[0]);
+                        let videoInfo = getVideo(id[0]);
                         let url = id[0];
                         if (url == '' || url === undefined) return message.channel.send('검색 결과를 찾을 수 없습니다.');
                         yt.getInfo(url, (err, info) => {
+                            videoInfo.then((result)=>{
+                                if(err) return message.channel.send('Youtube request 도중 에러가 발생하였습니다. : ' + err);
 
-                            if(err) return message.channel.send('Youtube request 도중 에러가 발생하였습니다. : ' + err);
-
-                            if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
-                            queue[message.guild.id].songs.push({ url: url, title: info.title, requester: message.author.username, inputType: 'youtube' });
-                            if (!message.member.voiceChannel) return message.channel.send('곡을 재생하려면 음성채널에 먼저 들어가주세요.');
-                            else {
-                                if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
-                            }
+                                if (!queue.hasOwnProperty(message.guild.id)) queue[message.guild.id] = {}, queue[message.guild.id].playing = false, queue[message.guild.id].songs = [];
+                                queue[message.guild.id].songs.push({ url: url, title: result.snippet.title, requester: message.author.username, inputType: 'youtube' });
+                                if (!message.member.voiceChannel) return message.channel.send('곡을 재생하려면 음성채널에 먼저 들어가주세요.');
+                                else {
+                                    if (!message.guild.voiceConnection) return message.member.voiceChannel.join(message).then(() => commands.재생(message));
+                                }
+                            });
                         });
                         videoInfo.then((result) => {
                             message.channel.send({
