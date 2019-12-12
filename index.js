@@ -152,6 +152,110 @@ client.on('message', message => {
     }
     */
 
+    const memberLiset = () => {
+        let tosend = [];
+        memberArray[message.guild.id].memberList.forEach((member, i) => { tosend.push(`${i + 1}. ${member.userNickName}`); });
+        let page = Math.ceil(memberArray[message.guild.id].memberList.length) / 10;
+        let index = 0;
+        let embed = [{ name: `${index + 1} 페이지`, value: `${tosend.slice(10 * index, (index + 1) * 10).join('\n')}` }];
+        message.channel.send(util.embedFormat('도미네이터를 겨눌 상대를 선택해주세요.', embed))
+            .then(async (sentMessage) => {
+                await sentMessage.react('\u2B05')
+                    .then(() => {
+                        const filter = (reaction, user) => reaction.emoji.name === '\u2B05' && user.id === message.author.id;
+                        const collector = sentMessage.createReactionCollector(filter);
+                        collector.on('collect', reaction => {
+                            if (index != 0) index--;
+
+                            embed = [{ name: `${index + 1} 페이지`, value: `${tosend.slice(10 * index, (index + 1) * 10).join('\n')}` }];
+                            sentMessage.edit(util.embedFormat('도미네이터를 겨눌 상대를 선택해주세요.', embed));
+                            reaction.remove(message.author.id);
+                        });
+                    });
+                await sentMessage.react('\u27A1')
+                    .then(() => {
+                        const filter = (reaction, user) => reaction.emoji.name === '\u27A1' && user.id === message.author.id;
+                        const collector = sentMessage.createReactionCollector(filter, { time: 30000 });
+                        collector.on('collect', reaction => {
+                            if (page > index + 1) index++;
+                            embed = [{ name: `${index + 1} 페이지`, value: `${tosend.slice(10 * index, (index + 1) * 10).join('\n')}` }];
+                            sentMessage.edit(util.embedFormat('도미네이터를 겨눌 상대를 선택해주세요.', embed));
+                            reaction.remove(message.author.id);
+                        });
+                        collector.on('end', () => sentMessage.clearReactions());
+                    });
+            });
+    }
+
+    let memberArray = {};
+
+    if (parsed.command == '도미네이터') {
+        message.reply({
+            embed: {
+                color: 3447003,
+                description: `휴대형 심리진단 진압·집행 시스템 도미네이터, 기동했습니다.\n유저 인증, ${message.author.username} 감시관, 공안국 형사과 소속. 사용 허가 확인. 적성 유저입니다.\n현재의 집행 모드는 논 리설 패럴라이저. 침착하게 조준하여 대상을 무력화하십시오.`
+            }
+        });
+        memberArray[message.guild.id] = {}, memberArray[message.guild.id].memberList = [];
+        let mems = client.guilds.get(message.guild.id).members;
+        for (let [snowflake, guildMember] of mems) {
+            if (guildMember.user.id != message.author.id) {
+                if (guildMember.nickname != null) memberArray[message.guild.id].memberList.push({ userId: guildMember.user.id, userName: guildMember.user.username, userNickName: guildMember.nickname });
+                else memberArray[message.guild.id].memberList.push({ userId: guildMember.user.id, userName: guildMember.user.username, userNickName: guildMember.user.username });
+            }
+
+        }
+        if (memberArray[message.guild.id].memberList.length == 0) return message.channel.send({ embed: { color: 3447003, description: `겨눌 상대가 없습니다.` } });
+        Promise.resolve(memberLiset())
+            .then(() => {
+                const filter = m => m.author.id === message.author.id;
+                message.channel.awaitMessages(filter, {
+                    max: 1,
+                    time: 30000,
+                    errors: ['time'],
+                })
+                    .then((collected) => {
+                        let selectedList = parseInt(collected.first().content) - 1;
+                        if (collected.first().content == '취소') throw new Error('취소했습니다.');
+                        if (isNaN(parseInt(collected.first().content)) || !memberArray[message.guild.id].memberList[parseInt(collected.first().content) - 1]) throw new Error('올바르지 않은 입력값입니다.');
+                        if (memberArray[message.guild.id].memberList[selectedList].userId == 415681577033400320) return message.channel.send('범죄계수 0. 집행 대상이 아닙니다.');
+                        let Sibyl_System = Math.floor((Math.random() * 999));
+                        if (Sibyl_System < '100') {
+                            message.reply('*범죄계수*' + Sibyl_System + ', *트리거를 락 합니다*');
+                        } else if (Sibyl_System >= '300') {
+                            let Sibyl_low = Math.floor((Math.random() * 3) + 1); // 300이상이 나올 확률이 압도적으로 높으므로 줄여주는 코드들.
+                            if (Sibyl_low == 1) {
+                                message.reply('*범죄계수*' + Sibyl_System);
+                                message.reply('*범죄계수 오버 300, 신중하게 조준하여, 대상을 배제하십시오.*');
+                            } else if (Sibyl_low == 2) {
+                                let Sibyl_reTry_hight = Math.floor((Math.random() * 300));
+                                if (Sibyl_reTry_hight < '100') {
+                                    message.reply('*범죄계수*' + Sibyl_reTry_hight + ', *트리거를 락 합니다*');
+                                } else if (Sibyl_reTry_hight >= '100') {
+                                    message.reply('*범죄계수* ' + Sibyl_reTry_hight + ',*신중하게 조준하여 대상을 제압해주십시오.*');
+                                } else if (Sibyl_reTry_hight == 300) {
+                                    message.reply('*범죄계수*' + Sibyl_reTry_hight);
+                                    message.reply('*범죄계수 오버 300, 신중하게 조준하여, 대상을 배제하십시오.*');
+                                }
+                            } else if (Sibyl_low == 3) {
+                                let Sibyl_reTry_low = Math.floor((Math.random() * 100));
+                                if (Sibyl_reTry_low < '100') {
+                                    message.reply('*범죄계수*' + Sibyl_reTry_low + ', *트리거를 락 합니다*');
+                                } else if (Sibyl_reTry_low == '100') {
+                                    message.reply('*범죄계수* ' + Sibyl_reTry_low + ',*신중하게 조준하여 대상을 제압해주십시오.*');
+                                }
+                            }
+                        } else if (Sibyl_System >= '100') {
+                            message.reply('*범죄계수* ' + Sibyl_System + ',*신중하게 조준하여 대상을 제압해주십시오.*');
+                        }
+                    })
+                    .catch((err) => {
+                        if (!err) message.channel.send('시간이 초과되었습니다. 명령어를 다시 입력해주세요.');
+                        else message.channel.send(err.message);
+                    });
+            });
+    }
+
     if (parsed.command == '범죄계수') {
         if (message.author.id == 415681577033400320) return message.channel.send('범죄계수 0');
         let Sibyl_System = Math.floor((Math.random() * 999));
@@ -222,7 +326,7 @@ client.on('message', message => {
             .addField("소속 서버 수", client.guilds.size, true)
             .addField("현재 재생중", client.voiceConnections.size, true)
             .addField("기동시간", getTime(client.uptime), true)
-            .addField("버전", config.version + '(' + config.codename + ')' , true)
+            .addField("버전", config.version + '(' + config.codename + ')', true)
 
         message.channel.send({ embed });
     }
