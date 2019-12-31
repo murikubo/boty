@@ -527,10 +527,6 @@ module.exports = (client) => {
             }).then((res) => {
                 message.channel.send({
                     embed: {
-                        author: {
-                            name: client.user.username,
-                            icon_url: client.user.avatarURL
-                        },
                         title: '한강 수온',
                         color: '3447003',
                         fields: [
