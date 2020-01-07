@@ -1,9 +1,13 @@
 const util = require('../util.js');
 const _ = require('lodash');
+const discord = require('discord.js');
 const date = require('date-and-time');
 const axios = require('axios');
 const config = require('../../config.json');
 const convert = require('../convertEnglishToKorean.js');
+const vrcAccountData = require('../../data/vrc_user_data.json');
+const fs = require('fs');
+const vrc = require('vrchat-client');
 date.locale('ko');
 
 const numberRandom = (array) => {
@@ -29,8 +33,6 @@ const getWeekNo = (date) => {
 module.exports = (client) => {
     client.on('message', message => {
         let command = util.slice(message.content);
-
-
 
         if (command.command == '탕수육' || command.command == '탕') {
             require('./tangsoo.js')(message);
@@ -247,6 +249,7 @@ module.exports = (client) => {
                 });
             });
         }
+
         if (command.command == '홀짝') {
             let rng = _.random(1000000000);
             if (command.content) {
@@ -703,6 +706,190 @@ module.exports = (client) => {
     //핑 커멘드 사용을 위한 message async.
     client.on("message", async message => {
         let command = util.slice(message.content);
+
+        if(command.command == 'VRC정보'){
+            if (!vrcAccountData[message.author.id]) return message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: '등록된 계정 정보가 없어요. `.계정추가` 명령어로 계정을 등록해주세요.'
+                }
+            });
+            let tempArray = vrcAccountData[message.author.id].split(',');
+            let tempId = tempArray[0];
+            let tempPw = tempArray[1];
+            let api = await vrc.login(`${tempId}`, `${tempPw}`);
+            const temp = api.user.getUserInfo().then((data)=>{
+                const embed = new discord.RichEmbed()
+                .setColor(3447003)
+                .setThumbnail(data.currentAvatarThumbnailImageUrl)
+                .setFooter("명령어 입력 시간", client.user.avatarURL)
+                .setTimestamp()
+                .addField("유저네임", data.displayName, true)
+                .addField("상태표시줄", data.statusDescription, true)
+            
+                message.channel.send({ embed });
+            });
+        }
+
+        if(command.command == '친구'){
+            if (!vrcAccountData[message.author.id]) return message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: '등록된 계정 정보가 없어요. `.계정추가` 명령어로 계정을 등록해주세요.'
+                }
+            });
+            let tempArray = vrcAccountData[message.author.id].split(',');
+            let tempId = tempArray[0];
+            let tempPw = tempArray[1];
+            let api = await vrc.login(`${tempId}`, `${tempPw}`);
+            const temp = api.user.getFriends().then((data)=>{
+                if(data.length == 0) return message.channel.send({
+                    embed: {
+                        color: 3447003,
+                        description: '접속해있는 친구가 없어요.'
+                    }
+                });
+                let content = [];
+                for(i=0;i<data.length;i++) {
+                    let location = '';
+                    if(data[i].location == 'private'){
+                        location = 'private';
+                    } else {
+                        /* let tempLocation = data[i].location.substring(0,41);
+                        let tempLocationRoomNumber = data[i].location.substring(42,47);
+                        //console.log(tempLocation);
+                        //console.log(tempLocationRoomNumver);
+                        api.world.getById(`${tempLocation}`).then((worldData)=>{
+                            //console.log(worldData);
+                            //console.log(worldData.name);
+                            location = `**${worldData.name}**#${tempLocationRoomNumber}`;
+                        }); */
+                        location = 'online';
+                    }
+                    content.push({
+                        name: `**${data[i].displayName}**`,
+                        value: `${data[i].statusDescription}\n위치 : ${location}`
+                    });
+                }
+                message.channel.send({
+                    embed: {
+                        color: 3447003,
+                        title: '온라인 친구 목록',
+                        fields: content,
+                        timestamp: new Date(),
+                        footer: {
+                            icon_url: client.user.avatarURL,
+                            text: '명령어 입력 시간 '
+                        }
+                    }
+                });
+
+            });
+        }
+
+
+        if(command.command == '유저'){
+            if(!command.content) return message.channel.send({
+               embed:{
+                   color: 3447003,
+                   description: '`.유저 유저명` 형식으로 입력해주세요.'
+               } 
+            });
+            let imoji = '';
+            let temp1 = '';
+            for (let i = 0; i < command.content.length; i++) {
+                temp1 = command.content.charAt(i).toLowerCase().replace(/[0-9]|[^\!-z]/gi, " ");
+                if (temp1 == ' ') imoji += '';
+                else imoji += `${temp1}`
+            }
+            if (imoji.length == 0) return message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: '현재 영어이름만 검색 가능해요.'
+                }
+            });
+            if (!vrcAccountData[message.author.id]) return message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: '등록된 계정 정보가 없어요. `.계정추가` 명령어로 계정을 등록해주세요.'
+                }
+            });
+            let tempArray = vrcAccountData[message.author.id].split(',');
+            let tempId = tempArray[0];
+            let tempPw = tempArray[1];
+            let api = await vrc.login(`${tempId}`, `${tempPw}`);
+            let tempWorld = '';
+            const temp = api.user.getByName(command.content).then((data)=>{
+                if(data.worldId == 'offline'){
+                    tempWorld = 'offline';
+                } else {
+                    tempWorld = 'online';
+                }
+                const embed = new discord.RichEmbed()
+                .setColor(3447003)
+                .setThumbnail(data.currentAvatarThumbnailImageUrl)
+                .setFooter("명령어 입력 시간", client.user.avatarURL)
+                .setTimestamp()
+                .addField("유저네임", data.displayName, true)
+                .addField("상태", tempWorld, true)
+            
+                message.channel.send({ embed });
+            }).catch((err)=>{
+                message.channel.send({
+                    embed:{
+                        color: 3447003,
+                        description: '해당하는 유저가 없어요.'
+                    } 
+                 });
+            });
+        }
+
+        if(command.command == '계정삭제'){
+            if (!vrcAccountData[message.author.id]) return message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: '등록된 계정 정보가 없어요. 먼저 `.계정추가` 명령어로 계정을 등록해주세요.'
+                }
+            });
+            vrcAccountData[message.author.id] = null;
+            fs.writeFileSync('././data/vrc_user_data.json', JSON.stringify(vrcAccountData, null, '\t'));
+            message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: '등록된 VRC계정을 지웠어요.'
+                }
+            });
+        }
+
+        if(command.command == '계정추가'){
+            if(!command.content) return message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: '계정 정보를 `.계정추가 아이디,비밀번호` 형식으로 입력해주세요.'
+                }
+            });
+            let tempArray = command.content.split(',');
+            if(tempArray.length != 2) return message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: '알맞지 않은 형식이에요. `.계정추가 아이디,비밀번호` 형식으로 입력해주세요.'
+                }
+            });
+            vrcAccountData[message.author.id] = `${tempArray[0]},${tempArray[1]}`;
+            fs.writeFileSync('././data/vrc_user_data.json', JSON.stringify(vrcAccountData, null, '\t'));
+            message.delete()
+                .then(() => {
+                    message.channel.send({
+                        embed: {
+                            color: 3447003,
+                            description: 'VRC 계정 정보를 추가했어요.'
+                        }
+                    });
+                }, (reject) => {
+                    message.channel.send('Error occurred: `' + reject.message + '`.');
+                });
+        }        
+
         if (command.command === "핑") {
             const awaitMessage = await message.channel.send("계산중!");
             awaitMessage.edit(`:ping_pong: 퐁!! 후미카씨 서버와의 지연속도는 **${awaitMessage.createdTimestamp - message.createdTimestamp}ms**에요. \nAPI자체의 지연속도는 **${Math.round(client.ping)}ms**에요.`);
