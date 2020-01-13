@@ -852,7 +852,7 @@ module.exports = (client) => {
                 }
             });
             vrcAccountData[message.author.id] = null;
-            fs.writeFileSync('././data/vrc_user_data.json', JSON.stringify(vrcAccountData, null, '\t'));
+            fs.writeFileSync('./data/vrc_user_data.json', JSON.stringify(vrcAccountData, null, '\t'));
             message.channel.send({
                 embed: {
                     color: 3447003,
@@ -876,7 +876,7 @@ module.exports = (client) => {
                 }
             });
             vrcAccountData[message.author.id] = `${tempArray[0]},${tempArray[1]}`;
-            fs.writeFileSync('././data/vrc_user_data.json', JSON.stringify(vrcAccountData, null, '\t'));
+            fs.writeFileSync('./data/vrc_user_data.json', JSON.stringify(vrcAccountData, null, '\t'));
             message.delete()
                 .then(() => {
                     message.channel.send({
