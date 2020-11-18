@@ -8,6 +8,7 @@ const convert = require('../convertEnglishToKorean.js');
 const vrcAccountData = require('../../data/vrc_user_data.json');
 const fs = require('fs');
 const vrc = require('vrchat-client');
+const locale = require('../../data/locale.json');
 date.locale('ko');
 
 const numberRandom = (array) => {
@@ -220,8 +221,8 @@ module.exports = (client) => {
 
         if (command.command == '소비세' && command.content != '') {
             if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
-/*             let tax = 10;
-            if (command.param == '8') tax = 8; */
+            /*             let tax = 10;
+                        if (command.param == '8') tax = 8; */
             let amt1 = Number(command.content) + Number(Number(command.content) / 100 * 10);
             let amt2 = Number(command.content) + Number(Number(command.content) / 100 * 8);
             axios({
@@ -480,7 +481,7 @@ module.exports = (client) => {
             message.channel.send(result[luckyNum]);
         }
 
-        if(command.command == "메시지삭제" && command.content != '' || command.command == "메삭" && command.content != ''){
+        if (command.command == "메시지삭제" && command.content != '' || command.command == "메삭" && command.content != '') {
             if (isNaN(command.content) == true) return message.channel.send('올바르지 않은 입력값입니다.');
             message.channel.bulkDelete(Number(command.content)).then(() => {
                 message.channel.send({
@@ -489,7 +490,7 @@ module.exports = (client) => {
                         description: `${Number(command.content)}개의 메시지만큼 삭제했어요.`
                     }
                 });
-              }).catch((err) => {
+            }).catch((err) => {
                 message.channel.send({
                     embed: {
                         color: 3447003,
@@ -546,6 +547,159 @@ module.exports = (client) => {
                 });
             }).catch((err) => {
                 message.channel.send('Error occured : `' + err + '`');
+            });
+        }
+        if (command.command == '연어' && command.param == undefined) {
+            const salmon = require('../../data/salmon.json');
+            let salmonSync = fs.readFileSync('././data/salmon.json', 'utf8');
+            let nowDate = new Date();
+            let tempMonth = nowDate.getMonth() + 1;
+            let tempDate = nowDate.getDate();
+            if (1 >= tempMonth.toString().length) {
+                tempMonth = `0${tempMonth}`;
+            }
+            if (1 >= tempDate.toString().length) {
+                tempDate = `0${tempDate}`;
+            }
+            if (`${nowDate.getFullYear()}${tempMonth}${tempDate}` != salmon[0].date) {
+                axios({
+                    method: 'get',
+                    url: 'https://splatoon2.ink/data/coop-schedules.json',
+                }).then((res) => {
+                    console.log('data pushing');
+                    salmon[0].date = `${nowDate.getFullYear()}${tempMonth}${tempDate}`;
+                    delete salmon[1];
+                    let temp = salmon.filter(function (e) { return e != null; });
+                    temp.push(res.data);
+                    fs.writeFileSync('././data/salmon.json', JSON.stringify(temp, null, '\t'));
+                }).catch((err) => {
+                    message.channel.send('Error occured : `' + err + '`');
+                });
+            }
+            let tempWeapons = [];
+            let tempMap;
+            for (let i = 0; i < Object.keys(locale.weapons).length; i++) {
+                for (let x = 0; x < 4; x++) {
+                    if (JSON.parse(salmonSync)[1].details[0].weapons[x].id == Object.keys(locale.weapons)[i]) {
+                        if (JSON.parse(salmonSync)[1].details[0].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[0].weapons[x].id.slice(0, 2) == '20') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[차저]`);
+                        } else if (JSON.parse(salmonSync)[1].details[0].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[0].weapons[x].id.slice(0, 2) == '10') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[롤러]`);
+                        } else if (JSON.parse(salmonSync)[1].details[0].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[0].weapons[x].id.slice(0, 2) == '50') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[머뉴버]`);
+                        } else if (JSON.parse(salmonSync)[1].details[0].weapons[x].id.length <= 3) {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[슈터]`);
+                        } else if (JSON.parse(salmonSync)[1].details[0].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[0].weapons[x].id.slice(0, 2) == '11') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[붓]`);
+                        } else if (JSON.parse(salmonSync)[1].details[0].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[0].weapons[x].id.slice(0, 2) == '30') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[슬로셔]`);
+                        } else if (JSON.parse(salmonSync)[1].details[0].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[0].weapons[x].id.slice(0, 2) == '40') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[스피너]`);
+                        } else if (JSON.parse(salmonSync)[1].details[0].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[0].weapons[x].id.slice(0, 2) == '60') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[셸터]`);
+                        }
+                    }
+                }
+            }
+            for (let z = 0; z < Object.keys(locale.coop_stages).length; z++) {
+                if (JSON.parse(salmonSync)[1].details[0].stage.image == Object.keys(locale.coop_stages)[z]) {
+                    tempMap = Object.values(locale.coop_stages)[z].name;
+                }
+            }
+            message.channel.send({
+                embed: {
+                    thumbnail: {
+                        url: `https://splatoon2.ink/assets/splatnet${JSON.parse(salmonSync)[1].details[0].stage.image}`
+                    },
+                    title: `이번 연어런`,
+                    color: '3447003',
+                    fields: [
+                        {
+                            name: `맵 : ${tempMap}`,
+                            value: `진행 시간 : ${date.format(new Date(JSON.parse(salmonSync)[1].details[0].start_time * 1000), 'YYYY-MM-DD HH:mm')} ~ ${date.format(new Date(JSON.parse(salmonSync)[1].details[0].end_time * 1000), 'YYYY-MM-DD HH:mm')}\n무기 : ${tempWeapons}`
+                        }],
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: `Data Caching Time : ${JSON.parse(salmonSync)[0].date}`
+                    }
+                }
+            });
+        }
+
+        if (command.command == '연어' && command.param == '다음') {
+            const salmon = require('../../data/salmon.json');
+            let salmonSync = fs.readFileSync('././data/salmon.json', 'utf8');
+            let nowDate = new Date();
+            let tempMonth = nowDate.getMonth() + 1;
+            let tempDate = nowDate.getDate();
+            if (1 >= tempMonth.toString().length) {
+                tempMonth = `0${tempMonth}`;
+            }
+            if (1 >= tempDate.toString().length) {
+                tempDate = `0${tempDate}`;
+            }
+            if (`${nowDate.getFullYear()}${tempMonth}${tempDate}` != salmon[0].date) {
+                axios({
+                    method: 'get',
+                    url: 'https://splatoon2.ink/data/coop-schedules.json',
+                }).then((res) => {
+                    console.log('data pushing');
+                    salmon[0].date = `${nowDate.getFullYear()}${tempMonth}${tempDate}`;
+                    delete salmon[1];
+                    let temp = salmon.filter(function (e) { return e != null; });
+                    temp.push(res.data);
+                    fs.writeFileSync('././data/salmon.json', JSON.stringify(temp, null, '\t'));
+                }).catch((err) => {
+                    message.channel.send('Error occured : `' + err + '`');
+                });
+            }
+            let tempWeapons = [];
+            let tempMap;
+            for (let i = 0; i < Object.keys(locale.weapons).length; i++) {
+                for (let x = 0; x < 4; x++) {
+                    if (JSON.parse(salmonSync)[1].details[1].weapons[x].id == Object.keys(locale.weapons)[i]) {
+                        if (JSON.parse(salmonSync)[1].details[1].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[1].weapons[x].id.slice(0, 2) == '20') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[차저]`);
+                        } else if (JSON.parse(salmonSync)[1].details[1].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[1].weapons[x].id.slice(0, 2) == '10') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[롤러]`);
+                        } else if (JSON.parse(salmonSync)[1].details[1].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[1].weapons[x].id.slice(0, 2) == '50') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[머뉴버]`);
+                        } else if (JSON.parse(salmonSync)[1].details[1].weapons[x].id.length <= 3) {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[슈터]`);
+                        } else if (JSON.parse(salmonSync)[1].details[1].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[1].weapons[x].id.slice(0, 2) == '11') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[붓]`);
+                        } else if (JSON.parse(salmonSync)[1].details[1].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[1].weapons[x].id.slice(0, 2) == '30') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[슬로셔]`);
+                        } else if (JSON.parse(salmonSync)[1].details[1].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[1].weapons[x].id.slice(0, 2) == '40') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[스피너]`);
+                        } else if (JSON.parse(salmonSync)[1].details[1].weapons[x].id.length == 4 && JSON.parse(salmonSync)[1].details[1].weapons[x].id.slice(0, 2) == '60') {
+                            tempWeapons.push(`${locale.weapons[Object.keys(locale.weapons)[i]].name}[셸터]`);
+                        }
+                    }
+                }
+            }
+            for (let z = 0; z < Object.keys(locale.coop_stages).length; z++) {
+                if (JSON.parse(salmonSync)[1].details[1].stage.image == Object.keys(locale.coop_stages)[z]) {
+                    tempMap = Object.values(locale.coop_stages)[z].name;
+                }
+            }
+            message.channel.send({
+                embed: {
+                    thumbnail: {
+                        url: `https://splatoon2.ink/assets/splatnet${JSON.parse(salmonSync)[1].details[1].stage.image}`
+                    },
+                    title: `다음 연어런`,
+                    color: '3447003',
+                    fields: [
+                        {
+                            name: `맵 : ${tempMap}`,
+                            value: `진행 시간 : ${date.format(new Date(JSON.parse(salmonSync)[1].details[1].start_time * 1000), 'YYYY-MM-DD HH:mm')} ~ ${date.format(new Date(JSON.parse(salmonSync)[1].details[1].end_time * 1000), 'YYYY-MM-DD HH:mm')}\n무기 : ${tempWeapons}`
+                        }],
+                    footer: {
+                        icon_url: client.user.avatarURL,
+                        text: `Data Caching Time : ${JSON.parse(salmonSync)[0].date}`
+                    }
+                }
             });
         }
 
@@ -707,7 +861,7 @@ module.exports = (client) => {
     client.on("message", async message => {
         let command = util.slice(message.content);
 
-        if(command.command == 'VRC정보'){
+        if (command.command == 'VRC정보') {
             if (!vrcAccountData[message.author.id]) return message.channel.send({
                 embed: {
                     color: 3447003,
@@ -718,20 +872,20 @@ module.exports = (client) => {
             let tempId = tempArray[0];
             let tempPw = tempArray[1];
             let api = await vrc.login(`${tempId}`, `${tempPw}`);
-            const temp = api.user.getUserInfo().then((data)=>{
+            const temp = api.user.getUserInfo().then((data) => {
                 const embed = new discord.RichEmbed()
-                .setColor(3447003)
-                .setThumbnail(data.currentAvatarThumbnailImageUrl)
-                .setFooter("명령어 입력 시간", client.user.avatarURL)
-                .setTimestamp()
-                .addField("유저네임", data.displayName, true)
-                .addField("상태표시줄", data.statusDescription, true)
-            
+                    .setColor(3447003)
+                    .setThumbnail(data.currentAvatarThumbnailImageUrl)
+                    .setFooter("명령어 입력 시간", client.user.avatarURL)
+                    .setTimestamp()
+                    .addField("유저네임", data.displayName, true)
+                    .addField("상태표시줄", data.statusDescription, true)
+
                 message.channel.send({ embed });
             });
         }
 
-        if(command.command == '친구'){
+        if (command.command == '친구') {
             if (!vrcAccountData[message.author.id]) return message.channel.send({
                 embed: {
                     color: 3447003,
@@ -742,17 +896,17 @@ module.exports = (client) => {
             let tempId = tempArray[0];
             let tempPw = tempArray[1];
             let api = await vrc.login(`${tempId}`, `${tempPw}`);
-            const temp = api.user.getFriends().then((data)=>{
-                if(data.length == 0) return message.channel.send({
+            const temp = api.user.getFriends().then((data) => {
+                if (data.length == 0) return message.channel.send({
                     embed: {
                         color: 3447003,
                         description: '접속해있는 친구가 없어요.'
                     }
                 });
                 let content = [];
-                for(i=0;i<data.length;i++) {
+                for (i = 0; i < data.length; i++) {
                     let location = '';
-                    if(data[i].location == 'private'){
+                    if (data[i].location == 'private') {
                         location = 'private';
                     } else {
                         /* let tempLocation = data[i].location.substring(0,41);
@@ -788,12 +942,12 @@ module.exports = (client) => {
         }
 
 
-        if(command.command == '유저'){
-            if(!command.content) return message.channel.send({
-               embed:{
-                   color: 3447003,
-                   description: '`.유저 유저명` 형식으로 입력해주세요.'
-               } 
+        if (command.command == '유저') {
+            if (!command.content) return message.channel.send({
+                embed: {
+                    color: 3447003,
+                    description: '`.유저 유저명` 형식으로 입력해주세요.'
+                }
             });
             let imoji = '';
             let temp1 = '';
@@ -819,32 +973,32 @@ module.exports = (client) => {
             let tempPw = tempArray[1];
             let api = await vrc.login(`${tempId}`, `${tempPw}`);
             let tempWorld = '';
-            const temp = api.user.getByName(command.content).then((data)=>{
-                if(data.worldId == 'offline'){
+            const temp = api.user.getByName(command.content).then((data) => {
+                if (data.worldId == 'offline') {
                     tempWorld = 'offline';
                 } else {
                     tempWorld = 'online';
                 }
                 const embed = new discord.RichEmbed()
-                .setColor(3447003)
-                .setThumbnail(data.currentAvatarThumbnailImageUrl)
-                .setFooter("명령어 입력 시간", client.user.avatarURL)
-                .setTimestamp()
-                .addField("유저네임", data.displayName, true)
-                .addField("상태", tempWorld, true)
-            
+                    .setColor(3447003)
+                    .setThumbnail(data.currentAvatarThumbnailImageUrl)
+                    .setFooter("명령어 입력 시간", client.user.avatarURL)
+                    .setTimestamp()
+                    .addField("유저네임", data.displayName, true)
+                    .addField("상태", tempWorld, true)
+
                 message.channel.send({ embed });
-            }).catch((err)=>{
+            }).catch((err) => {
                 message.channel.send({
-                    embed:{
+                    embed: {
                         color: 3447003,
                         description: '해당하는 유저가 없어요.'
-                    } 
-                 });
+                    }
+                });
             });
         }
 
-        if(command.command == '계정삭제'){
+        if (command.command == '계정삭제') {
             if (!vrcAccountData[message.author.id]) return message.channel.send({
                 embed: {
                     color: 3447003,
@@ -861,15 +1015,15 @@ module.exports = (client) => {
             });
         }
 
-        if(command.command == '계정추가'){
-            if(!command.content) return message.channel.send({
+        if (command.command == '계정추가') {
+            if (!command.content) return message.channel.send({
                 embed: {
                     color: 3447003,
                     description: '계정 정보를 `.계정추가 아이디,비밀번호` 형식으로 입력해주세요.'
                 }
             });
             let tempArray = command.content.split(',');
-            if(tempArray.length != 2) return message.channel.send({
+            if (tempArray.length != 2) return message.channel.send({
                 embed: {
                     color: 3447003,
                     description: '알맞지 않은 형식이에요. `.계정추가 아이디,비밀번호` 형식으로 입력해주세요.'
@@ -888,7 +1042,7 @@ module.exports = (client) => {
                 }, (reject) => {
                     message.channel.send('Error occurred: `' + reject.message + '`.');
                 });
-        }        
+        }
 
         if (command.command === "핑") {
             const awaitMessage = await message.channel.send("계산중!");
