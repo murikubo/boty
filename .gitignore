@@ -63,3 +63,6 @@ config.json
 
 #because of information
 data/
+
+#no reason to save
+cache/
