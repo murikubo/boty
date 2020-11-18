@@ -6,7 +6,7 @@ module.exports = (client) => {
     client.on('message', message => {
         let command = util.slice(message.content);
         if (command.command == "카드퀴즈") {
-            let Paramcount = Math.floor((Math.random() * 8) + 0);
+            let Paramcount = Math.floor((Math.random() * 9) + 0);
             axios({
                 method: 'get',
                 url: 'https://shadowverse-portal.com/api/v1/cards',
